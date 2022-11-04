@@ -1,21 +1,64 @@
 var pizza = {
     sauce: 'Red',
-    numToppings: 4,
-    toppings: ["Pepperoni", "Salami", "Mushrooms", "Bacon"],
-    isCauly: true
+    numToppings: 0,
+    toppings: [],
+    isCauly: false,
+    isCombo: false
 }
-// function setNumToppings() {
-    
-// }
-// function createPizza(pizzaType) {
-    
-// }
-// function addTopping() {
+var pizzaList = []
 
-// }
-// function addDrink() {
+var numDrinks = 0;
+function createPizza(pizzaType) {
+    pizza.numToppings = pizzaType    
+}
+function addTopping(sauce, caulyCrust, drinkCombo, toppingsList) {
+    pizza.sauce = sauce;
+    pizza.isCauly = caulyCrust;
+    pizza.isCombo = drinkCombo;
+    for (let i = 0; i < numToppings; i++) {
+        pizza.numToppings.push(toppingsList[i])
+    }
+    pizzaList.push(pizza);
+    numPizzas++;
+}
+function addDrink() {
+    numDrinks++
+}
+function calculatePrice() {
+    var price = 0
+    for (let i = 0; i < pizzaList.length(); i++) {
+        var currentPizza = pizzaList[i];
+        if (currentPizza.numToppings == 0 || (currentPizza.numToppings == 1 && currentPizza.toppings[0] == 'Pepperoni')) {
+            if (currentPizza.isCombo) {
+                price += 7.99
+            }
+            else {
+                price += 6.79
+            }
+        }
+        else if (currentPizza.numToppings == 1) {
+            if (currentPizza.isCombo) {
+                price += 10.24
+            }
+            else {
+                price += 7.79
+            }
+        }
+        else {
+            if (currentPizza.isCombo) {
+                price += 11.44
+            }
+            else {
+                price += 8.99
+            }
+        }
+        if (currentPizza.isCauly) {
+            price += 2.99
+        }
+    }
+    return price;
+}
 
-// }
 updateTable()
 function updateTable() {
     //Declare pool, dotenv
