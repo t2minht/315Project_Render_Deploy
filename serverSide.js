@@ -29,6 +29,9 @@ function updateTable() {
                 console.log(result.affectedRows + " record(s) updated");
                 client.release()
             })
+                        // .catch(err => {
+            //     client.release()
+            //     console.log(err.stack)
             // .query('SELECT * FROM customerinfo')
             // .then(data => {
             //     console.log(data.rows[0])
