@@ -1,8 +1,21 @@
 var pizza = {
     sauce: 'red',
     numToppings: 1,
-    toppings: ['Pepperoni']
+    toppings: ['Pepperoni'],
+    isCauli: false
 }
+// function setNumToppings() {
+    
+// }
+// function createPizza(pizzaType) {
+    
+// }
+// function addTopping() {
+
+// }
+// function addDrink() {
+
+// }
 updateTable()
 function updateTable() {
     //Declare pool, dotenv
@@ -29,26 +42,15 @@ function updateTable() {
                 console.log(result.affectedRows + " record(s) updated");
                 client.release()
             })
-                        // .catch(err => {
-            //     client.release()
-            //     console.log(err.stack)
-            // .query('SELECT * FROM customerinfo')
-            // .then(data => {
-            //     console.log(data.rows[0])
-            //     client.release()
-            // })
-            // .catch(err => {
-            //     client.release()
-            //     console.log(err.stack)
-            // })
         })
-}
-// }
-
-//exit gracefully
-process.on('SIGINT', function() {
-    pool.end();
-    console.log('Application successfully shutdown');
-    process.exit(0);
-});
+        //exit gracefully
+    process.on('SIGINT', function() {
+        pool.end();
+        console.log('Application successfully shutdown');
+        process.exit(0);
+    });
     
+}
+
+
+
