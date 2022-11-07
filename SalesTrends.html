@@ -27,9 +27,27 @@
       </nav>
         
       <div class="container">
-        <h3>Basic Navbar Example</h3>
-        <p>A navigation bar is a navigation header that is placed at the top of the page.</p>
+        <h3>Sales Trends</h3>
+        <p>Enter a start and end date to view sales trends for that period.</p>
       </div>
+
+      <div class="container" >
+
+        <form action="/action_page.php"> 
+            <label for="newName">Enter item name:</label>
+            <input type="text" id="newName" name="newName">
+
+            <label for="startDate">Enter start date:</label>
+            <input type="date" id="startDate" name="startDate">
+
+            <label for="endDate">Enter end date:</label>
+            <input type="date" id="endDate" name="endDate">
+
+            <input type="submit" value="Submit">
+
+
+        </form>
+    </div>
       
       </body>
       </html>
