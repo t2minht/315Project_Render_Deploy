@@ -1,4 +1,5 @@
 var pizza = {
+    pizzaName: "",
     sauce: 'Red',
     numToppings: 0,
     toppings: [],
@@ -8,7 +9,8 @@ var pizza = {
 var pizzaList = []
 
 var numDrinks = 0;
-function createPizza(pizzaType) {
+function createPizza(name, pizzaType) {
+    pizza.pizzaName = name
     pizza.numToppings = pizzaType    
 }
 function addTopping(sauce, caulyCrust, drinkCombo, toppingsList) {
