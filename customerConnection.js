@@ -3,6 +3,7 @@ var pizza = {
     sauce: '',
     drinkName: "",
     numToppings: 0,
+    currToppings: 0,
     toppings: [],
     isCauly: false,
     isCombo: false
@@ -16,12 +17,23 @@ function createPizza(name, pizzaType) {
      
 }
 function drinkPizza(nameDrink) {
-    numDrinks++;
+    if (nameDrink != "") {
+        numDrinks++;
+    }
+    else {
+        drinkList.push = nameDrink;
+    }
     pizza.drinkName = nameDrink;
 }
 function addTopping(passedToping) {
-    pizza.numToppings++
-    pizza.toppings.push(passedTopping)
+    if (pizza.currToppings == pizza.numToppings) {
+        return false;
+    }
+    else {
+        pizza.currToppings++
+        pizza.toppings.push(passedTopping)
+        return true;
+    }
 }
 function addToOrder() {
     pizzaList.push(pizza);
@@ -36,9 +48,7 @@ function crustType(caulyCrust) {
 function comboMeal(drinkCombo) {
     pizza.isCombo = drinkCombo;
 }
-function addDrink() {
-    numDrinks++
-}
+
 function calculatePrice() {
     var price = 0
     for (let i = 0; i < pizzaList.length(); i++) {
@@ -82,7 +92,8 @@ function cancelOrder() {
     pizza.sauce = ''
     pizza.drinkName = ""
     pizza.numToppings = 0
-    pizza.toppings = [],
+    pizza.currToppings = 0
+    pizza.toppings = []
     pizza.isCauly = false
     pizza.isCombo = false
     pizzaList = []
@@ -98,12 +109,26 @@ function refreshPizza() {
     pizza.sauce = ''
     pizza.drinkName = ""
     pizza.numToppings = 0
+    pizza.currToppings = 0
     pizza.toppings = [],
     pizza.isCauly = false
     pizza.isCombo = false
 }
 
-updateTable()
+function checkoutScreen() {
+    let completeOrder = 'Order Info: \n'
+    for (let i = 0; i < pizzaList.length(); i++) {
+        completeOrder += pizza.name 
+        completeOrder +=  "- "
+        for(let j = 0; i < pizza.toppings.length(); j++) {
+            completeOrder += pizza.toppings[j] 
+            completeOrder += " "
+        }
+        completeOrder += ("\n")
+    }
+    return completeOrder
+}
+
 function updateTable() {
     //Declare pool, dotenv
     const { Pool } = require('pg');
@@ -153,7 +178,7 @@ function updateTable() {
                    
                 })
             }
-            clearSelection()
+            cancelOrder()
         })
         //exit gracefully
     process.on('SIGINT', function() {
