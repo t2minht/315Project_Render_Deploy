@@ -1,6 +1,7 @@
 var pizza = {
     pizzaName: "",
-    sauce: 'Red',
+    sauce: '',
+    drinkName: "",
     numToppings: 0,
     toppings: [],
     isCauly: false,
@@ -11,17 +12,29 @@ var pizzaList = []
 var numDrinks = 0;
 function createPizza(name, pizzaType) {
     pizza.pizzaName = name
-    pizza.numToppings = pizzaType    
+    pizza.numToppings = pizzaType   
+     
 }
-function addTopping(sauce, caulyCrust, drinkCombo, toppingsList) {
-    pizza.sauce = sauce;
-    pizza.isCauly = caulyCrust;
-    pizza.isCombo = drinkCombo;
-    for (let i = 0; i < numToppings; i++) {
-        pizza.numToppings.push(toppingsList[i])
-    }
+function drinkPizza(nameDrink) {
+    numDrinks++;
+    pizza.drinkName = nameDrink;
+}
+function addTopping(passedToping) {
+    pizza.numToppings++
+    pizza.toppings.push(passedTopping)
+}
+function addToOrder() {
     pizzaList.push(pizza);
     numPizzas++;
+}
+function addSauce(sauce) {
+    pizza.sauce = sauce;
+}
+function crustType(caulyCrust) {
+    pizza.isCauly = caulyCrust;
+}
+function comboMeal(drinkCombo) {
+    pizza.isCombo = drinkCombo;
 }
 function addDrink() {
     numDrinks++
@@ -30,7 +43,10 @@ function calculatePrice() {
     var price = 0
     for (let i = 0; i < pizzaList.length(); i++) {
         var currentPizza = pizzaList[i];
-        if (currentPizza.numToppings == 0 || (currentPizza.numToppings == 1 && currentPizza.toppings[0] == 'Pepperoni')) {
+        if (currentPizza.numToppings == -1) {
+            price += 2.45
+        }
+        else if (currentPizza.numToppings == 0 || (currentPizza.numToppings == 1 && currentPizza.toppings[0] == 'Pepperoni')) {
             if (currentPizza.isCombo) {
                 price += 7.99
             }
@@ -59,6 +75,32 @@ function calculatePrice() {
         }
     }
     return price;
+}
+
+function cancelOrder() {
+    pizza.pizzaName = ""
+    pizza.sauce = ''
+    pizza.drinkName = ""
+    pizza.numToppings = 0
+    pizza.toppings = [],
+    pizza.isCauly = false
+    pizza.isCombo = false
+    pizzaList = []
+    numDrinks = 0;
+    numPizzas = 0; 
+}
+function clearSelection() {
+    pizzaList.pop()
+}
+
+function refreshPizza() {
+    pizza.pizzaName = ""
+    pizza.sauce = ''
+    pizza.drinkName = ""
+    pizza.numToppings = 0
+    pizza.toppings = [],
+    pizza.isCauly = false
+    pizza.isCombo = false
 }
 
 updateTable()
@@ -111,7 +153,7 @@ function updateTable() {
                    
                 })
             }
-            client.release()
+            clearSelection()
         })
         //exit gracefully
     process.on('SIGINT', function() {
