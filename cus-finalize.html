@@ -16,11 +16,14 @@
     <script>
         document.getElementById("orderinfo").innerHTML = checkoutScreen()
     </script>
-    <h3 id="orderinfo">*DISPLAY ORDER INFO HERE*</h3>>
+    <h3 id="orderinfo">*DISPLAY ORDER INFO HERE*</h3>
     <h2>Payment Type:</h2>
-    <a href="cus-pizzatype.html" class="button" onclick="updateTable()">Cash</a>
-    <a href="cus-pizzatype.html" class="button" onclick="updateTable()">Card</a>
-    <a href="cus-pizzatype.html" class="button" onclick="updateTable()">Dining Dollars</a>
-    <a href="cus-pizzatype.html" class="button" onclick="cancelOrder()">Cancel Order</a>
+    <button id="checkout" onclick="updateTable()">Cash</button>
+    <button id="checkout" onclick="updateTable()">Card</button>
+    <button id="checkout" onclick="updateTable()">Dining Dollars</button>
+    <button onclick="cancelOrder()">Cancel Order</a>
+    <script src="serverSide.js">
+      document.getElementById("checkout").addEventListener("click",updateTable);
+    </script>
       </body>
       </html>
