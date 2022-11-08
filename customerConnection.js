@@ -1,7 +1,9 @@
 var pizza = {
     pizzaName: "",
-    sauce: 'Red',
+    sauce: '',
+    drinkName: "",
     numToppings: 0,
+    currToppings: 0,
     toppings: [],
     isCauly: false,
     isCombo: false
@@ -11,26 +13,50 @@ var pizzaList = []
 var numDrinks = 0;
 function createPizza(name, pizzaType) {
     pizza.pizzaName = name
-    pizza.numToppings = pizzaType    
+    pizza.numToppings = pizzaType   
+     
 }
-function addTopping(sauce, caulyCrust, drinkCombo, toppingsList) {
-    pizza.sauce = sauce;
-    pizza.isCauly = caulyCrust;
-    pizza.isCombo = drinkCombo;
-    for (let i = 0; i < numToppings; i++) {
-        pizza.numToppings.push(toppingsList[i])
+function drinkPizza(nameDrink) {
+    if (nameDrink != "") {
+        numDrinks++;
     }
+    else {
+        drinkList.push = nameDrink;
+    }
+    pizza.drinkName = nameDrink;
+}
+function addTopping(passedToping) {
+    if (pizza.currToppings == pizza.numToppings) {
+        return false;
+    }
+    else {
+        pizza.currToppings++
+        pizza.toppings.push(passedTopping)
+        return true;
+    }
+}
+function addToOrder() {
     pizzaList.push(pizza);
     numPizzas++;
 }
-function addDrink() {
-    numDrinks++
+function addSauce(sauce) {
+    pizza.sauce = sauce;
 }
+function crustType(caulyCrust) {
+    pizza.isCauly = caulyCrust;
+}
+function comboMeal(drinkCombo) {
+    pizza.isCombo = drinkCombo;
+}
+
 function calculatePrice() {
     var price = 0
     for (let i = 0; i < pizzaList.length(); i++) {
         var currentPizza = pizzaList[i];
-        if (currentPizza.numToppings == 0 || (currentPizza.numToppings == 1 && currentPizza.toppings[0] == 'Pepperoni')) {
+        if (currentPizza.numToppings == -1) {
+            price += 2.45
+        }
+        else if (currentPizza.numToppings == 0 || (currentPizza.numToppings == 1 && currentPizza.toppings[0] == 'Pepperoni')) {
             if (currentPizza.isCombo) {
                 price += 7.99
             }
@@ -61,7 +87,48 @@ function calculatePrice() {
     return price;
 }
 
-updateTable()
+function cancelOrder() {
+    pizza.pizzaName = ""
+    pizza.sauce = ''
+    pizza.drinkName = ""
+    pizza.numToppings = 0
+    pizza.currToppings = 0
+    pizza.toppings = []
+    pizza.isCauly = false
+    pizza.isCombo = false
+    pizzaList = []
+    numDrinks = 0;
+    numPizzas = 0; 
+}
+function clearSelection() {
+    pizzaList.pop()
+}
+
+function refreshPizza() {
+    pizza.pizzaName = ""
+    pizza.sauce = ''
+    pizza.drinkName = ""
+    pizza.numToppings = 0
+    pizza.currToppings = 0
+    pizza.toppings = [],
+    pizza.isCauly = false
+    pizza.isCombo = false
+}
+
+function checkoutScreen() {
+    let completeOrder = 'Order Info: \n'
+    for (let i = 0; i < pizzaList.length(); i++) {
+        completeOrder += pizza.name 
+        completeOrder +=  "- "
+        for(let j = 0; i < pizza.toppings.length(); j++) {
+            completeOrder += pizza.toppings[j] 
+            completeOrder += " "
+        }
+        completeOrder += ("\n")
+    }
+    return completeOrder
+}
+
 function updateTable() {
     //Declare pool, dotenv
     const { Pool } = require('pg');
@@ -111,7 +178,7 @@ function updateTable() {
                    
                 })
             }
-            client.release()
+            cancelOrder()
         })
         //exit gracefully
     process.on('SIGINT', function() {
