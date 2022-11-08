@@ -63,6 +63,7 @@ function App() {
         {heading: 'Name', key: 19, value: "name"},
         {heading: 'Units Sold', key: 20, value: "count"},
     ];
+    
 
     let component
     switch(window.location.pathname) {
@@ -79,7 +80,7 @@ function App() {
             component = <Inventory data={inventoryTable} column={invColumn}/>
             break
         case "/trends":
-            component = <Trends/>
+            component = <Trends data={salesTrendsTable} column={salesTrendsCols}/>
             break
         case "/restockReport":
             component = <RestockReport data={restockTable} column={restockReportCols}/>

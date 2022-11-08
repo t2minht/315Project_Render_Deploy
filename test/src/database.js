@@ -43,6 +43,19 @@ app.get("/id/:x", async (req, res) => {
     res.json(inv.rows);
 });
 
+app.get("/drinks/:itemName", async (req, res) => {
+    let inv = await pool.query("SELECT id FROM drinks WHERE drinkname = '" + req.params.itemName + "'");
+    //inventory = inv.rows;
+    res.json(inv.rows);
+});
+
+app.get("/pizza/:itemName", async (req, res) => {
+
+    let inv = await pool.query("SELECT id FROM pizza WHERE pizzaname = '" + req.params.itemName.replace("_", " ") + "'");
+    //inventory = inv.rows;
+    res.json(inv.rows);
+});
+
 app.get("/menu", async (req, res) => {
     let inv = await pool.query('SELECT * FROM menu');
     res.json(inv.rows);
