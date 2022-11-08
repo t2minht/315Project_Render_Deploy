@@ -13,7 +13,8 @@ var pizzaList = []
 var numDrinks = 0;
 function createPizza(name, pizzaType) {
     pizza.pizzaName = name;
-    pizza.numToppings = pizzaType  ;   
+    pizza.numToppings = pizzaType;
+    window.location.href = "cus-topping.html";
 }
 
 function drinkPizza(nameDrink) {
