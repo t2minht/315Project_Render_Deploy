@@ -8,8 +8,7 @@ import Trends from "./pages/trends.js";
 import Home from "./pages/home.js";
 import RestockReport from "./pages/restockReport.js";
 import ExcessReport from "./pages/excessReport.js";
-
-//const database = require("./database");
+import SalesTogether from "./pages/salesTogether.js";
 
 function App() {
 
@@ -20,12 +19,6 @@ function App() {
     const [menuTable, setMenuTable] = useState([1,1,1,1,1,1,1]);
     const [togetherTable, setTogetherTable] = useState([]);
     const [salesTrendsTable, setSalesTrendsTable] = useState([]);
-    
-    // useEffect[(() => {
-    //     database.getInventory.then(res => setInventoryTable(res));
-    //     database.getMenu.then(res => setMenuTable(res));
-    //     database.restockReport(res => setRestockTable(res));
-    // }, [])]
 
     const invColumn = [
         {heading: 'ID', key: 1, value: "id"},
@@ -36,8 +29,8 @@ function App() {
         
     ];
     const toColumn = [
-        {heading: 'ID', key: 5, value: "item1"},
-        {heading: 'Name', key: 6, value: "item2"},
+        {heading: 'Item 1', key: 5, value: "item1"},
+        {heading: 'Item 2', key: 6, value: "item2"},
         {heading: 'Count', key: 7, value: "count"},
     ];
 
@@ -87,6 +80,9 @@ function App() {
             break
         case "/excessReport":
             component = <ExcessReport data={excessTable} column={excessCols}/>
+            break
+        case "/salesTogether":
+            component = <SalesTogether data={togetherTable} column={toColumn}/>
             break
     }
     return (

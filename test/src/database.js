@@ -106,8 +106,8 @@ app.put("/updateAmount", async (req, res) => {
     
 });
 
-app.get("/salesTogether", async (req, res) => {
-    let inv = await pool.query("SELECT customerinfo.id,customerinfo.orderdate,pizza.pizzaname,drinks.drinkname FROM customerinfo INNER JOIN drinks ON customerinfo.id=drinks.id INNER JOIN pizza ON customerinfo.id=pizza.id WHERE orderdate BETWEEN '" + req.body.beginDate + "' and '" + req.body.endDate + "'");
+app.get("/salesTogether/:beginDate/:endDate", async (req, res) => {
+    let inv = await pool.query("SELECT customerinfo.id,customerinfo.orderdate,pizza.pizzaname,drinks.drinkname FROM customerinfo INNER JOIN drinks ON customerinfo.id=drinks.id INNER JOIN pizza ON customerinfo.id=pizza.id WHERE orderdate BETWEEN '" + req.params.beginDate + "' and '" + req.params.endDate + "'");
     res.json(inv.rows);
     
 });
