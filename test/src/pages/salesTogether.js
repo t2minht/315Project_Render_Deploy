@@ -172,6 +172,16 @@ function SalesTogether(props) {
         salesTogether1.push(temp7); salesTogether1.push(temp8); salesTogether1.push(temp9);
         salesTogether1.push(temp10); salesTogether1.push(temp11); salesTogether1.push(temp12); salesTogether1.push(temp13); salesTogether1.push(temp14); salesTogether1.push(temp15); salesTogether1.push(temp16); salesTogether1.push(temp17); salesTogether1.push(temp18); salesTogether1.push(temp19); salesTogether1.push(temp20); salesTogether1.push(temp21); salesTogether1.push(temp22); salesTogether1.push(temp23); salesTogether1.push(temp24); salesTogether1.push(temp25); salesTogether1.push(temp26); salesTogether1.push(temp27); salesTogether1.push(temp28);
 
+        for (let i = 0; i< salesTogether1.length-1; ++i){
+            for (let j= 0; j< salesTogether1.length - i - 1; ++j){
+                if (salesTogether1[j]["count"] < salesTogether1[j + 1]["count"]){
+                    let temp = salesTogether1[j];
+                    salesTogether1[j] = salesTogether1[j+1];
+                    salesTogether1[j+1] = temp;
+                }
+            }
+        }
+
         setTogetherTable(salesTogether1);
 
     }
