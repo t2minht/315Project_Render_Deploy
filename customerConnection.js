@@ -1,6 +1,6 @@
 var pizza = {
     pizzaName: "",
-    sauce: '',
+    sauce: 'Red',
     drinkName: "",
     numToppings: 0,
     currToppings: 0,
@@ -12,10 +12,10 @@ var pizzaList = []
 
 var numDrinks = 0;
 function createPizza(name, pizzaType) {
-    pizza.pizzaName = name
-    pizza.numToppings = pizzaType   
-     
+    pizza.pizzaName = name;
+    pizza.numToppings = pizzaType  ;   
 }
+
 function drinkPizza(nameDrink) {
     if (nameDrink != "") {
         numDrinks++;
@@ -30,8 +30,8 @@ function addTopping(passedToping) {
         return false;
     }
     else {
-        pizza.currToppings++
-        pizza.toppings.push(passedTopping)
+        pizza.currToppings++;
+        pizza.toppings.push(passedTopping);
         return true;
     }
 }
@@ -50,83 +50,83 @@ function comboMeal(drinkCombo) {
 }
 
 function calculatePrice() {
-    var price = 0
+    var price = 0;
     for (let i = 0; i < pizzaList.length(); i++) {
         var currentPizza = pizzaList[i];
         if (currentPizza.numToppings == -1) {
-            price += 2.45
+            price += 2.45;
         }
         else if (currentPizza.numToppings == 0 || (currentPizza.numToppings == 1 && currentPizza.toppings[0] == 'Pepperoni')) {
             if (currentPizza.isCombo) {
-                price += 7.99
+                price += 7.99;
             }
             else {
-                price += 6.79
+                price += 6.79;
             }
         }
         else if (currentPizza.numToppings == 1) {
             if (currentPizza.isCombo) {
-                price += 10.24
+                price += 10.24;
             }
             else {
-                price += 7.79
+                price += 7.79;
             }
         }
         else {
             if (currentPizza.isCombo) {
-                price += 11.44
+                price += 11.44;
             }
             else {
-                price += 8.99
+                price += 8.99;
             }
         }
         if (currentPizza.isCauly) {
-            price += 2.99
+            price += 2.99;
         }
     }
     return price;
 }
 
 function cancelOrder() {
-    pizza.pizzaName = ""
-    pizza.sauce = ''
-    pizza.drinkName = ""
-    pizza.numToppings = 0
-    pizza.currToppings = 0
-    pizza.toppings = []
-    pizza.isCauly = false
-    pizza.isCombo = false
-    pizzaList = []
+    pizza.pizzaName = "";
+    pizza.sauce = '';
+    pizza.drinkName = "";
+    pizza.numToppings = 0;
+    pizza.currToppings = 0;
+    pizza.toppings = [];
+    pizza.isCauly = false;
+    pizza.isCombo = false;
+    pizzaList = [];
     numDrinks = 0;
     numPizzas = 0; 
 }
 function clearSelection() {
-    pizzaList.pop()
+    pizzaList.pop();
 }
 
 function refreshPizza() {
-    pizza.pizzaName = ""
-    pizza.sauce = ''
-    pizza.drinkName = ""
-    pizza.numToppings = 0
-    pizza.currToppings = 0
-    pizza.toppings = [],
-    pizza.isCauly = false
-    pizza.isCombo = false
+    pizza.pizzaName = "";
+    pizza.sauce = '';
+    pizza.drinkName = "";
+    pizza.numToppings = 0;
+    pizza.currToppings = 0;
+    pizza.toppings = [];
+    pizza.isCauly = false;
+    pizza.isCombo = false;
 }
 
 function checkoutScreen() {
-    let completeOrder = 'Order Info: \n'
+    let completeOrder = 'Order Info: \n';
     for (let i = 0; i < pizzaList.length(); i++) {
-        completeOrder += pizza.name 
-        completeOrder +=  "- "
+        completeOrder += pizza.name; 
+        completeOrder +=  "- ";
         for(let j = 0; i < pizza.toppings.length(); j++) {
-            completeOrder += pizza.toppings[j] 
-            completeOrder += " "
+            completeOrder += pizza.toppings[j] ;
+            completeOrder += " ";
         }
-        completeOrder += ("\n")
+        completeOrder += ("\n");
     }
-    return completeOrder
+    return completeOrder;
 }
 
 function updateTable() {
