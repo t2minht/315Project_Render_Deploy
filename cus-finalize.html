@@ -13,11 +13,14 @@
 
     <h1>Order Information:</h1>
     <!-- use javascript document.getElementById("orderinfo").innerHTML = (string with order info); -->
+    <script>
+        document.getElementById("orderinfo").innerHTML = checkoutScreen()
+    </script>
     <h3 id="orderinfo">*DISPLAY ORDER INFO HERE*</h3>>
     <h2>Payment Type:</h2>
-    <a href="cus-pizzatype.html" class="button">Cash</a>
-    <a href="cus-pizzatype.html" class="button">Card</a>
-    <a href="cus-pizzatype.html" class="button">Dining Dollars</a>
-    <a href="cus-pizzatype.html" class="button">Cancel Order</a>
+    <a href="cus-pizzatype.html" class="button" onclick="updateTable()">Cash</a>
+    <a href="cus-pizzatype.html" class="button" onclick="updateTable()">Card</a>
+    <a href="cus-pizzatype.html" class="button" onclick="updateTable()">Dining Dollars</a>
+    <a href="cus-pizzatype.html" class="button" onclick="cancelOrder()">Cancel Order</a>
       </body>
       </html>
