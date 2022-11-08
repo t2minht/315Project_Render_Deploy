@@ -38,6 +38,7 @@ function addTopping(passedToping) {
 function addToOrder() {
     pizzaList.push(pizza);
     numPizzas++;
+    refreshPizza();
 }
 function addSauce(sauce) {
     pizza.sauce = sauce;
@@ -106,7 +107,7 @@ function clearSelection() {
 
 function refreshPizza() {
     pizza.pizzaName = "";
-    pizza.sauce = '';
+    pizza.sauce = 'Red';
     pizza.drinkName = "";
     pizza.numToppings = 0;
     pizza.currToppings = 0;
