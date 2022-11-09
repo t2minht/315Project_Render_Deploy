@@ -25,13 +25,20 @@ var pizzaList = []
 
 var numDrinks = 0;
 
-function createPizza(/*name, pizzaType*/) {
-    
-    alert("Hello\nHow are you?"); 
+const createPizza = async () => {
     // pizza.pizzaName = name;
     // pizza.numToppings = pizzaType;
     // window.location.href = "cus-topping.html";
-    console.log("HI :)") 
+    const body = {
+        "isCauly":true,
+        "numToppings":[]
+    }
+    const response = await fetch("http://localhost:5001/checkout", {
+        method:"PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(body)
+    });
+    alert("Database updated");
 }
 
 function drinkPizza(nameDrink) {
@@ -210,4 +217,4 @@ function updateTable() {
 
 
 
-module.exports = {};
+module.exports = {createPizza};
