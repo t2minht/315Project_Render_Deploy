@@ -1,10 +1,14 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+
 var pizza = {
     pizzaName: "",
     sauce: 'Red',
     drinkName: "",
-    numToppings: 0,
-    currToppings: 0,
-    toppings: [],
+    numToppings: 1,
+    currToppings: 1,
+    toppings: ['Pepperoni'],
     isCauly: false,
     isCombo: false
 }
@@ -182,7 +186,7 @@ function updateTable() {
             }
             cancelOrder()
         })
-        //exit gracefully
+    //exit gracefully
     process.on('SIGINT', function() {
         pool.end();
         console.log('Application successfully shutdown');
@@ -191,5 +195,4 @@ function updateTable() {
     
 }
 
-
-
+module.exports = {};
