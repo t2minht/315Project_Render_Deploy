@@ -2,6 +2,15 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+app.set("view engine", "ejs");
+
+app.get("/", (req,res) => {
+    res.render("index");
+})
+app.listen(3001);
+
+app.use(express.static('public'));
+
 var pizza = {
     pizzaName: "",
     sauce: 'Red',
@@ -15,10 +24,14 @@ var pizza = {
 var pizzaList = []
 
 var numDrinks = 0;
-function createPizza(name, pizzaType) {
-    pizza.pizzaName = name;
-    pizza.numToppings = pizzaType;
-    window.location.href = "cus-topping.html";
+
+function createPizza(/*name, pizzaType*/) {
+    
+    alert("Hello\nHow are you?"); 
+    // pizza.pizzaName = name;
+    // pizza.numToppings = pizzaType;
+    // window.location.href = "cus-topping.html";
+    console.log("HI :)") 
 }
 
 function drinkPizza(nameDrink) {
@@ -194,5 +207,7 @@ function updateTable() {
     });
     
 }
+
+
 
 module.exports = {};

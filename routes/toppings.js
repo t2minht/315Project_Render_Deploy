@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get("/sauce", (req, res) => {
-    res.send("Your sauce")
+    return res.send("Your sauce")
 })
 
 router.get("/meats", (req,res) => {

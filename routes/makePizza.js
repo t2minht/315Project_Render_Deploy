@@ -8,12 +8,15 @@ router.get("/", (req, res) => {
 })
 
 router.get("/toppings", (req,res) => {
-    res.send("Toppings on your pizza:")
+    res.get("Toppings on your pizza:")
 })
 
+//post new
 router.post('/', (req, res) => {
     res.send("New pizza");
 })
+
+//put updating
 
 // router
 //     .route("/:id")
