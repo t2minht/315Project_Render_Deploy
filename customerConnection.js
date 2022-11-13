@@ -2,6 +2,15 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+app.set("view engine", "ejs");
+
+app.get("/", (req,res) => {
+    res.render("index");
+})
+app.listen(3001);
+
+app.use(express.static('public'));
+
 var pizza = {
     pizzaName: "",
     sauce: 'Red',
@@ -15,10 +24,21 @@ var pizza = {
 var pizzaList = []
 
 var numDrinks = 0;
-function createPizza(name, pizzaType) {
-    pizza.pizzaName = name;
-    pizza.numToppings = pizzaType;
-    window.location.href = "cus-topping.html";
+
+const createPizza = async () => {
+    // pizza.pizzaName = name;
+    // pizza.numToppings = pizzaType;
+    // window.location.href = "cus-topping.html";
+    const body = {
+        "isCauly":true,
+        "numToppings":[]
+    }
+    const response = await fetch("http://localhost:5001/checkout", {
+        method:"PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(body)
+    });
+    alert("Database updated");
 }
 
 function drinkPizza(nameDrink) {
@@ -195,4 +215,6 @@ function updateTable() {
     
 }
 
-module.exports = {};
+
+
+module.exports = {createPizza};

@@ -6,13 +6,15 @@ const dotenv = require('dotenv').config();
 const app = express();
 const port = 3000;
 const cors = require('cors');
+const { receiveMessageOnPort } = require('worker_threads');
+const { CommandCompleteMessage } = require('pg-protocol/dist/messages');
 
 
 app.use(cors());
 app.use(express.json());
 
-app.listen(3001, () => {
-    console.log("Server is listening in on port 3001");
+app.listen(5001, () => {
+    console.log("Server is listening in on port 5001");
 })
 
 //Make the pool for later use
@@ -25,42 +27,26 @@ const pool = new Pool({
     ssl: {rejectUnauthorized: false}
 });
 
-const pizzaRouter = require('./routes/makePizza');
-app.use("/makePizza", pizzaRouter);
+// const pizzaRouter = require('./routes/makePizza');
+// app.use("/makePizza", pizzaRouter);
 
 app.put("/checkout", async (req, res) => {
-    var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \''+pizza.sauce+'\'', function(err, result) {
-        if (err) throw err;
-        console.log(result.affectedRows + " record(s) updated");
-       
-    })
-    var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'House_Blend\'', function(err, result) {
-        if (err) throw err;
-        console.log(result.affectedRows + " record(s) updated");
-       
-    })
-    if (pizza.isCauly) {
-        var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Cauliflour\'', function(err, result) {
-            if (err) throw err;
-            console.log(result.affectedRows + " record(s) updated");
-           
-        })
+    var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Red\'') ;
+    serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'House_Blend\'');
+    console.log(req.body.isCauly);
+    if (req.body.isCauly) {
+        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Cauliflour\'')
     }
     else {
-        var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Dough\'', function(err, result) {
-            if (err) throw err;
-            console.log(result.affectedRows + " record(s) updated");
-           
-        })
+        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Dough\'')
+        
     }
-    for (let i = 0; i < pizza.numToppings; i++)  {
-        var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \''+pizza.toppings[i]+'\'', function(err, result) {
-            if (err) throw err;
-            console.log(result.affectedRows + " record(s) updated");
-           
-        })
+    console.log(req.body.numToppings);
+    for (let i = 0; i < req.body.numToppings.length; i++)  {
+        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \''+req.body.numToppings[i]+'\'');
     }
-});
+    res.json(serverReply.rows);
+})
 
 //exit gracefully
 process.on('SIGINT', function() {
