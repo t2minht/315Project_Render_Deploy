@@ -30,11 +30,11 @@ var pizza = {
 
 var pizzaList = []
 
-app.post('/createPizza', function(req, res) {
-      pizza.pizzaName = req.body.thePizzaName;
-      pizza.numToppings = req.body.numberToppings;
+app.post('/createPizza', function (req, res) {
+    pizza.pizzaName = req.body.thePizzaName;
+    pizza.numToppings = req.body.numberToppings;
 });
-app.post('/addTopping', function(req, res)  {
+app.post('/addTopping', function (req, res) {
     if (pizza.currToppings == pizza.numToppings) {
         res.json(false);
     }
@@ -45,15 +45,15 @@ app.post('/addTopping', function(req, res)  {
     }
 });
 
-app.post('/addToOrder', function(req, res)  { 
+app.post('/addToOrder', function (req, res) {
     pizzaList.push(pizza);
     numPizzas++;
     refreshPizza();
 });
-app.post('/addSauce', function(req,res) {
+app.post('/addSauce', function (req, res) {
     pizza.sauce = main.body.newSauce;
 });
-app.post('/crustType', function(req, res) {
+app.post('/crustType', function (req, res) {
     //TODO, make sure this is toggleable
     pizza.isCauly = caulyCrust;
 });
@@ -61,7 +61,7 @@ app.post('/crustType', function(req, res) {
 //     pizza.isCombo = drinkCombo;
 // }
 
-app.post('/calculatePrice', function(req,res) {
+app.post('/calculatePrice', function (req, res) {
     var price = 0;
     for (let i = 0; i < pizzaList.length(); i++) {
         var currentPizza = pizzaList[i];
@@ -99,7 +99,7 @@ app.post('/calculatePrice', function(req,res) {
     res.json(price);
 });
 
-app.post('/cancelOrder', function(req,res) {
+app.post('/cancelOrder', function (req, res) {
     pizza.pizzaName = "";
     pizza.sauce = '';
     pizza.drinkName = "";
@@ -110,13 +110,13 @@ app.post('/cancelOrder', function(req,res) {
     pizza.isCombo = false;
     pizzaList = [];
     numDrinks = 0;
-    numPizzas = 0; 
+    numPizzas = 0;
 });
-app.post('/clearSelection', function(req,res) {
+app.post('/clearSelection', function (req, res) {
     pizzaList.pop();
 });
 
-app.post('/refreshPizza', function(req,res) {
+app.post('/refreshPizza', function (req, res) {
     pizza.pizzaName = "";
     pizza.sauce = 'Red';
     pizza.drinkName = "";
@@ -127,18 +127,18 @@ app.post('/refreshPizza', function(req,res) {
     pizza.isCombo = false;
 });
 
-app.post('/checkoutScreen', function(req,res) {
+app.post('/checkoutScreen', function (req, res) {
     let completeOrder = 'Order Info: \n';
     for (let i = 0; i < pizzaList.length(); i++) {
-        completeOrder += pizza.name; 
-        completeOrder +=  "- ";
-        for(let j = 0; i < pizza.toppings.length(); j++) {
-            completeOrder += pizza.toppings[j] ;
+        completeOrder += pizza.name;
+        completeOrder += "- ";
+        for (let j = 0; i < pizza.toppings.length(); j++) {
+            completeOrder += pizza.toppings[j];
             completeOrder += " ";
         }
         completeOrder += ("\n");
     }
-   res.json(completeOrder)
+    res.json(completeOrder)
 });
 
 
@@ -150,14 +150,14 @@ const pool = new Pool({
     database: process.env.PSQL_DATABASE,
     password: process.env.PSQL_PASSWORD,
     port: process.env.PSQL_PORT,
-    ssl: {rejectUnauthorized: false}
+    ssl: { rejectUnauthorized: false }
 });
 
 // const pizzaRouter = require('./routes/makePizza');
 // app.use("/makePizza", pizzaRouter);
 
 app.put("/checkout", async (req, res) => {
-    var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Red\'') ;
+    var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Red\'');
     serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'House_Blend\'');
     console.log(req.body.isCauly);
     if (req.body.isCauly) {
@@ -165,17 +165,17 @@ app.put("/checkout", async (req, res) => {
     }
     else {
         serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Dough\'')
-        
+
     }
     console.log(req.body.numToppings);
-    for (let i = 0; i < req.body.numToppings.length; i++)  {
-        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \''+req.body.numToppings[i]+'\'');
+    for (let i = 0; i < req.body.numToppings.length; i++) {
+        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'' + req.body.numToppings[i] + '\'');
     }
     res.json(serverReply.rows);
 })
 
 //exit gracefully
-process.on('SIGINT', function() {
+process.on('SIGINT', function () {
     pool.end();
     console.log('Application successfully shutdown');
     process.exit(0);
@@ -185,3 +185,31 @@ module.exports = {};
 
 // const pizzaRouter = require('./routes/makePizza');
 // app.use("/makePizza", pizzaRouter);
+
+
+
+// //Black magic API testing
+// function initMap() {
+//     var directionsService = new google.maps.DirectionsService();
+//     var directionsRenderer = new google.maps.DirectionsRenderer();
+//     const map = new google.maps.Map(document.getElementById("map"), {
+//         zoom: 16,
+//         center: { lat: 30.613, lng: -96.341 },
+//     });
+//     directionsRenderer.setMap(map);
+// }
+
+// function calcRoute() {
+//     var start = document.getElementById('start').value;
+//     var end = document.getElementById('end').value;
+//     var request = {
+//         origin: start,
+//         destination: end,
+//         travelMode: 'DRIVING'
+//     };
+//     directionsService.route(request, function (result, status) {
+//         if (status == 'OK') {
+//             directionsRenderer.setDirections(result);
+//         }
+//     });
+// }
