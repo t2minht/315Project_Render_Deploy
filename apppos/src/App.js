@@ -42,10 +42,15 @@ function App() {
       break
 
   }
+
+  let pizzainfo
+  let orderinfo
   return (
     <React.Fragment>
       <Navbar />
       {component}
+      {pizzainfo}
+      {orderinfo}
     </React.Fragment>
 
   );
