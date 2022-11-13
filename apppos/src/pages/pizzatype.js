@@ -1,20 +1,36 @@
 import React from "react";
 
+function CheeseZa() {
+
+}
+
+function PepperoniZa() {
+
+}
+
+function OneTopZa() {
+
+}
+
+function MultiTopZa() {
+
+}
+
 function Pizzatype() {
     return (
         <div>
             <h1>Select Pizza Type:</h1>
             <a href="/topping">
-                <button >Cheese</button>
+                <button onClick={CheeseZa}>Cheese</button>
             </a>
             <a href="/topping">
-                <button>Pepperoni</button>
+                <button onClick={PepperoniZa}>Pepperoni</button>
             </a>
             <a href="/topping">
-                <button>One Topping</button>
+                <button onClick={OneTopZa}>One Topping</button>
             </a>
             <a href="/topping">
-                <button>2-4 Topping</button>
+                <button onClick={MultiTopZa}>2-4 Topping</button>
             </a>
         </div>
     );
