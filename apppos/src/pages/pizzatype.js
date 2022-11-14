@@ -1,28 +1,45 @@
-import React from "react";
+// 'use strict';
+import React, { Component, useState } from 'react';
 
-function CheeseZa() {
+// const e = React.createElement;
 
-}
+// class LikeButton extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = { liked: false };
+//     }
 
-function PepperoniZa() {
+//     render() {
+//         if (this.state.liked) {
+//             return 'You liked this.';
+//         }
 
-}
+//         return e(
+//             'button',
+//             { onClick: () => this.setState({ liked: true }) },
+//             'Like'
+//         );
+//     }
+// }
 
-function OneTopZa() {
+// const domContainer = document.querySelector('#like_button_container');
+// const root = ReactDOM.createRoot(domContainer);
+// root.render(e(LikeButton));
 
-}
 
-function MultiTopZa() {
-
+const handleClick = async () => {
+    fetch(`http://localhost:5001/createSetPizza/${1}/${"Pepperoni"}`);
+    alert("Pizza added to order");
 }
 
 function Pizzatype() {
     return (
         <div>
-            <h1>Select Pizza Type:</h1>
-            <a href="/topping">
-                <button onClick={CheeseZa}>Cheese</button>
+            <a href="/checkout">
+                <button>Go to checkout screen</button>
             </a>
+            <button onClick={handleClick}>Pepperoni Pizza</button>
+
             <a href="/topping">
                 <button onClick={PepperoniZa}>Pepperoni</button>
             </a>
@@ -43,5 +60,8 @@ function Pizzatype() {
         </div>
     );
 }
+
+
+
 
 export default Pizzatype;
