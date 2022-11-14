@@ -1,23 +1,22 @@
 import React from "react";
 
-function Cash() {
+function Finishorder() {
 
 }
 
-function Card() {
-
-}
-
-function Diningdollars() {
-
-}
 
 function Checkout() {
     return (<div>
         <h1>Select Payment Type:</h1>
-        <button onClick={Cash}>Cash</button>
-        <button onClick={Card}>Card</button>
-        <button onClick={Diningdollars}>Dining Dollars</button>
+        <a href="/pizzatype">
+            <button onClick={Finishorder}>Cash</button>
+        </a>
+        <a href="/pizzatype">
+            <button onClick={Finishorder}>Card</button>
+        </a>
+        <a href="/pizzatype">
+            <button onClick={Finishorder}>Dining Dollars</button>
+        </a>
         <div>
             <a href="/pizzatype">
                 <button> Add another Item</button>
