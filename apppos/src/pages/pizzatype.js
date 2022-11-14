@@ -39,7 +39,26 @@ function Pizzatype() {
                 <button>Go to checkout screen</button>
             </a>
             <button onClick={handleClick}>Pepperoni Pizza</button>
-        </div>);
+
+            <a href="/topping">
+                <button onClick={PepperoniZa}>Pepperoni</button>
+            </a>
+            <a href="/topping">
+                <button onClick={OneTopZa}>One Topping</button>
+            </a>
+            <a href="/topping">
+                <button onClick={MultiTopZa}>2-4 Topping</button>
+            </a>
+            <div>
+                <a href="/pizzatype">
+                    <button> Cancel Order</button>
+                </a>
+                <a href="/checkout">
+                    <button> Check Out</button>
+                </a>
+            </div>
+        </div>
+    );
 }
 
 
