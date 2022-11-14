@@ -8,6 +8,7 @@ const port = 3000;
 const cors = require('cors');
 const { receiveMessageOnPort } = require('worker_threads');
 const { CommandCompleteMessage } = require('pg-protocol/dist/messages');
+const { json } = require('stream/consumers');
 
 
 app.use(cors());
@@ -21,8 +22,8 @@ var pizza = {
     pizzaName: "",
     sauce: 'Red',
     drinkName: "",
-    numToppings: 1,
-    currToppings: 1,
+    numToppings: 0,
+    currToppings: 0,
     toppings: ['Pepperoni'],
     isCauly: false,
     isCombo: false
@@ -30,40 +31,32 @@ var pizza = {
 
 var pizzaList = []
 
-// app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
-//     console.log("no");
-//     pizza.pizzaName = JSON.stringify(req.params.pizzaName);
-//     pizza.numToppings = JSON.stringify(req.params.numToppings);
-//     console.log(pizza.pizzaName);
-//     res.json("");
-// });
-app.get('/createSetPizza/:numToppings/:pizzaName', function (req, res) {
-
+app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
     pizza.pizzaName = JSON.stringify(req.params.pizzaName);
     pizza.numToppings = JSON.stringify(req.params.numToppings);
     console.log(pizza.pizzaName);
     res.json("");
 });
-// const createPizza = async () => {
-//     console.log("test")
-//     pizza.pizzaName = JSON.stringify(req.body.thePizzaName);
-//     pizza.numToppings = JSON.stringify(req.body.numberToppings);
-//     alert("Database updated");
+app.get('/createSetPizza/:numToppings/:pizzaName', function (req, res) {
+    pizza.pizzaName = JSON.stringify(req.params.pizzaName);
+    pizza.numToppings = JSON.stringify(req.params.numToppings);
+    pizza.currToppings = JSON.stringify(req.params.numToppings);
+    pizza.toppings.push(JSON.stringify(req.params.pizzaName));
+    pizzaList.push(pizza);
+    refreshPizza();
+    res.json("");
+});
 
-// }
-
-app.post('/addTopping', function (req, res) {
+app.get('/addTopping/:toppingName', function (req, res) {
     if (pizza.currToppings == pizza.numToppings) {
         res.json(false);
     }
-    else {
-        pizza.currToppings++;
-        pizza.toppings.push(req.body.passedTopping);
-        res.json(true);
-    }
+    pizza.toppings.push(JSON.stringify(req.params.toppingName));
+    pizza.numToppings++;
+    res.json(true);
 });
 
-app.post('/addToOrder', function (req, res) {
+app.get('/addToOrder', function (req, res) {
     pizzaList.push(pizza);
     numPizzas++;
     refreshPizza();
@@ -134,7 +127,7 @@ app.post('/clearSelection', function (req, res) {
     pizzaList.pop();
 });
 
-app.post('/refreshPizza', function (req, res) {
+function refreshPizza() {
     pizza.pizzaName = "";
     pizza.sauce = 'Red';
     pizza.drinkName = "";
@@ -143,7 +136,7 @@ app.post('/refreshPizza', function (req, res) {
     pizza.toppings = [];
     pizza.isCauly = false;
     pizza.isCombo = false;
-});
+}
 
 app.post('/checkoutScreen', function (req, res) {
     let completeOrder = 'Order Info: \n';
