@@ -1,5 +1,5 @@
 // 'use strict';
-import React, { Component, useState } from 'react';
+import React from 'react';
 
 // const e = React.createElement;
 
@@ -27,27 +27,25 @@ import React, { Component, useState } from 'react';
 // root.render(e(LikeButton));
 
 
-const handleClick = async () => {
+const handleClickPep = async () => {
     fetch(`http://localhost:5001/createSetPizza/${1}/${"Pepperoni"}`);
+    alert("Pizza added to order");
+}
+const CheeseZa = async () => {
+    fetch(`http://localhost:5001/createSetPizza/${1}/${"Cheese"}`);
     alert("Pizza added to order");
 }
 
 function Pizzatype() {
     return (
         <div>
-            <a href="/checkout">
-                <button>Go to checkout screen</button>
-            </a>
-            <button onClick={handleClick}>Pepperoni Pizza</button>
-
+            <button onClick={handleClickPep}>Pepperoni Pizza</button>
+            <button onClick={CheeseZa}>Cheese</button>
             <a href="/topping">
-                <button onClick={PepperoniZa}>Pepperoni</button>
+                <button onClick={CheeseZa}>One Topping</button>
             </a>
             <a href="/topping">
-                <button onClick={OneTopZa}>One Topping</button>
-            </a>
-            <a href="/topping">
-                <button onClick={MultiTopZa}>2-4 Topping</button>
+                <button onClick={CheeseZa}>2-4 Topping</button>
             </a>
             <div>
                 <a href="/pizzatype">

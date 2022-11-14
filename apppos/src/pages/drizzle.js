@@ -1,27 +1,38 @@
 import React from "react";
 
 function Balsamic() {
-
+    fetch(`http://localhost:5001/addTopping/${"Balsamic Glaze"}`);
+    alert("Topping added to order");
 }
 
 function Basilpesto() {
-
+    fetch(`http://localhost:5001/addTopping/${"Basil Pesto"}`);
+    alert("Topping added to order");
 }
 
 function Bbqsauce() {
-
+    fetch(`http://localhost:5001/addTopping/${"BBQ Sauce"}`);
+    alert("Topping added to order");
 }
 
 function Oliveoil() {
-
+    fetch(`http://localhost:5001/addTopping/${"Olive Oil"}`);
+    alert("Topping added to order");
 }
 
 function Oregano() {
-
+    fetch(`http://localhost:5001/addTopping/${"Oregano"}`);
+    alert("Topping added to order");
 }
 
 function Sriracha() {
+    fetch(`http://localhost:5001/addTopping/${"Sriracha"}`);
+    alert("Topping added to order");
+}
 
+function Addtoorder() {
+    fetch(`http://localhost:5001/addToOrder`);
+    alert("Topping added to order");
 }
 
 function Drizzle() {
@@ -38,7 +49,7 @@ function Drizzle() {
                 <button> Back</button>
             </a>
             <a href="/pizzatype">
-                <button> Complete Item</button>
+                <button onclick={Addtoorder}> Complete Item</button>
             </a>
             <a href="/pizzatype">
                 <button> Cancel Order</button>

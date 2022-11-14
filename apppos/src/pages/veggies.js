@@ -1,55 +1,73 @@
 import React from "react";
 
 function Bananapep() {
-
+    fetch(`http://localhost:5001/addTopping/${"Banana Peppers"}`);
+    alert("Topping added to order");
 }
 
 function Grepep() {
-
+    fetch(`http://localhost:5001/addTopping/${"Green Peppers"}`);
+    alert("Topping added to order");
 }
 
 function Redpep() {
-
+    fetch(`http://localhost:5001/addTopping/${"Red Peppers"}`);
+    alert("Topping added to order");
 }
 
 function Blackoli() {
-
+    fetch(`http://localhost:5001/addTopping/${"Black Olives"}`);
+    alert("Topping added to order");
 }
 
 function Kalmataoli() {
-
+    fetch(`http://localhost:5001/addTopping/${"Kalmata Olives"}`);
+    alert("Topping added to order");
 }
 
 function Cherrytoma() {
-
+    fetch(`http://localhost:5001/addTopping/${"Cherry Tomatoes"}`);
+    alert("Topping added to order");
 }
 
 function Redonion() {
-
+    fetch(`http://localhost:5001/addTopping/${"Red Onions"}`);
+    alert("Topping added to order");
 }
 
 function Spinach() {
-
+    fetch(`http://localhost:5001/addTopping/${"Spinach"}`);
+    alert("Topping added to order");
 }
 
 function Brocolli() {
-
+    fetch(`http://localhost:5001/addTopping/${"Brocolli"}`);
+    alert("Topping added to order");
 }
 
 function Caraonion() {
-
+    fetch(`http://localhost:5001/addTopping/${"Caramelized Onions"}`);
+    alert("Topping added to order");
 }
 
 function Garlic() {
-
+    fetch(`http://localhost:5001/addTopping/${"Garlic"}`);
+    alert("Topping added to order");
 }
 
 function Mushrooms() {
-
+    fetch(`http://localhost:5001/addTopping/${"Mushrooms"}`);
+    alert("Topping added to order");
 }
 
 function Redtatoes() {
+    fetch(`http://localhost:5001/addTopping/${"Red Potatoes"}`);
+    alert("Topping added to order");
+}
 
+function Addtoorder() {
+    fetch(`http://localhost:5001/addToOrder`);
+    alert("Topping added to order");
 }
 
 
@@ -73,7 +91,7 @@ function Veggies() {
                 <button> Back</button>
             </a>
             <a href="/pizzatype">
-                <button> Complete Item</button>
+                <button onclick={Addtoorder}> Complete Item</button>
             </a>
             <a href="/pizzatype">
                 <button> Cancel Order</button>
