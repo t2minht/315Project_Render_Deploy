@@ -1,5 +1,10 @@
 import React from "react";
 
+function Addtoorder() {
+    fetch(`http://localhost:5001/addToOrder`);
+    alert("Topping added to order");
+}
+
 function Topping() {
     return (<div><h1>Select Toppings:</h1>
         <a href="/meats">
@@ -19,7 +24,7 @@ function Topping() {
                 <button> Back</button>
             </a>
             <a href="/pizzatype">
-                <button> Complete Item</button>
+                <button onclick={Addtoorder}> Complete Item</button>
             </a>
             <a href="/pizzatype">
                 <button> Cancel Order</button>

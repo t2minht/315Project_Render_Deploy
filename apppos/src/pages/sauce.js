@@ -20,6 +20,11 @@ function Cauliflour() {
 
 }
 
+function Addtoorder() {
+    fetch(`http://localhost:5001/addToOrder`);
+    alert("Topping added to order");
+}
+
 function Sauce() {
     return (<div><h1>Select Sauce and Crust:</h1>
         <div>
@@ -36,7 +41,7 @@ function Sauce() {
                 <button> Back</button>
             </a>
             <a href="/pizzatype">
-                <button> Complete Item</button>
+                <button onclick={Addtoorder}> Complete Item</button>
             </a>
             <a href="/pizzatype">
                 <button> Cancel Order</button>
