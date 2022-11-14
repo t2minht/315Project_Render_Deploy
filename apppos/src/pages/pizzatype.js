@@ -32,6 +32,14 @@ function Pizzatype() {
             <a href="/topping">
                 <button onClick={MultiTopZa}>2-4 Topping</button>
             </a>
+            <div>
+                <a href="/pizzatype">
+                    <button> Cancel Order</button>
+                </a>
+                <a href="/checkout">
+                    <button> Check Out</button>
+                </a>
+            </div>
         </div>
     );
 }
