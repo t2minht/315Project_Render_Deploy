@@ -61,18 +61,19 @@ app.get('/addToOrder', function (req, res) {
     numPizzas++;
     refreshPizza();
 });
-app.post('/addSauce', function (req, res) {
-    pizza.sauce = main.body.newSauce;
-});
-app.post('/crustType', function (req, res) {
-    //TODO, make sure this is toggleable
-    pizza.isCauly = caulyCrust;
-});
+
+// app.post('/addSauce', function (req, res) {
+//     pizza.sauce = main.body.newSauce;
+// });
+// app.post('/crustType', function (req, res) {
+//     //TODO, make sure this is toggleable
+//     pizza.isCauly = caulyCrust;
+// });
 // function comboMeal(drinkCombo) {
 //     pizza.isCombo = drinkCombo;
 // }
 
-app.post('/calculatePrice', function (req, res) {
+app.get('/calculatePrice', function (req, res) {
     var price = 0;
     for (let i = 0; i < pizzaList.length(); i++) {
         var currentPizza = pizzaList[i];
@@ -110,7 +111,7 @@ app.post('/calculatePrice', function (req, res) {
     res.json(price);
 });
 
-app.post('/cancelOrder', function (req, res) {
+app.get('/cancelOrder', function (req, res) {
     pizza.pizzaName = "";
     pizza.sauce = '';
     pizza.drinkName = "";
@@ -123,8 +124,19 @@ app.post('/cancelOrder', function (req, res) {
     numDrinks = 0;
     numPizzas = 0;
 });
-app.post('/clearSelection', function (req, res) {
+app.get('/clearSelection', function (req, res) {
     pizzaList.pop();
+});
+
+app.get('/deletePizza', function (req, res) {
+    pizza.pizzaName = "";
+    pizza.sauce = 'Red';
+    pizza.drinkName = "";
+    pizza.numToppings = 0;
+    pizza.currToppings = 0;
+    pizza.toppings = [];
+    pizza.isCauly = false;
+    pizza.isCombo = false;
 });
 
 function refreshPizza() {
@@ -138,7 +150,7 @@ function refreshPizza() {
     pizza.isCombo = false;
 }
 
-app.post('/checkoutScreen', function (req, res) {
+app.get('/checkoutScreen', function (req, res) {
     let completeOrder = 'Order Info: \n';
     for (let i = 0; i < pizzaList.length(); i++) {
         completeOrder += pizza.name;
@@ -163,9 +175,6 @@ const pool = new Pool({
     port: process.env.PSQL_PORT,
     ssl: { rejectUnauthorized: false }
 });
-
-// const pizzaRouter = require('./routes/makePizza');
-// app.use("/makePizza", pizzaRouter);
 
 app.put("/checkout", async (req, res) => {
     var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Red\'');
