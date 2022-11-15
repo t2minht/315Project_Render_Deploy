@@ -56,10 +56,16 @@ app.get('/addTopping/:toppingName', function (req, res) {
     res.json(true);
 });
 
+app.get('/removeLastTopping', function (req, res) {
+    pizza.toppings.pop();
+    res.json(true);
+});
+
 app.get('/addToOrder', function (req, res) {
     pizzaList.push(pizza);
     numPizzas++;
     refreshPizza();
+    res.json(true);
 });
 
 // app.post('/addSauce', function (req, res) {
@@ -108,6 +114,7 @@ app.get('/calculatePrice', function (req, res) {
             price += 2.99;
         }
     }
+    //CHECK: might have to stringify this
     res.json(price);
 });
 
@@ -161,6 +168,7 @@ app.get('/checkoutScreen', function (req, res) {
         }
         completeOrder += ("\n");
     }
+    //MIGHT have to stringify this
     res.json(completeOrder)
 });
 
