@@ -62,16 +62,15 @@ app.get('/addToOrder', function (req, res) {
     refreshPizza();
 });
 
-// app.post('/addSauce', function (req, res) {
-//     pizza.sauce = main.body.newSauce;
-// });
-// app.post('/crustType', function (req, res) {
-//     //TODO, make sure this is toggleable
-//     pizza.isCauly = caulyCrust;
-// });
-// function comboMeal(drinkCombo) {
-//     pizza.isCombo = drinkCombo;
-// }
+app.get('/addSauce/:sauceName', function (req, res) {
+    pizza.sauce = main.body.newSauce;
+});
+app.get('/crustType/:crustBool', function (req, res) {
+    pizzaCrust.isCauly = crustBool;
+});
+app.get('/comboMeal/:drinkCombo', function (req, res) {
+    pizza.isCombo = drinkCombo;
+});
 
 app.get('/calculatePrice', function (req, res) {
     var price = 0;
@@ -165,7 +164,6 @@ app.get('/checkoutScreen', function (req, res) {
 });
 
 
-
 //Make the pool for later use
 const pool = new Pool({
     user: process.env.PSQL_USER,
@@ -181,10 +179,10 @@ app.put("/checkout", async (req, res) => {
     serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'House_Blend\'');
     console.log(req.body.isCauly);
     if (req.body.isCauly) {
-        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Cauliflour\'')
+        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Cauliflour\'');
     }
     else {
-        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Dough\'')
+        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Dough\'');
 
     }
     console.log(req.body.numToppings);
@@ -193,6 +191,11 @@ app.put("/checkout", async (req, res) => {
     }
     res.json(serverReply.rows);
 })
+
+app.get("/displaySeasonal", async (req, res) => {
+    var serverReply = await pool.query("SELECT * FROM inventory WHERE itemType = \'Seasonal\'");
+    res.json(serverReply.rows);
+});
 
 //exit gracefully
 process.on('SIGINT', function () {
