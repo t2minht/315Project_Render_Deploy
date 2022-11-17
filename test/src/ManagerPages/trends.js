@@ -1,8 +1,10 @@
 import React, { Component, useState } from 'react';
 import Table from '../components/table';
+import Navbar from './navbar';
 
 
 function Trends(props) {
+    console.log(window.location.pathname);
     const [trendsTable, setTrendsTable] = useState([1,1,1]);
     const [beginDate, setBeginDate] = useState('Start');
     const [endDate, setEndDate] = useState('End');
@@ -94,6 +96,7 @@ function Trends(props) {
     }
     return (
         <React.Fragment>
+            <Navbar/>
             <h1>Enter start and end date (MM-DD-YYYY)</h1>
             <form>
                 <input type="text" className='form-control1' value={beginDate} onChange={e => setBeginDate(e.target.value)}/>

@@ -1,6 +1,7 @@
 import React, { Component, Fragment, useEffect } from 'react';
 import { useState } from 'react';
 import Table from '../components/table';
+import Navbar from './navbar';
 
 function Restock(props) {
     const [id, setID] = useState('ID');
@@ -48,6 +49,7 @@ function Restock(props) {
 
     return (
         <Fragment>
+            <Navbar/>
             <Table data={inventory} column={props.column}/>
             <h1 className='text-center mt-5'>Restock (Id, Amount) </h1>
             <form onSubmit={onSubmitForm}>

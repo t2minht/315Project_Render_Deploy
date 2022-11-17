@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect, Fragment } from 'react';
 import Table from '../components/table';
+import Navbar from './navbar';
 
 function Menu(props) {
     const [menu, setMenu] = useState([]);
@@ -58,6 +59,7 @@ function Menu(props) {
 
     return (
         <Fragment> 
+            <Navbar/>
             <Table data={menu} column={props.column}/>
             <h1>Add a new addIngredient</h1>
             <form onSubmit={getMenu}>

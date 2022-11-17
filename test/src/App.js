@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Table from './components/table.jsx'
 import Navbar from "./navbar.js";
-import Menu from "./pages/menu.js";
-import Restock from "./pages/restock.js";
-import Inventory from "./pages/inventory.js";
-import Trends from "./pages/trends.js";
-import Home from "./pages/home.js";
-import RestockReport from "./pages/restockReport.js";
-import ExcessReport from "./pages/excessReport.js";
-import SalesTogether from "./pages/salesTogether.js";
+import Menu from "./ManagerPages/menu.js";
+import Restock from "./ManagerPages/restock.js";
+import Inventory from "./ManagerPages/inventory.js";
+import Trends from "./ManagerPages/trends.js";
+import ManagerHome from "./ManagerPages/home.js";
+import RestockReport from "./ManagerPages/restockReport.js";
+import ExcessReport from "./ManagerPages/excessReport.js";
+import SalesTogether from "./ManagerPages/salesTogether.js";
 
 function App() {
 
@@ -61,7 +61,16 @@ function App() {
     let component
     switch(window.location.pathname) {
         case "/":
-            component = <Home/>
+            component = <Navbar/>
+            break
+        case "/manager":
+            component = <ManagerHome/>
+            break
+        case "/customer":
+            component = <ManagerHome/>
+            break
+        case "/server":
+            component = <ManagerHome/>
             break
         case "/menu":
             component = <Menu data={menuTable} column={menuColumn}/>
@@ -87,7 +96,6 @@ function App() {
     }
     return (
         <React.Fragment>
-            <Navbar/>
             {component}
         </React.Fragment>
         

@@ -5,25 +5,13 @@ function Navbar() {
         <a href='/' className='site-title'>Pizza</a>
         <ul>
             <li>
-              <CustomLink href="/trends">Trends</CustomLink> 
+              <CustomLink href="/manager">Manager</CustomLink> 
             </li>
             <li>
-              <CustomLink href='/inventory'>Inventory</CustomLink>
+              <CustomLink href='/customer'>Customer</CustomLink>
             </li>
             <li>
-              <CustomLink href='/menu'>Menu</CustomLink>
-            </li>
-            <li>
-              <CustomLink href='/restock'>Restock</CustomLink>
-            </li>
-            <li>
-              <CustomLink href='/restockReport'>Restock Report</CustomLink>
-            </li>
-            <li>
-              <CustomLink href='/excessReport'>Excess Report</CustomLink>
-            </li>
-            <li>
-              <CustomLink href='/salesTogether'>Sales Together</CustomLink>
+              <CustomLink href='/server'>Server</CustomLink>
             </li>
         </ul>
     </nav> );

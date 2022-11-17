@@ -1,5 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
-import Table from "../components/table";
+import Table from "../components/table.jsx";
+import Navbar from './navbar';
 
 function Inventory(props) {
 
@@ -13,7 +14,13 @@ function Inventory(props) {
     useEffect(() => {
         getInventory();
     }, [])
-    return ( <Table data={inventory} column={props.column}/> );
+    return ( 
+        <React.Fragment>
+            <Navbar/>
+            <Table data={inventory} column={props.column}/> 
+        </React.Fragment>
+        
+    );
 }
 
 export default Inventory;

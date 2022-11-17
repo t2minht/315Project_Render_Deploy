@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Table from '../components/table';
+import Table from "../components/table.jsx";
+import Navbar from './navbar';
 const {Url} = require('url');
 
 function ExcessReport(props) {
@@ -10,7 +11,6 @@ function ExcessReport(props) {
 
     const getExcessData = async (e) => {
         e.preventDefault();
-        //console.log(beginDate);
         let rData = []
         var url = new Url('http://localhost:5001/excessReport');
         var params = {"beginDate": beginDate, "endDate": endDate};
@@ -42,6 +42,7 @@ function ExcessReport(props) {
 
     return ( 
         <React.Fragment>
+            <Navbar/>
             <h1>Enter start and end date (YYYY-MM-DD)</h1>
             <form>
                 <input type="text" className='form-control1' value={beginDate} onChange={e => setBeginDate(e.target.value)}/>

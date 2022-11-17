@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Table from '../components/table';
+import Navbar from './navbar';
 
 function RestockReport(props) {
     const [restockTable, setRestockTable] = useState([]);
@@ -20,7 +21,13 @@ function RestockReport(props) {
         getRestockData();
     }, []);
 
-    return ( <Table data={restockTable} column={props.column}></Table> );
+    return ( 
+        <React.Fragment>
+            <Navbar/>
+            <Table data={restockTable} column={props.column}></Table> 
+        </React.Fragment>
+        
+    );
 }
 
 export default RestockReport;

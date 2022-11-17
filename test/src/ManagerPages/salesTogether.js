@@ -1,5 +1,6 @@
 import React, { Component , useState } from 'react';
 import Table from '../components/table';
+import Navbar from './navbar';
 
 
 function SalesTogether(props) {
@@ -189,6 +190,7 @@ function SalesTogether(props) {
 
     return ( 
         <React.Fragment>
+            <Navbar/>
             <Table data={togetherTable} column={props.column}/>
             <h1>Enter a start and end date (YYYY-MM-DD) </h1>
             <form onSubmit={console.log('submit')}>
