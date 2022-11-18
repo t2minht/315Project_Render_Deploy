@@ -46,14 +46,6 @@ const cancelOrder = async () => {
     alert("Order Canceled");
 }
 
-const oneTopping = async () => {
-    fetch(`http://localhost:5001/createPizza/${1}/${"One Topping"}`);
-    alert("Pizza added to order");
-}
-const multiTopping = async () => {
-    fetch(`http://localhost:5001/createPizza/${4}/${"Multi Topping"}`);
-    alert("Pizza added to order");
-}
 
 
 function Pizzatype() {
@@ -72,7 +64,7 @@ function Pizzatype() {
                     <button onClick={cancelOrder}> Cancel Order</button>
                 </a>
                 <a href="/checkout">
-                    <button > Check Out</button>
+                    <button > Complete Order</button>
                 </a>
             </div>
         </div>

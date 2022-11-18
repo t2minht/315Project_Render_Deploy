@@ -1,9 +1,6 @@
 import React from "react";
 
-const Addtoorder = async () => {
-    fetch(`http://localhost:5001/addToOrder`);
-    alert("Pizza added to order");
-}
+
 const cancelOrder = async () => {
     fetch(`http://localhost:5001/cancelOrder`);
     alert("Order Canceled");
@@ -13,10 +10,10 @@ function Seasonal() {
     return (<div><h1>Select Meats:</h1>
         <div>
             <a href="/topping">
-                <button> Back</button>
+                <button> Add More Toppings</button>
             </a>
-            <a href="/pizzatype">
-                <button onclick={Addtoorder}> Complete Item</button>
+            <a href="/sauce">
+                <button>Next</button>
             </a>
             <a href="/pizzatype">
                 <button onClick={cancelOrder}> Cancel Order</button>
