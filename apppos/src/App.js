@@ -43,15 +43,12 @@ function App() {
       break
 
   }
-
+  const CurrentOrder = fetch(`http://localhost:5001/checkoutScreen`);;
   let pizzainfo
-  let orderinfo
   return (
     <React.Fragment>
-      <Navbar />
       {component}
       {pizzainfo}
-      {orderinfo}
     </React.Fragment>
 
   );

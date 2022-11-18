@@ -1,23 +1,26 @@
 import React from "react";
 
 function Red() {
-
+    fetch(`http://localhost:5001/addSauce/${"Red"}`);
+    alert("Topping added to order");
 }
 
 function Zestyred() {
-
+    fetch(`http://localhost:5001/addSauce/${"Zesty Red"}`);
+    alert("Topping added to order");
 }
 
 function White() {
-
+    fetch(`http://localhost:5001/addSauce/${"White"}`);
+    alert("Topping added to order");
 }
 
 function Regular() {
-
+    fetch(`http://localhost:5001/crustType/${false}`);
 }
 
 function Cauliflour() {
-
+    fetch(`http://localhost:5001/crustType/${true}`);
 }
 
 function Addtoorder() {

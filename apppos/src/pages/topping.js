@@ -20,7 +20,7 @@ function Topping() {
             <button>Sauce & Crust</button>
         </a>
         <div>
-            <a href="/topping">
+            <a href="/pizzatype">
                 <button> Back</button>
             </a>
             <a href="/pizzatype">
