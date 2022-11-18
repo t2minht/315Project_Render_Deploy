@@ -68,19 +68,20 @@ app.get('/addToOrder', function (req, res) {
     res.json(true);
 });
 
-app.get('/addSauce/:sauceName', function (req, res) {
-    pizza.sauce = main.body.newSauce;
-});
-app.get('/crustType/:crustBool', function (req, res) {
-    pizzaCrust.isCauly = crustBool;
-});
-app.get('/comboMeal/:drinkCombo', function (req, res) {
-    pizza.isCombo = drinkCombo;
-});
+// app.post('/addSauce', function (req, res) {
+//     pizza.sauce = main.body.newSauce;
+// });
+// app.post('/crustType', function (req, res) {
+//     //TODO, make sure this is toggleable
+//     pizza.isCauly = caulyCrust;
+// });
+// function comboMeal(drinkCombo) {
+//     pizza.isCombo = drinkCombo;
+// }
 
 app.get('/calculatePrice', function (req, res) {
     var price = 0;
-    for (let i = 0; i < pizzaList.length(); i++) {
+    for (let i = 0; i < pizzaList.length; i++) {
         var currentPizza = pizzaList[i];
         if (currentPizza.numToppings == -1) {
             price += 2.45;
@@ -172,6 +173,7 @@ app.get('/checkoutScreen', function (req, res) {
 });
 
 
+
 //Make the pool for later use
 const pool = new Pool({
     user: process.env.PSQL_USER,
@@ -187,10 +189,10 @@ app.put("/checkout", async (req, res) => {
     serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'House_Blend\'');
     console.log(req.body.isCauly);
     if (req.body.isCauly) {
-        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Cauliflour\'');
+        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Cauliflour\'')
     }
     else {
-        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Dough\'');
+        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Dough\'')
 
     }
     console.log(req.body.numToppings);
@@ -200,10 +202,10 @@ app.put("/checkout", async (req, res) => {
     res.json(serverReply.rows);
 })
 
-app.get("/displaySeasonal", async (req, res) => {
-    var serverReply = await pool.query("SELECT * FROM inventory WHERE itemType = \'Seasonal\'");
-    res.json(serverReply.rows);
-});
+app.get("/seasonalMenu", async (req, res) => {
+    var serverReply = await pool.query('SELECT * FROM INVENTORY WHERE id > 48');
+    return res.json(serverReply.rows);
+})
 
 //exit gracefully
 process.on('SIGINT', function () {
@@ -214,33 +216,28 @@ process.on('SIGINT', function () {
 
 module.exports = {};
 
-// const pizzaRouter = require('./routes/makePizza');
-// app.use("/makePizza", pizzaRouter);
-
-
 
 // //Black magic API testing
-// function initMap() {
-//     var directionsService = new google.maps.DirectionsService();
-//     var directionsRenderer = new google.maps.DirectionsRenderer();
-//     const map = new google.maps.Map(document.getElementById("map"), {
-//         zoom: 16,
-//         center: { lat: 30.613, lng: -96.341 },
-//     });
-//     directionsRenderer.setMap(map);
-// }
+function initMap() {
+    var directionsService = new google.maps.DirectionsService();
+    var directionsRenderer = new google.maps.DirectionsRenderer();
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 16,
+        center: { lat: 30.61234195012257, lng: -96.34153287461642 },
+    });
+    directionsRenderer.setMap(map);
+}
 
-// function calcRoute() {
-//     var start = document.getElementById('start').value;
-//     var end = document.getElementById('end').value;
-//     var request = {
-//         origin: start,
-//         destination: end,
-//         travelMode: 'DRIVING'
-//     };
-//     directionsService.route(request, function (result, status) {
-//         if (status == 'OK') {
-//             directionsRenderer.setDirections(result);
-//         }
-//     });
-// }
+function calcRoute() {
+    var start = document.getElementById('start').value;
+    var request = {
+        origin: start,
+        destination: { lat: 30.61234195012257, lng: -96.34153287461642 },
+        travelMode: 'DRIVING'
+    };
+    directionsService.route(request, function (result, status) {
+        if (status == 'OK') {
+            directionsRenderer.setDirections(result);
+        }
+    });
+}
