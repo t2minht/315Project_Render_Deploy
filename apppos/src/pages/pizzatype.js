@@ -46,6 +46,16 @@ const cancelOrder = async () => {
     alert("Order Canceled");
 }
 
+const oneTopping = async () => {
+    fetch(`http://localhost:5001/createPizza/${1}/${"One Topping"}`);
+    alert("Pizza added to order");
+}
+const multiTopping = async () => {
+    fetch(`http://localhost:5001/createPizza/${4}/${"Multi Topping"}`);
+    alert("Pizza added to order");
+}
+
+
 function Pizzatype() {
     return (
         <div>

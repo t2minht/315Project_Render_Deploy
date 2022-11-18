@@ -1,8 +1,13 @@
 import React from "react";
 
-const Finishorder = async () => {
-    fetch(`http://localhost:5001/checkout`);
-    alert("Order Completed");
+const Finishorder = async (e) => {
+    e.preventDefault();
+    const response =
+        await fetch(`http://localhost:5001/Plscheckout`, {
+            method: "PUT",
+        });
+    await Plscheckout();
+    alert("Topping added to order");
 }
 const cancelOrder = async () => {
     fetch(`http://localhost:5001/cancelOrder`);
