@@ -8,15 +8,17 @@ const CheeseZa = async () => {
     fetch(`http://localhost:5001/createSetPizza/${1}/${"Cheese"}`);
     alert("Pizza added to order");
 }
-
 const oneTopping = async () => {
-    fetch(`http://localhost:5001/createPizza/${1}/${"One_Topping"}`);
-    alert("Pizza added to order");
+    fetch(`http://localhost:5001/createPizza/${1}/${"One Topping"}`);
 }
 const multiTopping = async () => {
-    fetch(`http://localhost:5001/createPizza/${4}/${"Multi_Topping"}`);
-    alert("Pizza added to order");
+    fetch(`http://localhost:5001/createPizza/${4}/${"Multi Topping"}`);
 }
+const cancelOrder = async () => {
+    fetch(`http://localhost:5001/cancelOrder`);
+    alert("Order Canceled");
+}
+
 
 
 function Pizzatype() {
@@ -32,10 +34,10 @@ function Pizzatype() {
             </a>
             <div>
                 <a href="/pizzatype">
-                    <button> Cancel Order</button>
+                    <button onClick={cancelOrder}> Cancel Order</button>
                 </a>
                 <a href="/checkout">
-                    <button> Check Out</button>
+                    <button > Complete Order</button>
                 </a>
             </div>
         </div>

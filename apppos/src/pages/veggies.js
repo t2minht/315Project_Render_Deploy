@@ -1,73 +1,87 @@
 import React from "react";
 
 const Bananapep = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Banana Peppers"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Banana Peppers"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Grepep = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Green Peppers"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Green Peppers"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Redpep = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Red Peppers"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Red Peppers"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Blackoli = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Black Olives"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Black Olives"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Kalmataoli = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Kalmata Olives"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Kalmata Olives"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Cherrytoma = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Cherry Tomatoes"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Cherry Tomatoes"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Redonion = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Red Onions"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Red Onions"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Spinach = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Spinach"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Spinach"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Brocolli = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Brocolli"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Brocolli"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Caraonion = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Caramelized Onions"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Caramelized Onions"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Garlic = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Garlic"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Garlic"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Mushrooms = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Mushrooms"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Mushrooms"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Redtatoes = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Red Potatoes"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Red Potatoes"}`)) {
+        alert("Too many toppings");
+    }
 }
 
-const Addtoorder = async () => {
-    fetch(`http://localhost:5001/addToOrder`);
-    alert("Topping added to order");
+
+const cancelOrder = async () => {
+    fetch(`http://localhost:5001/cancelOrder`);
+    alert("Order Canceled");
 }
 
 
@@ -88,13 +102,13 @@ function Veggies() {
         <button onclick={Redtatoes}>Red Potatoes</button>
         <div>
             <a href="/topping">
-                <button> Back</button>
+                <button> Add More Toppings</button>
             </a>
-            <a href="/pizzatype">
-                <button onclick={Addtoorder}> Complete Item</button>
+            <a href="/sauce">
+                <button>Next</button>
             </a>
-            <a href="/pizzatype">
-                <button> Cancel Order</button>
+            <a href="/checkout">
+                <button onClick={cancelOrder}> Check Out</button>
             </a>
         </div>
     </div>);

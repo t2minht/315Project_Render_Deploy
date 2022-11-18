@@ -27,7 +27,7 @@ function Checkout() {
                 <button> Add another Item</button>
             </a>
             <a href="/pizzatype">
-                <button> Cancel Order</button>
+                <button onClick={cancelOrder}> Cancel Order</button>
             </a>
         </div>
     </div>);

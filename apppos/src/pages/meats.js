@@ -1,44 +1,51 @@
 import React from "react";
 
 const Pepperoni = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Pepperoni"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Pepperoni"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 
 const Ham = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Ham"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Ham"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Sausage = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Sausage"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Sausage"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Meatballs = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Meatballs"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Meatballs"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Salami = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Salami"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Salami"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Bacon = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Bacon"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Bacon"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Chicken = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Chicken"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Chicken"}`)) {
+        alert("Too many toppings");
+    }
 }
 
-const Addtoorder = async () => {
-    fetch(`http://localhost:5001/addToOrder`);
-    alert("Topping added to order");
+const cancelOrder = async () => {
+    fetch(`http://localhost:5001/cancelOrder`);
+    alert("Order Canceled");
 }
 
 function Meats() {
@@ -52,13 +59,13 @@ function Meats() {
         <button onclick={Chicken}>Smoked Chicken</button>
         <div>
             <a href="/topping">
-                <button> Back</button>
+                <button> Add More Toppings</button>
+            </a>
+            <a href="/sauce">
+                <button>Next</button>
             </a>
             <a href="/pizzatype">
-                <button onclick={Addtoorder}> Complete Item</button>
-            </a>
-            <a href="/pizzatype">
-                <button> Cancel Order</button>
+                <button onClick={cancelOrder}> Cancel Order</button>
             </a>
         </div>
     </div>);
