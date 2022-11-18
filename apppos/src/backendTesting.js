@@ -24,7 +24,7 @@ var pizza = {
     drinkName: "",
     numToppings: 0,
     currToppings: 0,
-    toppings: ['Pepperoni'],
+    toppings: [],
     isCauly: false,
     isCombo: false
 }
@@ -35,6 +35,8 @@ app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
     pizza.pizzaName = JSON.stringify(req.params.pizzaName);
     pizza.numToppings = JSON.stringify(req.params.numToppings);
     console.log(pizza.pizzaName);
+    pizzaList.push(pizza);
+    refreshPizza;
     res.json("");
 });
 app.get('/createSetPizza/:numToppings/:pizzaName', function (req, res) {
@@ -42,6 +44,8 @@ app.get('/createSetPizza/:numToppings/:pizzaName', function (req, res) {
     pizza.numToppings = JSON.stringify(req.params.numToppings);
     pizza.currToppings = JSON.stringify(req.params.numToppings);
     pizza.toppings.push(JSON.stringify(req.params.pizzaName));
+    console.log(pizza.pizzaName)
+    console.log(pizza.currToppings)
     pizzaList.push(pizza);
     refreshPizza();
     res.json("");
@@ -184,7 +188,8 @@ const pool = new Pool({
     ssl: { rejectUnauthorized: false }
 });
 
-app.put("/checkout", async (req, res) => {
+app.put("/Plscheckout", async (req, res) => {
+    console.log("Im getting here");
     var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Red\'');
     serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'House_Blend\'');
     console.log(req.body.isCauly);

@@ -36,16 +36,26 @@ const CheeseZa = async () => {
     alert("Pizza added to order");
 }
 
+const oneTopping = async () => {
+    fetch(`http://localhost:5001/createPizza/${1}/${"One Topping"}`);
+    alert("Pizza added to order");
+}
+const multiTopping = async () => {
+    fetch(`http://localhost:5001/createPizza/${4}/${"Multi Topping"}`);
+    alert("Pizza added to order");
+}
+
+
 function Pizzatype() {
     return (
         <div>
             <button onClick={handleClickPep}>Pepperoni Pizza</button>
             <button onClick={CheeseZa}>Cheese</button>
             <a href="/topping">
-                <button onClick={CheeseZa}>One Topping</button>
+                <button onClick={oneTopping}>One Topping</button>
             </a>
             <a href="/topping">
-                <button onClick={CheeseZa}>2-4 Topping</button>
+                <button onClick={multiTopping}>2-4 Topping</button>
             </a>
             <div>
                 <a href="/pizzatype">

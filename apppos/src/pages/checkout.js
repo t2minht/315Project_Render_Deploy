@@ -1,9 +1,9 @@
 import React from "react";
 
-/*const Finishorder = async () => {
-    fetch(`http://localhost:5001/checkout`);
+const Finishorder = async () => {
+    fetch(`http://localhost:5001/Plscheckout`);
     alert("Topping added to order");
-}*/
+}
 
 function Checkout() {
     return (<div>
