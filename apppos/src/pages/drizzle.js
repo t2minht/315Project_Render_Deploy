@@ -1,38 +1,49 @@
 import React from "react";
 
 const Balsamic = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Balsamic Glaze"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Balsamic Glaze"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Basilpesto = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Basil Pesto"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Basil Pesto"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Bbqsauce = async () => {
-    fetch(`http://localhost:5001/addTopping/${"BBQ Sauce"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"BBQ Sauce"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Oliveoil = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Olive Oil"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Olive Oil"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Oregano = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Oregano"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Oregano"}`)) {
+        alert("Too many toppings");
+    }
 }
 
 const Sriracha = async () => {
-    fetch(`http://localhost:5001/addTopping/${"Sriracha"}`);
-    alert("Topping added to order");
+    if (!fetch(`http://localhost:5001/addTopping/${"Sriracha"}`)) {
+        alert("Too many toppings");
+    }
+
 }
 
 const Addtoorder = async () => {
     fetch(`http://localhost:5001/addToOrder`);
-    alert("Topping added to order");
+    alert("Pizza added to order");
+}
+const cancelOrder = async () => {
+    fetch(`http://localhost:5001/cancelOrder`);
+    alert("Order Canceled");
 }
 
 function Drizzle() {
@@ -52,7 +63,7 @@ function Drizzle() {
                 <button onclick={Addtoorder}> Complete Item</button>
             </a>
             <a href="/pizzatype">
-                <button> Cancel Order</button>
+                <button onClick={cancelOrder}> Cancel Order</button>
             </a>
         </div>
     </div>);

@@ -1,9 +1,13 @@
 import React from "react";
 
-/*const Finishorder = async () => {
+const Finishorder = async () => {
     fetch(`http://localhost:5001/checkout`);
-    alert("Topping added to order");
-}*/
+    alert("Order Completed");
+}
+const cancelOrder = async () => {
+    fetch(`http://localhost:5001/cancelOrder`);
+    alert("Order Canceled");
+}
 
 function Checkout() {
     return (<div>
@@ -22,7 +26,7 @@ function Checkout() {
                 <button> Add another Item</button>
             </a>
             <a href="/pizzatype">
-                <button> Cancel Order</button>
+                <button onClick={cancelOrder}> Cancel Order</button>
             </a>
         </div>
     </div>);

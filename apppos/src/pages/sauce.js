@@ -2,30 +2,36 @@ import React from "react";
 
 const Red = async () => {
     fetch(`http://localhost:5001/addSauce/${"Red"}`);
-    alert("Topping added to order");
+    alert("Sauce Changed");
 }
 
 const Zestyred = async () => {
     fetch(`http://localhost:5001/addSauce/${"Zesty Red"}`);
-    alert("Topping added to order");
+    alert("Sauce Changed");
 }
 
 const White = async () => {
     fetch(`http://localhost:5001/addSauce/${"White"}`);
-    alert("Topping added to order");
+    alert("Sauce Changed");
 }
 
 const Regular = async () => {
     fetch(`http://localhost:5001/crustType/${false}`);
+    alert("Crust Changed");
 }
 
 const Cauliflour = async () => {
     fetch(`http://localhost:5001/crustType/${true}`);
+    alert("Crust Changed");
 }
 
 const Addtoorder = async () => {
     fetch(`http://localhost:5001/addToOrder`);
-    alert("Topping added to order");
+    alert("Pizza added to order");
+}
+const cancelOrder = async () => {
+    fetch(`http://localhost:5001/cancelOrder`);
+    alert("Order Canceled");
 }
 
 function Sauce() {
@@ -47,7 +53,7 @@ function Sauce() {
                 <button onclick={Addtoorder}> Complete Item</button>
             </a>
             <a href="/pizzatype">
-                <button> Cancel Order</button>
+                <button onClick={cancelOrder}> Cancel Order</button>
             </a>
         </div>
     </div>);
