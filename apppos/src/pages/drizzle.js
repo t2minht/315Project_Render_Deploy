@@ -1,36 +1,36 @@
 import React from "react";
 
-function Balsamic() {
+const Balsamic = async () => {
     fetch(`http://localhost:5001/addTopping/${"Balsamic Glaze"}`);
     alert("Topping added to order");
 }
 
-function Basilpesto() {
+const Basilpesto = async () => {
     fetch(`http://localhost:5001/addTopping/${"Basil Pesto"}`);
     alert("Topping added to order");
 }
 
-function Bbqsauce() {
+const Bbqsauce = async () => {
     fetch(`http://localhost:5001/addTopping/${"BBQ Sauce"}`);
     alert("Topping added to order");
 }
 
-function Oliveoil() {
+const Oliveoil = async () => {
     fetch(`http://localhost:5001/addTopping/${"Olive Oil"}`);
     alert("Topping added to order");
 }
 
-function Oregano() {
+const Oregano = async () => {
     fetch(`http://localhost:5001/addTopping/${"Oregano"}`);
     alert("Topping added to order");
 }
 
-function Sriracha() {
+const Sriracha = async () => {
     fetch(`http://localhost:5001/addTopping/${"Sriracha"}`);
     alert("Topping added to order");
 }
 
-function Addtoorder() {
+const Addtoorder = async () => {
     fetch(`http://localhost:5001/addToOrder`);
     alert("Topping added to order");
 }

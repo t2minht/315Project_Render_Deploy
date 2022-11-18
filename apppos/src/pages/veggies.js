@@ -1,71 +1,71 @@
 import React from "react";
 
-function Bananapep() {
+const Bananapep = async () => {
     fetch(`http://localhost:5001/addTopping/${"Banana Peppers"}`);
     alert("Topping added to order");
 }
 
-function Grepep() {
+const Grepep = async () => {
     fetch(`http://localhost:5001/addTopping/${"Green Peppers"}`);
     alert("Topping added to order");
 }
 
-function Redpep() {
+const Redpep = async () => {
     fetch(`http://localhost:5001/addTopping/${"Red Peppers"}`);
     alert("Topping added to order");
 }
 
-function Blackoli() {
+const Blackoli = async () => {
     fetch(`http://localhost:5001/addTopping/${"Black Olives"}`);
     alert("Topping added to order");
 }
 
-function Kalmataoli() {
+const Kalmataoli = async () => {
     fetch(`http://localhost:5001/addTopping/${"Kalmata Olives"}`);
     alert("Topping added to order");
 }
 
-function Cherrytoma() {
+const Cherrytoma = async () => {
     fetch(`http://localhost:5001/addTopping/${"Cherry Tomatoes"}`);
     alert("Topping added to order");
 }
 
-function Redonion() {
+const Redonion = async () => {
     fetch(`http://localhost:5001/addTopping/${"Red Onions"}`);
     alert("Topping added to order");
 }
 
-function Spinach() {
+const Spinach = async () => {
     fetch(`http://localhost:5001/addTopping/${"Spinach"}`);
     alert("Topping added to order");
 }
 
-function Brocolli() {
+const Brocolli = async () => {
     fetch(`http://localhost:5001/addTopping/${"Brocolli"}`);
     alert("Topping added to order");
 }
 
-function Caraonion() {
+const Caraonion = async () => {
     fetch(`http://localhost:5001/addTopping/${"Caramelized Onions"}`);
     alert("Topping added to order");
 }
 
-function Garlic() {
+const Garlic = async () => {
     fetch(`http://localhost:5001/addTopping/${"Garlic"}`);
     alert("Topping added to order");
 }
 
-function Mushrooms() {
+const Mushrooms = async () => {
     fetch(`http://localhost:5001/addTopping/${"Mushrooms"}`);
     alert("Topping added to order");
 }
 
-function Redtatoes() {
+const Redtatoes = async () => {
     fetch(`http://localhost:5001/addTopping/${"Red Potatoes"}`);
     alert("Topping added to order");
 }
 
-function Addtoorder() {
+const Addtoorder = async () => {
     fetch(`http://localhost:5001/addToOrder`);
     alert("Topping added to order");
 }
