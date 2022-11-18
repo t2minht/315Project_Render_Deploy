@@ -3,10 +3,10 @@ import React from "react";
 const Finishorder = async (e) => {
     e.preventDefault();
     const response =
-        await fetch(`http://localhost:5001/Plscheckout`, {
+        await fetch(`http://localhost:5001/checkoutServ`, {
             method: "PUT",
         });
-    await Plscheckout();
+    await checkoutServ();
     alert("Topping added to order");
 }
 

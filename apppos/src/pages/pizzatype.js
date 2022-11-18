@@ -1,31 +1,4 @@
-// 'use strict';
 import React from 'react';
-
-// const e = React.createElement;
-
-// class LikeButton extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = { liked: false };
-//     }
-
-//     render() {
-//         if (this.state.liked) {
-//             return 'You liked this.';
-//         }
-
-//         return e(
-//             'button',
-//             { onClick: () => this.setState({ liked: true }) },
-//             'Like'
-//         );
-//     }
-// }
-
-// const domContainer = document.querySelector('#like_button_container');
-// const root = ReactDOM.createRoot(domContainer);
-// root.render(e(LikeButton));
-
 
 const handleClickPep = async () => {
     fetch(`http://localhost:5001/createSetPizza/${1}/${"Pepperoni"}`);
@@ -37,11 +10,11 @@ const CheeseZa = async () => {
 }
 
 const oneTopping = async () => {
-    fetch(`http://localhost:5001/createPizza/${1}/${"One Topping"}`);
+    fetch(`http://localhost:5001/createPizza/${1}/${"One_Topping"}`);
     alert("Pizza added to order");
 }
 const multiTopping = async () => {
-    fetch(`http://localhost:5001/createPizza/${4}/${"Multi Topping"}`);
+    fetch(`http://localhost:5001/createPizza/${4}/${"Multi_Topping"}`);
     alert("Pizza added to order");
 }
 

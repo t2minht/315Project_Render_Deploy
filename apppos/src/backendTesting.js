@@ -9,6 +9,7 @@ const cors = require('cors');
 const { receiveMessageOnPort } = require('worker_threads');
 const { CommandCompleteMessage } = require('pg-protocol/dist/messages');
 const { json } = require('stream/consumers');
+const { Console } = require('console');
 
 
 app.use(cors());
@@ -18,7 +19,7 @@ app.listen(5001, () => {
     console.log("Server is listening in on port 5001");
 })
 
-var pizza = {
+let pizza = {
     pizzaName: "",
     sauce: 'Red',
     drinkName: "",
@@ -29,34 +30,36 @@ var pizza = {
     isCombo: false
 }
 
-var pizzaList = []
+var pizzaList = [];
 
 app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
-    pizza.pizzaName = JSON.stringify(req.params.pizzaName);
-    pizza.numToppings = JSON.stringify(req.params.numToppings);
-    console.log(pizza.pizzaName);
+    newPizzaName = JSON.stringify(req.params.pizzaName);
+    newNumToppings = JSON.parse(JSON.stringify(req.params.numToppings));
+    pizza.pizzaName = newPizzaName;
+    pizza.numToppings = newNumToppings;
     pizzaList.push(pizza);
-    refreshPizza;
+    console.log("sup");
     res.json("");
 });
+
 app.get('/createSetPizza/:numToppings/:pizzaName', function (req, res) {
-    pizza.pizzaName = JSON.stringify(req.params.pizzaName);
-    pizza.numToppings = JSON.stringify(req.params.numToppings);
-    pizza.currToppings = JSON.stringify(req.params.numToppings);
-    pizza.toppings.push(JSON.stringify(req.params.pizzaName));
+    newPizzaName = JSON.stringify(req.params.pizzaName);
+    newNumToppings = JSON.stringify(req.params.numToppings);
+    pizza.pizzaName = newPizzaName;
+    pizza.numToppings = 1;
     console.log(pizza.pizzaName)
-    console.log(pizza.currToppings)
     pizzaList.push(pizza);
-    refreshPizza();
     res.json("");
 });
 
 app.get('/addTopping/:toppingName', function (req, res) {
+    console.log("hi");
     if (pizza.currToppings == pizza.numToppings) {
         res.json(false);
     }
     pizza.toppings.push(JSON.stringify(req.params.toppingName));
-    pizza.numToppings++;
+    console.log(pizza.toppings[0]);
+    pizza.currToppings++;
     res.json(true);
 });
 
@@ -188,28 +191,30 @@ const pool = new Pool({
     ssl: { rejectUnauthorized: false }
 });
 
-app.put("/Plscheckout", async (req, res) => {
+app.put("/checkoutServ", async (req, res) => {
     console.log("Im getting here");
     var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Red\'');
     serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'House_Blend\'');
-    console.log(req.body.isCauly);
-    if (req.body.isCauly) {
+    if (pizza.isCauly) {
         serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Cauliflour\'')
     }
     else {
         serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Dough\'')
 
     }
-    console.log(req.body.numToppings);
-    for (let i = 0; i < req.body.numToppings.length; i++) {
-        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'' + req.body.numToppings[i] + '\'');
+    console.log(pizzaList[0].toppings[0]);
+    console.log(pizza.pizzaName);
+    // console.log(req.body.numToppings);
+    for (let i = 0; i < pizzaList.length; i++) {
+        for (let j = 0; j < pizzaList[i].toppings.length; j++)
+            serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'' + pizzaList[i].toppings[j] + '\'');
     }
     res.json(serverReply.rows);
 })
 
 app.get("/seasonalMenu", async (req, res) => {
-    var serverReply = await pool.query('SELECT * FROM INVENTORY WHERE id > 48');
-    return res.json(serverReply.rows);
+    var seasonalReply = await pool.query('SELECT * FROM INVENTORY WHERE id > 48');
+    return res.json(seasonalReply.rows);
 })
 
 //exit gracefully
