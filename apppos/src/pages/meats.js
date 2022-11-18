@@ -6,37 +6,37 @@ const Pepperoni = async () => {
 }
 
 
-function Ham() {
+const Ham = async () => {
     fetch(`http://localhost:5001/addTopping/${"Ham"}`);
     alert("Topping added to order");
 }
 
-function Sausage() {
+const Sausage = async () => {
     fetch(`http://localhost:5001/addTopping/${"Sausage"}`);
     alert("Topping added to order");
 }
 
-function Meatballs() {
+const Meatballs = async () => {
     fetch(`http://localhost:5001/addTopping/${"Meatballs"}`);
     alert("Topping added to order");
 }
 
-function Salami() {
+const Salami = async () => {
     fetch(`http://localhost:5001/addTopping/${"Salami"}`);
     alert("Topping added to order");
 }
 
-function Bacon() {
+const Bacon = async () => {
     fetch(`http://localhost:5001/addTopping/${"Bacon"}`);
     alert("Topping added to order");
 }
 
-function Chicken() {
+const Chicken = async () => {
     fetch(`http://localhost:5001/addTopping/${"Chicken"}`);
     alert("Topping added to order");
 }
 
-function Addtoorder() {
+const Addtoorder = async () => {
     fetch(`http://localhost:5001/addToOrder`);
     alert("Topping added to order");
 }

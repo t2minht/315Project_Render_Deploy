@@ -8,7 +8,7 @@ import Seasonal from "./pages/seasonal.js";
 import Topping from "./pages/topping.js";
 import Veggies from "./pages/veggies.js";
 import Navbar from "./navbar.js";
-import "./components/customer.css";
+//import "./components/customer.css";
 
 function App() {
 
@@ -43,12 +43,11 @@ function App() {
       break
 
   }
-  const CurrentOrder = fetch(`http://localhost:5001/checkoutScreen`);;
-  let pizzainfo
+  //const CurrentOrder = fetch(`http://localhost:5001/checkoutScreen`);;
   return (
     <React.Fragment>
+      <Navbar />
       {component}
-      {pizzainfo}
     </React.Fragment>
 
   );

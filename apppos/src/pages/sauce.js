@@ -1,29 +1,29 @@
 import React from "react";
 
-function Red() {
+const Red = async () => {
     fetch(`http://localhost:5001/addSauce/${"Red"}`);
     alert("Topping added to order");
 }
 
-function Zestyred() {
+const Zestyred = async () => {
     fetch(`http://localhost:5001/addSauce/${"Zesty Red"}`);
     alert("Topping added to order");
 }
 
-function White() {
+const White = async () => {
     fetch(`http://localhost:5001/addSauce/${"White"}`);
     alert("Topping added to order");
 }
 
-function Regular() {
+const Regular = async () => {
     fetch(`http://localhost:5001/crustType/${false}`);
 }
 
-function Cauliflour() {
+const Cauliflour = async () => {
     fetch(`http://localhost:5001/crustType/${true}`);
 }
 
-function Addtoorder() {
+const Addtoorder = async () => {
     fetch(`http://localhost:5001/addToOrder`);
     alert("Topping added to order");
 }

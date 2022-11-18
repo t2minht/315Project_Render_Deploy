@@ -1,6 +1,6 @@
 import React from "react";
 
-function Addtoorder() {
+const Addtoorder = async () => {
     fetch(`http://localhost:5001/addToOrder`);
     alert("Topping added to order");
 }
