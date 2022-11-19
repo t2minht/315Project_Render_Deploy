@@ -107,8 +107,8 @@ function Veggies() {
             <a href="/sauce">
                 <button>Next</button>
             </a>
-            <a href="/checkout">
-                <button onClick={cancelOrder}> Check Out</button>
+            <a href="/pizzatype">
+                <button onClick={cancelOrder}> Cancel Order</button>
             </a>
         </div>
     </div>);
