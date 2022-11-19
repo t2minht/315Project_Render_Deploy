@@ -37,8 +37,7 @@ app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
     newNumToppings = JSON.parse(JSON.stringify(req.params.numToppings));
     pizza.pizzaName = newPizzaName;
     pizza.numToppings = newNumToppings;
-    pizzaList.push(pizza);
-    console.log("sup");
+    console.log("made it here");
     res.json("");
 });
 

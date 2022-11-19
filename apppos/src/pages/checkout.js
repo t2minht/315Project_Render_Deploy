@@ -6,8 +6,11 @@ const Finishorder = async (e) => {
         await fetch(`http://localhost:5001/checkoutServ`, {
             method: "PUT",
         });
-    await checkoutServ();
     alert("Topping added to order");
+}
+const cancelOrder = async () => {
+    fetch(`http://localhost:5001/cancelOrder`);
+    alert("Order Canceled");
 }
 
 function Checkout() {
