@@ -1,36 +1,43 @@
 import React from "react";
 
-const Red = async () => {
-    fetch(`http://localhost:5001/addSauce/${"Red"}`);
+const Red = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5001/addSauce/${"Red"}`);
     alert("Sauce Changed");
 }
 
-const Zestyred = async () => {
-    fetch(`http://localhost:5001/addSauce/${"Zesty Red"}`);
+const Zestyred = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5001/addSauce/${"Zesty Red"}`);
     alert("Sauce Changed");
 }
 
-const White = async () => {
-    fetch(`http://localhost:5001/addSauce/${"White"}`);
+const White = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5001/addSauce/${"White"}`);
     alert("Sauce Changed");
 }
 
-const Regular = async () => {
-    fetch(`http://localhost:5001/crustType/${false}`);
+const Regular = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5001/crustType/${false}`);
     alert("Crust Changed");
 }
 
-const Cauliflour = async () => {
-    fetch(`http://localhost:5001/crustType/${true}`);
+const Cauliflour = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5001/crustType/${true}`);
     alert("Crust Changed");
 }
 
-const Addtoorder = async () => {
-    fetch(`http://localhost:5001/addToOrder`);
+const Addtoorder = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5001/addToOrder`);
     alert("Pizza added to order");
 }
-const cancelOrder = async () => {
-    fetch(`http://localhost:5001/cancelOrder`);
+const cancelOrder = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5001/cancelOrder`);
     alert("Order Canceled");
 }
 
