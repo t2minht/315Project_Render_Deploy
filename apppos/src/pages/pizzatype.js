@@ -29,6 +29,7 @@ const cancelOrder = async (e) => {
 function Pizzatype() {
     return (
         <div>
+            <h1>Select Pizza Type:</h1>
             <button onClick={handleClickPep}>Pepperoni Pizza</button>
             <button onClick={CheeseZa}>Cheese</button>
             {/* <a href="/topping"> */}
