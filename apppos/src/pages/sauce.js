@@ -50,8 +50,9 @@ function Sauce() {
             <a href="/topping">
                 <button> Back</button>
             </a>
+            <button onClick={Addtoorder}> Complete Item</button>
             <a href="/pizzatype">
-                <button onClick={Addtoorder}> Complete Item</button>
+                <button>Next Item</button>
             </a>
         </div>
     </div>);

@@ -1,47 +1,62 @@
 import React from "react";
 const Pepperoni = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:5001/addTopping/${"Pepperoni"}`);
-    alert("Too many toppings");
+    if (await fetch(`http://localhost:5001/addTopping/${"Pepperoni"}`)
+        .then((response) => response.text()) == "\"false\"") {
+        alert("Too many toppings");
+    }
+
 }
 
 
 const Ham = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:5001/addTopping/${"Ham"}`);
-    alert("Too many toppings");
+    if (await fetch(`http://localhost:5001/addTopping/${"Ham"}`)
+        .then((response) => response.text()) == "\"false\"") {
+        alert("Too many toppings");
+    }
 }
 
 const Sausage = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:5001/addTopping/${"Sausage"}`);
-    alert("Too many toppings");
+    if (await fetch(`http://localhost:5001/addTopping/${"Sausage"}`)
+        .then((response) => response.text()) == "\"false\"") {
+        alert("Too many toppings");
+    }
 }
 
 const Meatballs = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:5001/addTopping/${"Meatballs"}`);
-    alert("Too many toppings");
+    if (await fetch(`http://localhost:5001/addTopping/${"Meatballs"}`)
+        .then((response) => response.text()) == "\"false\"") {
+        alert("Too many toppings");
+    }
 }
 
 const Salami = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:5001/addTopping/${"Salami"}`);
-    alert("Too many toppings");
+    if (await fetch(`http://localhost:5001/addTopping/${"Salami"}`)
+        .then((response) => response.text()) == "\"false\"") {
+        alert("Too many toppings");
+    }
 }
 
 const Bacon = async (e) => {
     e.preventDefault();
     //stringify the reply if needed, see what it is first
-    await fetch(`http://localhost:5001/addTopping/${'Bacon'}`);
-    alert("Too many toppings");
+    if (await fetch(`http://localhost:5001/addTopping/${'Bacon'}`)
+        .then((response) => response.text()) == "\"false\"") {
+        alert("Too many toppings");
+    }
 
 }
 
 const Chicken = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:5001/addTopping/${"Chicken"}`);
-    alert("Too many toppings");
+    if (await fetch(`http://localhost:5001/addTopping/${"Chicken"}`)
+        .then((response) => response.text()) == "\"false\"") {
+        alert("Too many toppings");
+    }
 }
 
 

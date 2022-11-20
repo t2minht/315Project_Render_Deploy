@@ -58,13 +58,16 @@ app.get('/createSetPizza/:numToppings/:pizzaName', function (req, res) {
 });
 
 app.get('/addTopping/:toppingName', function (req, res) {
-    console.log("hi");
+
     if (pizza.currToppings == pizza.numToppings) {
-        res.json(JSON.stringify(false));
+        console.log("false");
+        res.json("false");
+    } else {
+        console.log("true");
+        pizza.toppings.push(req.params.toppingName);
+        pizza.currToppings++;
+        res.json("true");
     }
-    pizza.toppings.push(req.params.toppingName);
-    pizza.currToppings++;
-    res.json(JSON.stringify(true));
 });
 
 app.get('/removeLastTopping', function (req, res) {
@@ -80,13 +83,15 @@ app.get('/addToOrder', function (req, res) {
 });
 
 app.get('/addSauce/:sauceName', function (req, res) {
-    pizza.sauce = req.params.newSauce;
+    pizza.sauce = req.params.sauceName;
+    console.log(pizza.sauce);
     res.json(JSON.stringify(true));
 });
 
 app.get('/crustType/:crustToggle', function (req, res) {
     //TODO, make sure this is toggleable
     pizza.isCauly = req.params.crustToggle;
+    console.log(pizza.isCauly);
     res.json(JSON.stringify(true));
 });
 app.get('comboMeal', function (req, res) {
