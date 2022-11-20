@@ -13,11 +13,6 @@ const cancelOrder = async () => {
     alert("Order Canceled");
 }
 
-const cancelOrder = async () => {
-    fetch(`http://localhost:5001/cancelOrder`);
-    alert("Order Canceled");
-}
-
 function Checkout() {
     return (<div>
         <h1>Select Payment Type:</h1>
