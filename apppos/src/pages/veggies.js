@@ -1,72 +1,86 @@
 import React from "react";
 
 const Bananapep = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Banana Peppers"}`);
     alert("Too many toppings");
 }
 
 const Grepep = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Green Peppers"}`);
     alert("Too many toppings");
 }
 
 const Redpep = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Red Peppers"}`);
     alert("Too many toppings");
 }
 
 const Blackoli = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Black Olives"}`);
     alert("Too many toppings");
 }
 
 const Kalmataoli = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Kalmata Olives"}`);
     alert("Too many toppings");
 }
 
 const Cherrytoma = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Cherry Tomatoes"}`);
     alert("Too many toppings");
 }
 
 const Redonion = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Red Onions"}`);
     alert("Too many toppings");
 }
 
 const Spinach = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Spinach"}`);
     alert("Too many toppings");
 }
 
 const Brocolli = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Brocolli"}`);
     alert("Too many toppings");
 }
 
 const Caraonion = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Caramelized Onions"}`);
     alert("Too many toppings");
 }
 
 const Garlic = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Garlic"}`);
     alert("Too many toppings");
 }
 
 const Mushrooms = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Mushrooms"}`);
     alert("Too many toppings");
 }
 
 const Redtatoes = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Red Potatoes"}`);
     alert("Too many toppings");
 }
 
 
 const cancelOrder = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/cancelOrder`);
     alert("Order Canceled");
 }

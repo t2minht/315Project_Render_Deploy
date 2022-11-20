@@ -1,35 +1,42 @@
 import React from "react";
 
 const Red = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addSauce/${"Red"}`);
     alert("Sauce Changed");
 }
 
 const Zestyred = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addSauce/${"Zesty Red"}`);
     alert("Sauce Changed");
 }
 
 const White = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addSauce/${"White"}`);
     alert("Sauce Changed");
 }
 
 const Regular = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/crustType/${false}`);
     alert("Crust Changed");
 }
 
 const Cauliflour = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/crustType/${true}`);
     alert("Crust Changed");
 }
 
 const Addtoorder = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/addToOrder`);
     alert("Pizza added to order");
 }
 const cancelOrder = async () => {
+    e.preventDefault();
     await fetch(`http://localhost:5001/cancelOrder`);
     alert("Order Canceled");
 }
