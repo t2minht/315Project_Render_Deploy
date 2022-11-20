@@ -35,7 +35,7 @@ let pizza = {
 var pizzaList = [];
 
 app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
-    newPizzaName = JSON.stringify(req.params.pizzaName);
+    newPizzaName = req.params.pizzaName;
     pizza.pizzaName = newPizzaName;
     pizza.numToppings = req.params.numToppings;
     console.log(pizza.pizzaName);
@@ -50,8 +50,10 @@ app.get('/createSetPizza/:numToppings/:pizzaName', function (req, res) {
     if (req.params.numToppings == "1") {
         pizza.toppings.push("Pepperoni");
     }
-    console.log(pizza.pizzaName)
-    pizzaList.push(pizza);
+    console.log(pizza.toppings[0]);
+    const pushPizza = structuredClone(pizza);
+    pizzaList.push(pushPizza);
+    refreshPizza();
     res.json(JSON.stringify(true));
 });
 
@@ -60,8 +62,7 @@ app.get('/addTopping/:toppingName', function (req, res) {
     if (pizza.currToppings == pizza.numToppings) {
         res.json(JSON.stringify(false));
     }
-    pizza.toppings.push(JSON.stringify(req.params.toppingName));
-    console.log(pizza.toppings[0]);
+    pizza.toppings.push(req.params.toppingName);
     pizza.currToppings++;
     res.json(JSON.stringify(true));
 });
@@ -72,10 +73,12 @@ app.get('/removeLastTopping', function (req, res) {
 });
 
 app.get('/addToOrder', function (req, res) {
-    pizzaList.push(structuredClone(pizza));
-    console.log("this: " + pizza.toppings[0]);
+    const pushPizza = structuredClone(pizza);
+    pizzaList.push(pushPizza);
+    // var newPizza = pizzaList.slice(-1);
+    // pizzaList.pop();
+    // pizzaList.push(newPizza);
     refreshPizza();
-    console.log("this2: " + pizza.toppings[0]);
     res.json(JSON.stringify(true));
 });
 
@@ -130,14 +133,7 @@ app.get('/calculatePrice', function (req, res) {
 });
 
 app.get('/cancelOrder', function (req, res) {
-    pizza.pizzaName = "";
-    pizza.sauce = '';
-    pizza.drinkName = "";
-    pizza.numToppings = 0;
-    pizza.currToppings = 0;
-    pizza.toppings = [];
-    pizza.isCauly = false;
-    pizza.isCombo = false;
+    refreshPizza();
     pizzaList = [];
 });
 app.get('/clearSelection', function (req, res) {
@@ -194,7 +190,6 @@ const pool = new Pool({
 });
 
 app.put("/checkoutServ", async (req, res) => {
-    console.log("Im getting here");
     var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Red\'');
     serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'House_Blend\'');
     if (pizza.isCauly) {
@@ -202,12 +197,7 @@ app.put("/checkoutServ", async (req, res) => {
     }
     else {
         serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Dough\'')
-
     }
-    var currentPizza = pizzaList[0];
-    console.log(pizzaList[0].toppings[0]);
-    console.log(pizzaList[0].toppings[0]);
-    console.log(pizzaList[0].pizzaName);
     // console.log(req.body.numToppings);
     for (let i = 0; i < pizzaList.length; i++) {
         for (let j = 0; j < pizzaList[i].toppings.length; j++)
