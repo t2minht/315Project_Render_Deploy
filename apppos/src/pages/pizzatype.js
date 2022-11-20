@@ -48,6 +48,10 @@ function Pizzatype() {
                 <a href="/topping">
                     <button>next</button>
                 </a>
+                {/* remove me after testing */}
+                <a href="/directions">
+                    <button>Directions</button>
+                </a>
             </div>
         </div>
     );

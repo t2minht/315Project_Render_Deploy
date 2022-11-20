@@ -62,9 +62,11 @@ app.get('/addTopping/:toppingName', function (req, res) {
     if (pizza.currToppings == pizza.numToppings) {
         res.json(JSON.stringify(false));
     }
-    pizza.toppings.push(req.params.toppingName);
-    pizza.currToppings++;
-    res.json(JSON.stringify(true));
+    else {
+        pizza.toppings.push(req.params.toppingName);
+        pizza.currToppings++;
+        res.json(JSON.stringify(true));
+    }
 });
 
 app.get('/removeLastTopping', function (req, res) {
@@ -221,30 +223,59 @@ process.on('SIGINT', function () {
     process.exit(0);
 });
 
-module.exports = {};
 
+
+// // //Black magic API testing
+// function initMap() {
+//     var directionsService = new google.maps.DirectionsService();
+//     var directionsRenderer = new google.maps.DirectionsRenderer();
+//     const map = new google.maps.Map(document.getElementById("map"), {
+//         zoom: 16,
+//         center: { lat: 30.61234195012257, lng: -96.34153287461642 },
+//     });
+//     directionsRenderer.setMap(map);
+// }
+
+// function calcRoute() {
+//     var start = document.getElementById('start').value;
+//     var request = {
+//         origin: start,
+//         destination: { lat: 30.61234195012257, lng: -96.34153287461642 },
+//         travelMode: 'DRIVING'
+//     };
+//     directionsService.route(request, function (result, status) {
+//         if (status == 'OK') {
+//             directionsRenderer.setDirections(result);
+//         }
+//     });
+// }
 
 // //Black magic API testing
-function initMap() {
+app.get('/initMap/:address', function (req, res) {
     var directionsService = new google.maps.DirectionsService();
     var directionsRenderer = new google.maps.DirectionsRenderer();
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 16,
         center: { lat: 30.61234195012257, lng: -96.34153287461642 },
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
     });
     directionsRenderer.setMap(map);
-}
-
-function calcRoute() {
-    var start = document.getElementById('start').value;
     var request = {
-        origin: start,
+        origin: "125 Spence St, College Station, TX 77840",
         destination: { lat: 30.61234195012257, lng: -96.34153287461642 },
         travelMode: 'DRIVING'
     };
     directionsService.route(request, function (result, status) {
         if (status == 'OK') {
-            directionsRenderer.setDirections(result);
+            directionsRenderer({
+                suppressMarkers: true,
+                directions: result,
+                map: map,
+            });
+
         }
     });
-}
+});
+
+
+module.exports = {};
