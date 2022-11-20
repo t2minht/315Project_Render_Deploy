@@ -1,7 +1,7 @@
 import React from "react";
 
 const cancelOrder = async () => {
-    fetch(`http://localhost:5001/cancelOrder`);
+    await fetch(`http://localhost:5001/cancelOrder`);
     alert("Order Canceled");
 }
 

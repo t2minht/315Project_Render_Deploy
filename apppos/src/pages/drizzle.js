@@ -1,45 +1,45 @@
 import React from "react";
 
 const Balsamic = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Balsamic Glaze"}`)) {
-        alert("Too many toppings");
-    }
+    e.preventDefault();
+    await fetch(`http://localhost:5001/addTopping/${"Balsamic Glaze"}`);
+    alert("Too many toppings");
 }
 
 const Basilpesto = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Basil Pesto"}`)) {
-        alert("Too many toppings");
-    }
+    e.preventDefault();
+    await fetch(`http://localhost:5001/addTopping/${"Basil Pesto"}`);
+    alert("Too many toppings");
 }
 
 const Bbqsauce = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"BBQ Sauce"}`)) {
-        alert("Too many toppings");
-    }
+    e.preventDefault();
+    await fetch(`http://localhost:5001/addTopping/${"BBQ Sauce"}`);
+    alert("Too many toppings");
 }
 
 const Oliveoil = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Olive Oil"}`)) {
-        alert("Too many toppings");
-    }
+    e.preventDefault();
+    await fetch(`http://localhost:5001/addTopping/${"Olive Oil"}`);
+    alert("Too many toppings");
 }
 
 const Oregano = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Oregano"}`)) {
-        alert("Too many toppings");
-    }
+    e.preventDefault();
+    await fetch(`http://localhost:5001/addTopping/${"Oregano"}`);
+    alert("Too many toppings");
 }
 
 const Sriracha = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Sriracha"}`)) {
-        alert("Too many toppings");
-    }
+    e.preventDefault();
+    await fetch(`http://localhost:5001/addTopping/${"Sriracha"}`);
+    alert("Too many toppings");
 
 }
 
 
 const cancelOrder = async () => {
-    fetch(`http://localhost:5001/cancelOrder`);
+    await fetch(`http://localhost:5001/cancelOrder`);
     alert("Order Canceled");
 }
 

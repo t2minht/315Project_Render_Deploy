@@ -1,86 +1,73 @@
 import React from "react";
 
 const Bananapep = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Banana Peppers"}`)) {
-        alert("Too many toppings");
-    }
+    await fetch(`http://localhost:5001/addTopping/${"Banana Peppers"}`);
+    alert("Too many toppings");
 }
 
 const Grepep = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Green Peppers"}`)) {
-        alert("Too many toppings");
-    }
+    await fetch(`http://localhost:5001/addTopping/${"Green Peppers"}`);
+    alert("Too many toppings");
 }
 
 const Redpep = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Red Peppers"}`)) {
-        alert("Too many toppings");
-    }
+    await fetch(`http://localhost:5001/addTopping/${"Red Peppers"}`);
+    alert("Too many toppings");
 }
 
 const Blackoli = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Black Olives"}`)) {
-        alert("Too many toppings");
-    }
+    await fetch(`http://localhost:5001/addTopping/${"Black Olives"}`);
+    alert("Too many toppings");
 }
 
 const Kalmataoli = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Kalmata Olives"}`)) {
-        alert("Too many toppings");
-    }
+    await fetch(`http://localhost:5001/addTopping/${"Kalmata Olives"}`);
+    alert("Too many toppings");
 }
 
 const Cherrytoma = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Cherry Tomatoes"}`)) {
-        alert("Too many toppings");
-    }
+    await fetch(`http://localhost:5001/addTopping/${"Cherry Tomatoes"}`);
+    alert("Too many toppings");
 }
 
 const Redonion = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Red Onions"}`)) {
-        alert("Too many toppings");
-    }
+    await fetch(`http://localhost:5001/addTopping/${"Red Onions"}`);
+    alert("Too many toppings");
 }
 
 const Spinach = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Spinach"}`)) {
-        alert("Too many toppings");
-    }
+    await fetch(`http://localhost:5001/addTopping/${"Spinach"}`);
+    alert("Too many toppings");
 }
 
 const Brocolli = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Brocolli"}`)) {
-        alert("Too many toppings");
-    }
+    await fetch(`http://localhost:5001/addTopping/${"Brocolli"}`);
+    alert("Too many toppings");
 }
 
 const Caraonion = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Caramelized Onions"}`)) {
-        alert("Too many toppings");
-    }
+    await fetch(`http://localhost:5001/addTopping/${"Caramelized Onions"}`);
+    alert("Too many toppings");
 }
 
 const Garlic = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Garlic"}`)) {
-        alert("Too many toppings");
-    }
+    await fetch(`http://localhost:5001/addTopping/${"Garlic"}`);
+    alert("Too many toppings");
 }
 
 const Mushrooms = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Mushrooms"}`)) {
-        alert("Too many toppings");
-    }
+    await fetch(`http://localhost:5001/addTopping/${"Mushrooms"}`);
+    alert("Too many toppings");
 }
 
 const Redtatoes = async () => {
-    if (!fetch(`http://localhost:5001/addTopping/${"Red Potatoes"}`)) {
-        alert("Too many toppings");
-    }
+    await fetch(`http://localhost:5001/addTopping/${"Red Potatoes"}`);
+    alert("Too many toppings");
 }
 
 
 const cancelOrder = async () => {
-    fetch(`http://localhost:5001/cancelOrder`);
+    await fetch(`http://localhost:5001/cancelOrder`);
     alert("Order Canceled");
 }
 
