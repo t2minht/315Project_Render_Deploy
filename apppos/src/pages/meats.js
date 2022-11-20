@@ -40,7 +40,6 @@ const Bacon = async (e) => {
 }
 
 const Chicken = async (e) => {
-    console.log("BACON");
     e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Chicken"}`);
     alert("Too many toppings");
