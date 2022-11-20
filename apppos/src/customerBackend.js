@@ -75,23 +75,24 @@ app.get('/removeLastTopping', function (req, res) {
 app.get('/addToOrder', function (req, res) {
     const pushPizza = structuredClone(pizza);
     pizzaList.push(pushPizza);
-    // var newPizza = pizzaList.slice(-1);
-    // pizzaList.pop();
-    // pizzaList.push(newPizza);
     refreshPizza();
     res.json(JSON.stringify(true));
 });
 
-// app.post('/addSauce', function (req, res) {
-//     pizza.sauce = main.body.newSauce;
-// });
-// app.post('/crustType', function (req, res) {
-//     //TODO, make sure this is toggleable
-//     pizza.isCauly = caulyCrust;
-// });
-// function comboMeal(drinkCombo) {
-//     pizza.isCombo = drinkCombo;
-// }
+app.get('/addSauce/:sauceName', function (req, res) {
+    pizza.sauce = req.params.newSauce;
+    res.json(JSON.stringify(true));
+});
+
+app.get('/crustType/:crustToggle', function (req, res) {
+    //TODO, make sure this is toggleable
+    pizza.isCauly = req.params.crustToggle;
+    res.json(JSON.stringify(true));
+});
+app.get('comboMeal', function (req, res) {
+    pizza.isCombo = drinkCombo;
+    res.json(JSON.stringify(true));
+});
 
 app.get('/calculatePrice', function (req, res) {
     var price = 0;
@@ -190,8 +191,8 @@ const pool = new Pool({
 });
 
 app.put("/checkoutServ", async (req, res) => {
-    var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Red\'');
-    serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'House_Blend\'');
+
+    var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'House_Blend\'');
     if (pizza.isCauly) {
         serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Cauliflour\'')
     }
@@ -200,8 +201,10 @@ app.put("/checkoutServ", async (req, res) => {
     }
     // console.log(req.body.numToppings);
     for (let i = 0; i < pizzaList.length; i++) {
-        for (let j = 0; j < pizzaList[i].toppings.length; j++)
+        var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'' + pizzaList[i].sauce + '\'');
+        for (let j = 0; j < pizzaList[i].toppings.length; j++) {
             serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'' + pizzaList[i].toppings[j] + '\'');
+        }
     }
     res.json(serverReply.rows);
 })

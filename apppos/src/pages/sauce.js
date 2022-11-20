@@ -8,7 +8,7 @@ const Red = async (e) => {
 
 const Zestyred = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:5001/addSauce/${"Zesty Red"}`);
+    await fetch(`http://localhost:5001/addSauce/${"Zesty_Red"}`);
     alert("Sauce Changed");
 }
 
