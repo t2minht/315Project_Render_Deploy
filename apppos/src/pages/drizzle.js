@@ -38,12 +38,6 @@ const Sriracha = async (e) => {
 }
 
 
-const cancelOrder = async (e) => {
-    e.preventDefault();
-    await fetch(`http://localhost:5001/cancelOrder`);
-    alert("Order Canceled");
-}
-
 function Drizzle() {
     return (<div>
         <h1>Select Drizzle Type:</h1>
@@ -59,9 +53,6 @@ function Drizzle() {
             </a>
             <a href="/sauce">
                 <button>Next</button>
-            </a>
-            <a href="/pizzatype">
-                <button onClick={cancelOrder}> Cancel Order</button>
             </a>
         </div>
     </div>);

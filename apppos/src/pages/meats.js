@@ -1,5 +1,4 @@
 import React from "react";
-
 const Pepperoni = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Pepperoni"}`);
@@ -40,17 +39,12 @@ const Bacon = async (e) => {
 }
 
 const Chicken = async (e) => {
-    console.log("BACON");
     e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Chicken"}`);
     alert("Too many toppings");
 }
 
-const cancelOrder = async (e) => {
-    e.preventDefault();
-    await fetch(`http://localhost:5001/cancelOrder`);
-    alert("Order Canceled");
-}
+
 
 function Meats() {
     return (<div><h1>Select Meats:</h1>
@@ -67,9 +61,6 @@ function Meats() {
             </a>
             <a href="/sauce">
                 <button>Next</button>
-            </a>
-            <a href="/pizzatype">
-                <button onClick={cancelOrder}> Cancel Order</button>
             </a>
         </div>
     </div>);

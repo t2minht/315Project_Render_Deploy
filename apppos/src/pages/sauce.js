@@ -35,12 +35,6 @@ const Addtoorder = async (e) => {
     await fetch(`http://localhost:5001/addToOrder`);
     alert("Pizza added to order");
 }
-const cancelOrder = async (e) => {
-    e.preventDefault();
-    await fetch(`http://localhost:5001/cancelOrder`);
-    alert("Order Canceled");
-}
-
 function Sauce() {
     return (<div><h1>Select Sauce and Crust:</h1>
         <div>
@@ -58,9 +52,6 @@ function Sauce() {
             </a>
             <a href="/pizzatype">
                 <button onClick={Addtoorder}> Complete Item</button>
-            </a>
-            <a href="/pizzatype">
-                <button onClick={cancelOrder}> Cancel Order</button>
             </a>
         </div>
     </div>);

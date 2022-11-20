@@ -1,12 +1,13 @@
 import React from "react";
 
+
 const Finishorder = async (e) => {
     e.preventDefault();
     const response =
         await fetch(`http://localhost:5001/checkoutServ`, {
             method: "PUT",
         });
-    alert("Topping added to order");
+    alert("Order Completed");
 }
 const cancelOrder = async (e) => {
     e.preventDefault();
@@ -17,22 +18,14 @@ const cancelOrder = async (e) => {
 function Checkout() {
     return (<div>
         <h1>Select Payment Type:</h1>
-        <a href="/pizzatype">
-            <button onClick={Finishorder}>Cash</button>
-        </a>
-        <a href="/pizzatype">
-            <button onClick={Finishorder}>Card</button>
-        </a>
-        <a href="/pizzatype">
-            <button onClick={Finishorder}>Dining Dollars</button>
-        </a>
+        <button onClick={Finishorder}>Cash</button>
+        <button onClick={Finishorder}>Card</button>
+        <button onClick={Finishorder}>Dining Dollars</button>
         <div>
             <a href="/pizzatype">
                 <button> Add another Item</button>
-            </a>
-            <a href="/pizzatype">
-                <button onClick={cancelOrder}> Cancel Order</button>
-            </a>
+            </a >
+            <button onClick={cancelOrder}> Cancel Order</button>
         </div>
     </div>);
 }
