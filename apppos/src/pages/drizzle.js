@@ -1,36 +1,36 @@
 import React from "react";
 
-const Balsamic = async () => {
+const Balsamic = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Balsamic Glaze"}`);
     alert("Too many toppings");
 }
 
-const Basilpesto = async () => {
+const Basilpesto = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Basil Pesto"}`);
     alert("Too many toppings");
 }
 
-const Bbqsauce = async () => {
+const Bbqsauce = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"BBQ Sauce"}`);
     alert("Too many toppings");
 }
 
-const Oliveoil = async () => {
+const Oliveoil = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Olive Oil"}`);
     alert("Too many toppings");
 }
 
-const Oregano = async () => {
+const Oregano = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Oregano"}`);
     alert("Too many toppings");
 }
 
-const Sriracha = async () => {
+const Sriracha = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/addTopping/${"Sriracha"}`);
     alert("Too many toppings");
@@ -38,7 +38,7 @@ const Sriracha = async () => {
 }
 
 
-const cancelOrder = async () => {
+const cancelOrder = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/cancelOrder`);
     alert("Order Canceled");

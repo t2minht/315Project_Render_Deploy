@@ -7,7 +7,6 @@ import Sauce from "./pages/sauce.js";
 import Seasonal from "./pages/seasonal.js";
 import Topping from "./pages/topping.js";
 import Veggies from "./pages/veggies.js";
-import Navbar from "./navbar.js";
 //import "./components/customer.css";
 
 function App() {
@@ -46,7 +45,6 @@ function App() {
   //const CurrentOrder = fetch(`http://localhost:5001/checkoutScreen`);;
   return (
     <React.Fragment>
-      <Navbar />
       {component}
     </React.Fragment>
 
