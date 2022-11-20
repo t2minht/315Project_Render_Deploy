@@ -37,20 +37,20 @@ const cancelOrder = async () => {
 function Sauce() {
     return (<div><h1>Select Sauce and Crust:</h1>
         <div>
-            <button onclick={Red}>Red Sauce</button>
-            <button onclick={Zestyred}>Zesty Red Sauce</button>
-            <button onclick={White}>White Sauce</button>
+            <button onClick={Red}>Red Sauce</button>
+            <button onClick={Zestyred}>Zesty Red Sauce</button>
+            <button onClick={White}>White Sauce</button>
         </div>
         <div>
-            <button onclick={Regular}>Regular Crust</button>
-            <button onclick={Cauliflour}>Cauliflour Crust</button>
+            <button onClick={Regular}>Regular Crust</button>
+            <button onClick={Cauliflour}>Cauliflour Crust</button>
         </div>
         <div>
             <a href="/topping">
                 <button> Back</button>
             </a>
             <a href="/pizzatype">
-                <button onclick={Addtoorder}> Complete Item</button>
+                <button onClick={Addtoorder}> Complete Item</button>
             </a>
             <a href="/pizzatype">
                 <button onClick={cancelOrder}> Cancel Order</button>

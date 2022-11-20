@@ -1,3 +1,5 @@
+// import structuredClone from '@ungap/structured-clone';
+
 const express = require('express');
 const { Pool } = require('pg');
 const dotenv = require('dotenv').config();
@@ -34,44 +36,47 @@ var pizzaList = [];
 
 app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
     newPizzaName = JSON.stringify(req.params.pizzaName);
-    newNumToppings = JSON.parse(JSON.stringify(req.params.numToppings));
     pizza.pizzaName = newPizzaName;
-    pizza.numToppings = newNumToppings;
-    console.log("made it here");
-    res.json("");
+    pizza.numToppings = req.params.numToppings;
+    console.log(pizza.pizzaName);
+    res.json(JSON.stringify(true));
 });
 
 app.get('/createSetPizza/:numToppings/:pizzaName', function (req, res) {
+    console.log("CreatingPiza")
     newPizzaName = JSON.stringify(req.params.pizzaName);
-    newNumToppings = JSON.stringify(req.params.numToppings);
     pizza.pizzaName = newPizzaName;
-    pizza.numToppings = 1;
+    pizza.numToppings = req.params.numToppings;
+    if (req.params.numToppings == "1") {
+        pizza.toppings.push("Pepperoni");
+    }
     console.log(pizza.pizzaName)
     pizzaList.push(pizza);
-    res.json("");
+    res.json(JSON.stringify(true));
 });
 
 app.get('/addTopping/:toppingName', function (req, res) {
     console.log("hi");
     if (pizza.currToppings == pizza.numToppings) {
-        res.json(false);
+        res.json(JSON.stringify(false));
     }
     pizza.toppings.push(JSON.stringify(req.params.toppingName));
     console.log(pizza.toppings[0]);
     pizza.currToppings++;
-    res.json(true);
+    res.json(JSON.stringify(true));
 });
 
 app.get('/removeLastTopping', function (req, res) {
     pizza.toppings.pop();
-    res.json(true);
+    res.json(JSON.stringify(true));
 });
 
 app.get('/addToOrder', function (req, res) {
-    pizzaList.push(pizza);
-    numPizzas++;
+    pizzaList.push(structuredClone(pizza));
+    console.log("this: " + pizza.toppings[0]);
     refreshPizza();
-    res.json(true);
+    console.log("this2: " + pizza.toppings[0]);
+    res.json(JSON.stringify(true));
 });
 
 // app.post('/addSauce', function (req, res) {
@@ -121,7 +126,7 @@ app.get('/calculatePrice', function (req, res) {
         }
     }
     //CHECK: might have to stringify this
-    res.json(price);
+    res.json(JSON.stringify(price));
 });
 
 app.get('/cancelOrder', function (req, res) {
@@ -134,8 +139,6 @@ app.get('/cancelOrder', function (req, res) {
     pizza.isCauly = false;
     pizza.isCombo = false;
     pizzaList = [];
-    numDrinks = 0;
-    numPizzas = 0;
 });
 app.get('/clearSelection', function (req, res) {
     pizzaList.pop();
@@ -201,8 +204,10 @@ app.put("/checkoutServ", async (req, res) => {
         serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Dough\'')
 
     }
+    var currentPizza = pizzaList[0];
     console.log(pizzaList[0].toppings[0]);
-    console.log(pizza.pizzaName);
+    console.log(pizzaList[0].toppings[0]);
+    console.log(pizzaList[0].pizzaName);
     // console.log(req.body.numToppings);
     for (let i = 0; i < pizzaList.length; i++) {
         for (let j = 0; j < pizzaList[i].toppings.length; j++)
