@@ -37,6 +37,7 @@ const Sriracha = async () => {
 
 }
 
+
 const cancelOrder = async () => {
     fetch(`http://localhost:5001/cancelOrder`);
     alert("Order Canceled");
