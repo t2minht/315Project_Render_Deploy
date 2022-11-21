@@ -9,15 +9,15 @@ import ManagerHome from "./ManagerPages/home.js";
 import RestockReport from "./ManagerPages/restockReport.js";
 import ExcessReport from "./ManagerPages/excessReport.js";
 import SalesTogether from "./ManagerPages/salesTogether.js";
-import Checkout from "./pages/checkout.js";
-import Drizzle from "./pages/drizzle.js";
-import Meats from "./pages/meats.js";
-import Pizzatype from "./pages/pizzatype.js";
-import Sauce from "./pages/sauce.js";
-import Seasonal from "./pages/seasonal.js";
-import Topping from "./pages/topping.js";
-import Veggies from "./pages/veggies.js";
-import Directions from "./pages/directions.js"
+import Checkout from "./CustomerPages/checkout.js";
+import Drizzle from "./CustomerPages/drizzle.js";
+import Meats from "./CustomerPages/meats.js";
+import Pizzatype from "./CustomerPages/pizzatype.js";
+import Sauce from "./CustomerPages/sauce.js";
+import Seasonal from "./CustomerPages/seasonal.js";
+import Topping from "./CustomerPages/topping.js";
+import Veggies from "./CustomerPages/veggies.js";
+import Directions from "./CustomerPages/directions.js"
 
 
 function App() {
@@ -77,7 +77,7 @@ function App() {
             component = <ManagerHome/>
             break
         case "/customer":
-            component = <ManagerHome/>
+            component = <Pizzatype/>
             break
         case "/server":
             component = <ManagerHome/>
