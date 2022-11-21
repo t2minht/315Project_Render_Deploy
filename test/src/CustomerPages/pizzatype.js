@@ -1,5 +1,5 @@
-import React from 'react';
-const handleClickPep = async (e) => {
+import React, { useEffect, Fragment, useState } from "react";
+const HandleClickPep = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/createSetPizza/${1}/${"Pepperoni"}`);
     alert("Pizza added to order");
@@ -9,17 +9,17 @@ const CheeseZa = async (e) => {
     await fetch(`http://localhost:5001/createSetPizza/${1}/${"Cheese"}`);
     alert("Pizza added to order");
 }
-const oneTopping = async (e) => {
+const OneTopping = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/createPizza/${1}/${"One_Topping"}`);
     alert("Pizza Type Selected");
 }
-const multiTopping = async (e) => {
+const MultiTopping = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/createPizza/${4}/${"Multi_Topping"}`);
     alert("Pizza Type Selected");
 }
-const cancelOrder = async (e) => {
+const CancelOrder = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/cancelOrder`);
     alert("Order Canceled");
@@ -28,15 +28,26 @@ const cancelOrder = async (e) => {
 
 
 function Pizzatype() {
+    const [response, setResponse] = useState("");
+    const OrderInfo = async () => {
+        const order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
+        setResponse(order);
+    }
+
+    useEffect(() => {
+        OrderInfo();
+    }, [])
+
+
     return (
         <div>
             <h1>Select Pizza Type:</h1>
-            <button onClick={handleClickPep}>Pepperoni Pizza</button>
+            <button onClick={HandleClickPep}>Pepperoni Pizza</button>
             <button onClick={CheeseZa}>Cheese</button>
-            <button onClick={oneTopping}>One Topping</button>
-            <button onClick={multiTopping}>2-4 Topping</button>
+            <button onClick={OneTopping}>One Topping</button>
+            <button onClick={MultiTopping}>2-4 Topping</button>
             <div>
-                <button onClick={cancelOrder}> Cancel Order</button>
+                <button onClick={CancelOrder}> Cancel Order</button>
                 <a href="/checkout">
                     <button > Complete Order</button>
                 </a>
@@ -48,6 +59,7 @@ function Pizzatype() {
                     <button>Directions</button>
                 </a>
             </div>
+            <p>{response}</p>
         </div >
     );
 }
