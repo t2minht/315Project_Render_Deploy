@@ -3,7 +3,7 @@ import React from "react";
 const Balsamic = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Balsamic Glaze"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -11,7 +11,7 @@ const Balsamic = async (e) => {
 const Basilpesto = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Basil Pesto"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -19,7 +19,7 @@ const Basilpesto = async (e) => {
 const Bbqsauce = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"BBQ Sauce"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -27,7 +27,7 @@ const Bbqsauce = async (e) => {
 const Oliveoil = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Olive Oil"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -35,7 +35,7 @@ const Oliveoil = async (e) => {
 const Oregano = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Oregano"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -43,7 +43,7 @@ const Oregano = async (e) => {
 const Sriracha = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Sriracha"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 

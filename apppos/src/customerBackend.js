@@ -170,10 +170,10 @@ function refreshPizza() {
 
 app.get('/checkoutScreen', function (req, res) {
     let completeOrder = 'Order Info: \n';
-    for (let i = 0; i < pizzaList.length(); i++) {
+    for (let i = 0; i < pizzaList.length; i++) {
         completeOrder += pizza.name;
         completeOrder += "- ";
-        for (let j = 0; i < pizza.toppings.length(); j++) {
+        for (let j = 0; i < pizza.toppings.length; j++) {
             completeOrder += pizza.toppings[j];
             completeOrder += " ";
         }

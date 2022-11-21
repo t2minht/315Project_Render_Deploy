@@ -42,7 +42,7 @@ function App() {
       break
 
   }
-  //const CurrentOrder = fetch(`http://localhost:5001/checkoutScreen`);;
+
   return (
     <React.Fragment>
       {component}

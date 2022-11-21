@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 
 const Finishorder = async (e) => {
     e.preventDefault();
@@ -9,13 +8,27 @@ const Finishorder = async (e) => {
         });
     alert("Order Completed");
 }
-const cancelOrder = async (e) => {
+const CancelOrder = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/cancelOrder`);
     alert("Order Canceled");
 }
 
+
+
+
+
+
 function Checkout() {
+    let response;
+    const OrderInfo = async () => {
+        response = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
+        alert(response);
+    }
+    useEffect(() => {
+        OrderInfo();
+    }, [])
+
     return (<div>
         <h1>Select Payment Type:</h1>
         <button onClick={Finishorder}>Cash</button>
@@ -25,7 +38,10 @@ function Checkout() {
             <a href="/pizzatype">
                 <button> Add another Item</button>
             </a >
-            <button onClick={cancelOrder}> Cancel Order</button>
+            <button onClick={CancelOrder}> Cancel Order</button>
+        </div>
+        <div>
+            {response}
         </div>
     </div>);
 }
