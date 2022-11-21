@@ -4,7 +4,7 @@ const port = 3000;
 
 app.set("view engine", "ejs");
 
-app.get("/", (req,res) => {
+app.get("/", (req, res) => {
     res.render("index");
 })
 app.listen(3001);
@@ -30,12 +30,12 @@ const createPizza = async () => {
     // pizza.numToppings = pizzaType;
     // window.location.href = "cus-topping.html";
     const body = {
-        "isCauly":true,
-        "numToppings":[]
+        "isCauly": true,
+        "numToppings": []
     }
     const response = await fetch("http://localhost:5001/checkout", {
-        method:"PUT",
-        headers: {"Content-Type": "application/json"},
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
     });
     alert("Database updated");
@@ -124,7 +124,7 @@ function cancelOrder() {
     pizza.isCombo = false;
     pizzaList = [];
     numDrinks = 0;
-    numPizzas = 0; 
+    numPizzas = 0;
 }
 function clearSelection() {
     pizzaList.pop();
@@ -144,10 +144,10 @@ function refreshPizza() {
 function checkoutScreen() {
     let completeOrder = 'Order Info: \n';
     for (let i = 0; i < pizzaList.length(); i++) {
-        completeOrder += pizza.name; 
-        completeOrder +=  "- ";
-        for(let j = 0; i < pizza.toppings.length(); j++) {
-            completeOrder += pizza.toppings[j] ;
+        completeOrder += pizza.name;
+        completeOrder += "- ";
+        for (let j = 0; i < pizza.toppings.length(); j++) {
+            completeOrder += pizza.toppings[j];
             completeOrder += " ";
         }
         completeOrder += ("\n");
@@ -169,52 +169,52 @@ function updateTable() {
         database: process.env.PSQL_DATABASE,
         password: process.env.PSQL_PASSWORD,
         port: process.env.PSQL_PORT,
-        ssl: {rejectUnauthorized: false}
+        ssl: { rejectUnauthorized: false }
     });
     pool.connect()
         .then(client => {
-            client.query('UPDATE inventory SET count = count-1 WHERE name = \''+pizza.sauce+'\'', function(err, result) {
+            client.query('UPDATE inventory SET count = count-1 WHERE name = \'' + pizza.sauce + '\'', function (err, result) {
                 if (err) throw err;
                 console.log(result.affectedRows + " record(s) updated");
-               
+
             })
-            client.query('UPDATE inventory SET count = count-1 WHERE name = \'House_Blend\'', function(err, result) {
+            client.query('UPDATE inventory SET count = count-1 WHERE name = \'House_Blend\'', function (err, result) {
                 if (err) throw err;
                 console.log(result.affectedRows + " record(s) updated");
-               
+
             })
             if (pizza.isCauly) {
-                client.query('UPDATE inventory SET count = count-1 WHERE name = \'Cauliflour\'', function(err, result) {
+                client.query('UPDATE inventory SET count = count-1 WHERE name = \'Cauliflour\'', function (err, result) {
                     if (err) throw err;
                     console.log(result.affectedRows + " record(s) updated");
-                   
+
                 })
             }
             else {
-                client.query('UPDATE inventory SET count = count-1 WHERE name = \'Dough\'', function(err, result) {
+                client.query('UPDATE inventory SET count = count-1 WHERE name = \'Dough\'', function (err, result) {
                     if (err) throw err;
                     console.log(result.affectedRows + " record(s) updated");
-                   
+
                 })
             }
-            for (let i = 0; i < pizza.numToppings; i++)  {
-                client.query('UPDATE inventory SET count = count-1 WHERE name = \''+pizza.toppings[i]+'\'', function(err, result) {
+            for (let i = 0; i < pizza.numToppings; i++) {
+                client.query('UPDATE inventory SET count = count-1 WHERE name = \'' + pizza.toppings[i] + '\'', function (err, result) {
                     if (err) throw err;
                     console.log(result.affectedRows + " record(s) updated");
-                   
+
                 })
             }
             cancelOrder()
         })
     //exit gracefully
-    process.on('SIGINT', function() {
+    process.on('SIGINT', function () {
         pool.end();
         console.log('Application successfully shutdown');
         process.exit(0);
     });
-    
+
 }
 
 
 
-module.exports = {createPizza};
+module.exports = { createPizza };
