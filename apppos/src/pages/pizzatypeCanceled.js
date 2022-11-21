@@ -47,7 +47,7 @@ function Pizzatype() {
 
 
     return (
-        <div>
+        <Fragment>
             <h1>Select Pizza Type:</h1>
             <button onClick={HandleClickPep}>Pepperoni Pizza</button>
             <button onClick={CheeseZa}>Cheese</button>
@@ -67,7 +67,7 @@ function Pizzatype() {
                 </a>
             </div>
             <p>{response}</p>
-        </div >
+        </Fragment >
     );
 }
 

@@ -31,6 +31,7 @@ function Pizzatype() {
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
         const order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
+        alert(order);
         setResponse(order);
     }
 
@@ -40,7 +41,7 @@ function Pizzatype() {
 
 
     return (
-        <div>
+        <Fragment>
             <h1>Select Pizza Type:</h1>
             <button onClick={HandleClickPep}>Pepperoni Pizza</button>
             <button onClick={CheeseZa}>Cheese</button>
@@ -60,7 +61,7 @@ function Pizzatype() {
                 </a>
             </div>
             <p>{response}</p>
-        </div >
+        </Fragment >
     );
 }
 
