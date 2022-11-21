@@ -173,9 +173,17 @@ app.get('/checkoutScreen', function (req, res) {
     for (let i = 0; i < pizzaList.length; i++) {
         tempPizza = pizzaList[i]
         completeOrder += tempPizza.pizzaName;
-        
+
         completeOrder += "- ";
-        for (let j = 0; j < tempPizza.toppings.length; j++) {
+        for (let j = 0; i < tempPizza.toppings.length; j++) {
+            completeOrder = completeOrder + "Sauce: " + tempPizza.sauce + " Cheese: House Blend "
+            if (tempPizza.isCauly) {
+                completeOrder += "Crust: Cauliflower ";
+            }
+            else {
+                completeOrder += "Crust: Standard Dough ";
+            }
+            completeOrder += " Toppings: "
             completeOrder += tempPizza.toppings[j];
             console.log(completeOrder);
             completeOrder += " ";
