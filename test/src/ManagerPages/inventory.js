@@ -20,7 +20,8 @@ function Inventory(props) {
         <Navbar/>    
         <div class='heading'>
             <h1>Inventory</h1>
-        
+            <p1>View the current inventory</p1>
+            <hr></hr>
         </div> 
 
          <Table data={inventory} column={props.column}/> 

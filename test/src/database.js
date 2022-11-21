@@ -36,6 +36,12 @@ app.get("/inventory", async (req, res) => {
     res.json(inv.rows);
 });
 
+app.get("/employeeReport", async (req, res) => {
+    let inv = await pool.query('SELECT * FROM employee ORDER BY totalsales DESC');
+    //inventory = inv.rows;
+    res.json(inv.rows);
+});
+
 app.get("/id/:x", async (req, res) => {
     let inv = await pool.query('SELECT * FROM inventory WHERE id = ' + req.params.x);
     //inventory = inv.rows;

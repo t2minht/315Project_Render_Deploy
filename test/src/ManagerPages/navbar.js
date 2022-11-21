@@ -28,6 +28,9 @@ function Navbar() {
             <li>
               <CustomLink href='/salesTogether'>Sales Together</CustomLink>
             </li>
+            <li>
+              <CustomLink href='/employeeReport'>Employee Report</CustomLink>
+            </li>
         </ul>
     </nav> );
 }

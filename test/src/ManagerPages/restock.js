@@ -50,14 +50,28 @@ function Restock(props) {
     return (
         <Fragment>
             <Navbar/>
+            <div class='heading'>
+                <h1>Restock</h1>
+                <p1>View and restock the inventory by each item or restock all items to the recommended amount</p1>
+                <hr></hr>
+            </div>
             <Table data={inventory} column={props.column}/>
-            <h1 className='text-center mt-5'>Restock (Id, Amount) </h1>
+            <br></br><br></br>
+            <h1>Restock Single Item </h1>
+            <p1>Restock a single item by entering the item ID and the amount to order</p1><br></br><br></br>
             <form onSubmit={onSubmitForm}>
-                <input type="text" className="form-control1" value={id} onChange={e => setID(e.target.value)}/>
-                <input type="text" className="form-control1" value={newAmount} onChange={e => setNewAmount(e.target.value)}/>
+                <label for="itemId">Item ID:</label>
+                <input type="text" className="form-control1" id='itemID' value={id} onChange={e => setID(e.target.value)}/>
+                <label for="newAmount">Order Amount:</label>
+                <input type="text" className="form-control1" id='newAmount'value={newAmount} onChange={e => setNewAmount(e.target.value)}/>
+                <br></br><br></br><br></br>
                 <button onClick={onSubmitForm}>Submit</button>
+                <hr></hr>
             </form>
+            <h1>Restock All</h1>
+            <p1>Restock all ingredients in the inventory by the recommended amount</p1><br></br><br></br>
             <button onClick={restockSuggested}>Restock Suggested Amount</button>
+            <br></br><br></br>
             
         </Fragment>
         
