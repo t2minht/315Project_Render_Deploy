@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, Fragment, useState } from "react";
 const Pepperoni = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Pepperoni"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 
@@ -12,7 +12,7 @@ const Pepperoni = async (e) => {
 const Ham = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Ham"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -20,7 +20,7 @@ const Ham = async (e) => {
 const Sausage = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Sausage"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -28,7 +28,7 @@ const Sausage = async (e) => {
 const Meatballs = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Meatballs"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -36,7 +36,7 @@ const Meatballs = async (e) => {
 const Salami = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Salami"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -45,7 +45,7 @@ const Bacon = async (e) => {
     e.preventDefault();
     //stringify the reply if needed, see what it is first
     if (await fetch(`http://localhost:5001/addTopping/${'Bacon'}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 
@@ -54,7 +54,7 @@ const Bacon = async (e) => {
 const Chicken = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Chicken"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -62,6 +62,15 @@ const Chicken = async (e) => {
 
 
 function Meats() {
+    const [response, setResponse] = useState("");
+    const OrderInfo = async () => {
+        const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        setResponse(order);
+    }
+
+    useEffect(() => {
+        OrderInfo();
+    }, [])
     return (<div><h1>Select Meats:</h1>
         <button onClick={Pepperoni}>Pepperoni</button>
         <button onClick={Ham}>Black Forest Ham</button>
@@ -78,6 +87,7 @@ function Meats() {
                 <button>Next</button>
             </a>
         </div>
+        <p>{response}</p>
     </div>);
 }
 

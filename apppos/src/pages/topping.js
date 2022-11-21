@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect, Fragment, useState } from "react";
 
 
 function Topping() {
+    const [response, setResponse] = useState("");
+    const OrderInfo = async () => {
+        const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        setResponse(order);
+    }
+
+    useEffect(() => {
+        OrderInfo();
+    }, [])
     return (<div><h1>Select Toppings:</h1>
         <a href="/meats">
             <button>Meats</button>
@@ -23,6 +32,7 @@ function Topping() {
                 <button>Next</button>
             </a>
         </div>
+        <p>{response}</p>
     </div>);
 }
 
