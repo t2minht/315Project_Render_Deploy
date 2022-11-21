@@ -7,6 +7,7 @@ import Sauce from "./pages/sauce.js";
 import Seasonal from "./pages/seasonal.js";
 import Topping from "./pages/topping.js";
 import Veggies from "./pages/veggies.js";
+import Directions from "./pages/directions.js"
 //import "./components/customer.css";
 
 function App() {
@@ -36,6 +37,9 @@ function App() {
       break
     case "/checkout":
       component = <Checkout />
+      break
+    case "/directions":
+      component = <Directions />
       break
     default:
       component = <Pizzatype />
