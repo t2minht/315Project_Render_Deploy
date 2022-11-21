@@ -183,7 +183,25 @@ app.get('/checkoutScreen', function (req, res) {
     res.json(completeOrder)
 });
 
-
+app.get('currentPizza', function (req, res) {
+    let thisPizza = 'Pizza Info: \n';
+    makePizza = pizzaList[-1];
+    thisPizza += makePizza.Name;
+    thisPizza += "\n";
+    console.log(thisPizza.name);
+    thisPizza = thisPizza + "Sauce: " + makePizza.sauce + " ";
+    if (makePizza.isCauly) {
+        thisPizza += "Crust: Cauliflower \n";
+    }
+    else {
+        thisPizza += "Crust: Standard Dough \n";
+    }
+    thisPizza += "Ingredients: House Blend Cheese, "
+    for (let i = 0; i < makePizza.numToppings; i++) {
+        thisPizza = thisPizza + makePizza.toppings[i] + " ";
+    }
+    res.json(thisPizza);
+});
 
 //Make the pool for later use
 const pool = new Pool({
