@@ -7,7 +7,7 @@ function Menu(props) {
     const [id, setId] = useState(0);
     const [count, setCount] = useState(0);
     const [newCost, setNewCost] = useState(0);
-    const [ingName, setIngName] = useState('Menu Item');
+    const [ingName, setIngName] = useState('ingredient name');
     const [name, setName] = useState('Ingredient');
     const [price, setPrice] = useState(0);
     
@@ -61,26 +61,33 @@ function Menu(props) {
         <Fragment> 
             <Navbar/>
             <Table data={menu} column={props.column}/>
-            <h1>Add a new addIngredient</h1>
-            <form onSubmit={getMenu}>
-                <input type="text" className='form-control1' value={ingName} onChange={e => setIngName(e.target.value)}/>
-                <input type="text" className='form-control1' value={count} onChange={e => setCount(e.target.value)}/>
-                <input type="text" className='form-control1' value={newCost} onChange={e => setNewCost(e.target.value)}/>
-                <button onClick={addNewIngredient}>Submit</button>
-            </form>
-            <h1>Add a new menu Item</h1>
-            <form>
-                <input type="text" className='form-control1' value={id} onChange={e => setId(e.target.value)}/>
-                <input type="text" className='form-control1' value={name} onChange={e => setName(e.target.value)}/>
-                <input type="text" className='form-control1' value={price} onChange={e => setPrice(e.target.value)}/>
-                <button onClick={addNewItem}>Submit</button>
-            </form>
-            <h1>Change a price</h1>
-            <form>
-                <input type="text" className='form-control1' value={id} onChange={e => setId(e.target.value)}/>
-                <input type="text" className='form-control1' value={price} onChange={e => setPrice(e.target.value)}/>
-                <button onClick={changePrice}>Submit</button>
-            </form>
+            <div class='new-ingr'>
+                <h1>Add a New Ingredient</h1>
+                <form onSubmit={getMenu}>
+                    <input type="text" className='form-control1' value={ingName} onChange={e => setIngName(e.target.value)}/>
+                    <input type="text" className='form-control1' value={count} onChange={e => setCount(e.target.value)}/>
+                    <input type="text" className='form-control1' value={newCost} onChange={e => setNewCost(e.target.value)}/>
+                    <button onClick={addNewIngredient}>Submit</button>
+                </form>
+            </div>
+            <div class='new-item'>
+                <h1>Add a New Item</h1>
+                <form>
+                    <input type="text" className='form-control1' value={id} onChange={e => setId(e.target.value)}/>
+                    <input type="text" className='form-control1' value={name} onChange={e => setName(e.target.value)}/>
+                    <input type="text" className='form-control1' value={price} onChange={e => setPrice(e.target.value)}/>
+                    <button onClick={addNewItem}>Submit</button>
+                </form>   
+            </div>
+            <div class='price-change'>
+                <h1>Change a price</h1>
+                <form>
+                    <input type="text" className='form-control1' value={id} onChange={e => setId(e.target.value)}/>
+                    <input type="text" className='form-control1' value={price} onChange={e => setPrice(e.target.value)}/>
+                    <button onClick={changePrice}>Submit</button>
+                </form>   
+            </div>
+          
         </Fragment>
         );
 }

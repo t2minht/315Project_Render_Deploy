@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 function Navbar() {
     
     return ( <nav className='nav'>
-        <a href='/' className='site-title'>Pizza</a>
         <ul>
             <li>
               <CustomLink href="/manager">Manager</CustomLink> 

@@ -14,12 +14,19 @@ function Inventory(props) {
     useEffect(() => {
         getInventory();
     }, [])
-    return ( 
-        <React.Fragment>
-            <Navbar/>
-            <Table data={inventory} column={props.column}/> 
-        </React.Fragment>
+    return (
         
+        <React.Fragment>
+        <Navbar/>    
+        <div class='heading'>
+            <h1>Inventory</h1>
+        
+        </div> 
+
+         <Table data={inventory} column={props.column}/> 
+
+        </React.Fragment>
+         
     );
 }
 

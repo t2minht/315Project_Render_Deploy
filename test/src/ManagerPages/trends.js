@@ -97,13 +97,24 @@ function Trends(props) {
     return (
         <React.Fragment>
             <Navbar/>
-            <h1>Enter start and end date (MM-DD-YYYY)</h1>
-            <form>
-                <input type="text" className='form-control1' value={beginDate} onChange={e => setBeginDate(e.target.value)}/>
-                <input type="text" className='form-control1' value={endDate} onChange={e => setEndDate(e.target.value)}/>
-                <button onClick={getTrendsData}>Generate Report</button>
-            </form>
-            <Table data={trendsTable} column={props.column}></Table> 
+            <div class="heading">
+                <h1>Sales Trends</h1>
+                <h2>Generate itemized sales report over period of time</h2>
+            </div>
+            <div class="page-body">
+                <h1 class='enter-date'>Enter start and end date (MM-DD-YYYY)</h1>
+                <form>
+                <label for="beginDate">Start Date:</label><br></br>
+                <input type="text" className='form-control1' id='beginDate'  value={beginDate} onChange={e => setBeginDate(e.target.value)}/><br></br>
+                <label for="endDate">End Date:</label><br></br>
+                <input type="text" className='form-control1' id='endDate' value={endDate} onChange={e => setEndDate(e.target.value)}/>
+                <div class='submit-container'>
+                    <button onClick={getTrendsData} className='submit'>Generate Report</button>
+                    <Table data={trendsTable} column={props.column}></Table> 
+                </div>
+                </form> 
+            </div>
+        
         </React.Fragment>
     );
 }
