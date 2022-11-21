@@ -14,6 +14,7 @@ function Checkout() {
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
         const order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
+       
         setResponse(order);
     }
 
