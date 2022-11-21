@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, Fragment, useState } from "react";
 const HandleClickPep = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/createSetPizza/${1}/${"Pepperoni"}`);
@@ -28,6 +28,17 @@ const CancelOrder = async (e) => {
 
 
 function Pizzatype() {
+    const [response, setResponse] = useState("");
+    const OrderInfo = async () => {
+        const order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
+        setResponse(order);
+    }
+
+    useEffect(() => {
+        OrderInfo();
+    }, [])
+
+
     return (
         <div>
             <h1>Select Pizza Type:</h1>
@@ -48,6 +59,7 @@ function Pizzatype() {
                     <button>Directions</button>
                 </a>
             </div>
+            <p>{response}</p>
         </div >
     );
 }

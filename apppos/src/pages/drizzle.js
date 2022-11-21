@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, Fragment, useState } from "react";
 
 const Balsamic = async (e) => {
     e.preventDefault();
@@ -51,6 +51,15 @@ const Sriracha = async (e) => {
 
 
 function Drizzle() {
+    const [response, setResponse] = useState("");
+    const OrderInfo = async () => {
+        const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        setResponse(order);
+    }
+
+    useEffect(() => {
+        OrderInfo();
+    }, [])
     return (<div>
         <h1>Select Drizzle Type:</h1>
         <button onClick={Balsamic}>Balsamic Glaze</button>
@@ -67,6 +76,7 @@ function Drizzle() {
                 <button>Next</button>
             </a>
         </div>
+        <p>{response}</p>
     </div>);
 }
 

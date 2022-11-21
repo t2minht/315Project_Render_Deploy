@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, Fragment, useState } from "react";
 const Pepperoni = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Pepperoni"}`)
@@ -62,6 +62,15 @@ const Chicken = async (e) => {
 
 
 function Meats() {
+    const [response, setResponse] = useState("");
+    const OrderInfo = async () => {
+        const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        setResponse(order);
+    }
+
+    useEffect(() => {
+        OrderInfo();
+    }, [])
     return (<div><h1>Select Meats:</h1>
         <button onClick={Pepperoni}>Pepperoni</button>
         <button onClick={Ham}>Black Forest Ham</button>
@@ -78,6 +87,7 @@ function Meats() {
                 <button>Next</button>
             </a>
         </div>
+        <p>{response}</p>
     </div>);
 }
 

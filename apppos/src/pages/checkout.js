@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 
 const Finishorder = async (e) => {
     e.preventDefault();
@@ -15,21 +15,17 @@ const CancelOrder = async (e) => {
 }
 
 
-
-
-
-
 function Checkout() {
-    let response;
+    const [response, setResponse] = useState("");
     const OrderInfo = async () => {
-        response = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
-        alert(response);
+        const order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
+        setResponse(order);
     }
+
     useEffect(() => {
         OrderInfo();
     }, [])
-
-    return (<div>
+    return (<Fragment>
         <h1>Select Payment Type:</h1>
         <button onClick={Finishorder}>Cash</button>
         <button onClick={Finishorder}>Card</button>
@@ -40,10 +36,9 @@ function Checkout() {
             </a >
             <button onClick={CancelOrder}> Cancel Order</button>
         </div>
-        <div>
-            {response}
-        </div>
-    </div>);
+
+        <p>{response}</p>
+    </Fragment>);
 }
 
 export default Checkout;

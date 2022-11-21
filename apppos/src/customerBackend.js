@@ -171,7 +171,7 @@ function refreshPizza() {
 app.get('/checkoutScreen', function (req, res) {
     let completeOrder = 'Order Info: \n';
     for (let i = 0; i < pizzaList.length; i++) {
-        completeOrder += pizza.name;
+        completeOrder += pizza.pizzaName;
         completeOrder += "- ";
         for (let j = 0; i < pizza.toppings.length; j++) {
             completeOrder += pizza.toppings[j];
@@ -183,12 +183,12 @@ app.get('/checkoutScreen', function (req, res) {
     res.json(completeOrder)
 });
 
-app.get('currentPizza', function (req, res) {
+app.get('/currentPizza', function (req, res) {
     let thisPizza = 'Pizza Info: \n';
     makePizza = pizzaList[-1];
-    thisPizza += makePizza.Name;
+    thisPizza += makePizza.pizzaName;
     thisPizza += "\n";
-    console.log(thisPizza.name);
+    console.log(thisPizza.pizzaName);
     thisPizza = thisPizza + "Sauce: " + makePizza.sauce + " ";
     if (makePizza.isCauly) {
         thisPizza += "Crust: Cauliflower \n";
