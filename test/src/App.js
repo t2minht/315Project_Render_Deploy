@@ -9,6 +9,7 @@ import ManagerHome from "./ManagerPages/home.js";
 import RestockReport from "./ManagerPages/restockReport.js";
 import ExcessReport from "./ManagerPages/excessReport.js";
 import SalesTogether from "./ManagerPages/salesTogether.js";
+import EmployeeReport from "./ManagerPages/employeeReport.js";
 import Checkout from "./CustomerPages/checkout.js";
 import Drizzle from "./CustomerPages/drizzle.js";
 import Meats from "./CustomerPages/meats.js";
@@ -19,6 +20,7 @@ import Topping from "./CustomerPages/topping.js";
 import Veggies from "./CustomerPages/veggies.js";
 import Directions from "./CustomerPages/directions.js"
 
+//const database = require("./database");
 
 function App() {
 
@@ -29,6 +31,14 @@ function App() {
     const [menuTable, setMenuTable] = useState([1,1,1,1,1,1,1]);
     const [togetherTable, setTogetherTable] = useState([]);
     const [salesTrendsTable, setSalesTrendsTable] = useState([]);
+    const [employeeTable, setEmployeeTable] = useState([1,1,1,1,1,1]);
+
+    
+    // useEffect[(() => {
+    //     database.getInventory.then(res => setInventoryTable(res));
+    //     database.getMenu.then(res => setMenuTable(res));
+    //     database.restockReport(res => setRestockTable(res));
+    // }, [])]
 
     const invColumn = [
         {heading: 'ID', key: 1, value: "id"},
@@ -38,9 +48,10 @@ function App() {
         {heading: 'Count', key: 4, value: "count"},
         
     ];
+
     const toColumn = [
-        {heading: 'Item 1', key: 5, value: "item1"},
-        {heading: 'Item 2', key: 6, value: "item2"},
+        {heading: 'ID', key: 5, value: "item1"},
+        {heading: 'Name', key: 6, value: "item2"},
         {heading: 'Count', key: 7, value: "count"},
     ];
 
@@ -66,6 +77,16 @@ function App() {
         {heading: 'Name', key: 19, value: "name"},
         {heading: 'Units Sold', key: 20, value: "count"},
     ];
+
+    const employeeCols = [
+        {heading: 'ID', key: 21, value: "id"},
+        {heading: 'Name', key: 22, value: "name"},
+        {heading: 'Num Sales', key: 24, value: "numSales"},
+        {heading: 'Total Sales', key: 23, value: "totSales"},
+        
+    ];
+
+
     
 
     let component
@@ -102,6 +123,9 @@ function App() {
             break
         case "/salesTogether":
             component = <SalesTogether data={togetherTable} column={toColumn}/>
+            break
+        case "/employeeReport":
+            component = <EmployeeReport data={employeeTable} column={employeeCols}/>
             break
         case "/pizzatype":
             component = <Pizzatype />
