@@ -9,6 +9,16 @@ import ManagerHome from "./ManagerPages/home.js";
 import RestockReport from "./ManagerPages/restockReport.js";
 import ExcessReport from "./ManagerPages/excessReport.js";
 import SalesTogether from "./ManagerPages/salesTogether.js";
+import Checkout from "./CustomerPages/checkout.js";
+import Drizzle from "./CustomerPages/drizzle.js";
+import Meats from "./CustomerPages/meats.js";
+import Pizzatype from "./CustomerPages/pizzatype.js";
+import Sauce from "./CustomerPages/sauce.js";
+import Seasonal from "./CustomerPages/seasonal.js";
+import Topping from "./CustomerPages/topping.js";
+import Veggies from "./CustomerPages/veggies.js";
+import Directions from "./CustomerPages/directions.js"
+
 
 function App() {
 
@@ -67,7 +77,7 @@ function App() {
             component = <ManagerHome/>
             break
         case "/customer":
-            component = <ManagerHome/>
+            component = <Pizzatype/>
             break
         case "/server":
             component = <ManagerHome/>
@@ -92,6 +102,33 @@ function App() {
             break
         case "/salesTogether":
             component = <SalesTogether data={togetherTable} column={toColumn}/>
+            break
+        case "/pizzatype":
+            component = <Pizzatype />
+            break
+        case "/topping":
+            component = <Topping />
+            break
+        case "/veggies":
+            component = <Veggies />
+            break
+        case "/drizzle":
+            component = <Drizzle />
+            break
+        case "/meats":
+            component = <Meats />
+            break
+        case "/sauce":
+            component = <Sauce />
+            break
+        case "/seasonal":
+            component = <Seasonal />
+            break
+        case "/checkout":
+            component = <Checkout />
+            break
+        case "/directions":
+            component = <Directions />
             break
     }
     return (

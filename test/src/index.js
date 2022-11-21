@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './App.js'
 //import Table from './components/table';
 import 'bootstrap/dist/css/bootstrap.css';
+import './app.css'
 
 
 const element = <React.Fragment>
