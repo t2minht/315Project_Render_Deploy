@@ -9,7 +9,7 @@ import ManagerHome from "./ManagerPages/home.js";
 import RestockReport from "./ManagerPages/restockReport.js";
 import ExcessReport from "./ManagerPages/excessReport.js";
 import SalesTogether from "./ManagerPages/salesTogether.js";
-import EmployeeReport from "./ManagerPages/employeeReport.js";
+import Employee from "./ManagerPages/employeeReport.js";
 import Checkout from "./CustomerPages/checkout.js";
 import Drizzle from "./CustomerPages/drizzle.js";
 import Meats from "./CustomerPages/meats.js";
@@ -31,7 +31,7 @@ function App() {
     const [menuTable, setMenuTable] = useState([1,1,1,1,1,1,1]);
     const [togetherTable, setTogetherTable] = useState([]);
     const [salesTrendsTable, setSalesTrendsTable] = useState([]);
-    const [employeeTable, setEmployeeTable] = useState([1,1,1,1,1,1]);
+    const [employeeTable, setEmployeeTable] = useState([]);
 
     
     // useEffect[(() => {
@@ -80,9 +80,9 @@ function App() {
 
     const employeeCols = [
         {heading: 'ID', key: 21, value: "id"},
-        {heading: 'Name', key: 22, value: "name"},
-        {heading: 'Num Sales', key: 24, value: "numSales"},
-        {heading: 'Total Sales', key: 23, value: "totSales"},
+        {heading: 'Name', key: 22, value: "employeename"},
+        {heading: 'Num Sales', key: 24, value: "numsales"},
+        {heading: 'Total Sales', key: 23, value: "totalsales"},
         
     ];
 
@@ -125,7 +125,7 @@ function App() {
             component = <SalesTogether data={togetherTable} column={toColumn}/>
             break
         case "/employeeReport":
-            component = <EmployeeReport data={employeeTable} column={employeeCols}/>
+            component = <Employee data={employeeTable} column={employeeCols}/>
             break
         case "/pizzatype":
             component = <Pizzatype />

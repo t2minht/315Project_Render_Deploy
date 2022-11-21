@@ -9,6 +9,8 @@ function Employee(props) {
     const getEmployee = async () => {
         const response = await fetch("http://localhost:5001/employeeReport");
         const jsonData = await response.json();
+        console.log(jsonData)
+        console.log("hell")
         setEmployee(jsonData)
     }
     useEffect(() => {

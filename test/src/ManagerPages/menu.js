@@ -60,31 +60,53 @@ function Menu(props) {
     return (
         <Fragment> 
             <Navbar/>
-            <Table data={menu} column={props.column}/>
+            <div class='heading'>
+                <h1>Menu</h1>
+                <p1>Add new seasonal ingredients, add a new item to the menu, or change the price of a current menu item</p1>
+                <hr></hr>
+            </div>
+            <Table data={menu} column={props.column}/><br></br><br></br>
             <div class='new-ingr'>
                 <h1>Add a New Ingredient</h1>
+                <p1>Add a new ingredient to the inventory by entering the name, amount to add to the inventory, and the cost of the new ingredient</p1><br></br><br></br>
                 <form onSubmit={getMenu}>
-                    <input type="text" className='form-control1' value={ingName} onChange={e => setIngName(e.target.value)}/>
-                    <input type="text" className='form-control1' value={count} onChange={e => setCount(e.target.value)}/>
-                    <input type="text" className='form-control1' value={newCost} onChange={e => setNewCost(e.target.value)}/>
+                    <label for="ingrName">Ingredient Name:</label>
+                    <input type="text" className='form-control1' id='ingrName' value={ingName} onChange={e => setIngName(e.target.value)}/>
+                    <label for="addAmount">Amount to Add:</label>
+                    <input type="text" className='form-control1' id='addAmount' value={count} onChange={e => setCount(e.target.value)}/>
+                    <label for="ingrCost">Ingredient Cost:</label>
+                    <input type="text" className='form-control1' id='ingrCost' value={newCost} onChange={e => setNewCost(e.target.value)}/>
+                    <br></br><br></br><br></br>
                     <button onClick={addNewIngredient}>Submit</button>
                 </form>
             </div>
+            <hr></hr>
             <div class='new-item'>
                 <h1>Add a New Item</h1>
+                <p1>Add a new item to the menu by entering the item's ID, name, and price</p1>
                 <form>
-                    <input type="text" className='form-control1' value={id} onChange={e => setId(e.target.value)}/>
-                    <input type="text" className='form-control1' value={name} onChange={e => setName(e.target.value)}/>
-                    <input type="text" className='form-control1' value={price} onChange={e => setPrice(e.target.value)}/>
+                    <label for="itemId">Item ID:</label>
+                    <input type="text" className='form-control1' id='itemId' value={id} onChange={e => setId(e.target.value)}/>
+                    <label for="itemName">Item Name:</label>
+                    <input type="text" className='form-control1' id='itemName' value={name} onChange={e => setName(e.target.value)}/>
+                    <label for="itemPrice">Item Price:</label>
+                    <input type="text" className='form-control1' id='itemPrice' value={price} onChange={e => setPrice(e.target.value)}/>
+                    <br></br><br></br><br></br>
                     <button onClick={addNewItem}>Submit</button>
                 </form>   
             </div>
+            <hr></hr>
             <div class='price-change'>
                 <h1>Change a price</h1>
+                <p1>Change the price of an item currently on the menu from the table above</p1>
                 <form>
-                    <input type="text" className='form-control1' value={id} onChange={e => setId(e.target.value)}/>
-                    <input type="text" className='form-control1' value={price} onChange={e => setPrice(e.target.value)}/>
+                    <label for="changeID">Item ID:</label>
+                    <input type="text" className='form-control1' id='changeID' value={id} onChange={e => setId(e.target.value)}/>
+                    <label for="newPrice">new Price:</label>
+                    <input type="text" className='form-control1' id='newPrice' value={price} onChange={e => setPrice(e.target.value)}/>
+                    <br></br><br></br><br></br>
                     <button onClick={changePrice}>Submit</button>
+                    <br></br><br></br>
                 </form>   
             </div>
           
