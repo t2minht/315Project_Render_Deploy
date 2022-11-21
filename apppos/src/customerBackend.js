@@ -169,32 +169,33 @@ function refreshPizza() {
 }
 
 app.get('/checkoutScreen', function (req, res) {
-    let completeOrder = 'Order Info: \n';
+    let completeOrder = 'Order Info: <br>';
     for (let i = 0; i < pizzaList.length(); i++) {
-        completeOrder += pizza.name;
+        tempPizza = pizzaList[i]
+        completeOrder += tempPizza.pizzaName;
         completeOrder += "- ";
-        for (let j = 0; i < pizza.toppings.length(); j++) {
-            completeOrder += pizza.toppings[j];
+        for (let j = 0; i < tempPizza.toppings.length; j++) {
+            completeOrder += tempPizza.toppings[j];
             completeOrder += " ";
         }
-        completeOrder += ("\n");
+        completeOrder += ("<br>");
     }
     //MIGHT have to stringify this
     res.json(completeOrder)
 });
 
 app.get('currentPizza', function (req, res) {
-    let thisPizza = 'Pizza Info: \n';
+    let thisPizza = 'Pizza Info: <br>';
     makePizza = pizzaList[-1];
-    thisPizza += makePizza.Name;
-    thisPizza += "\n";
-    console.log(thisPizza.name);
+    thisPizza += makePizza.pizzaName;
+    thisPizza += "<br>";
+    console.log(thisPizza.pizzaName);
     thisPizza = thisPizza + "Sauce: " + makePizza.sauce + " ";
     if (makePizza.isCauly) {
-        thisPizza += "Crust: Cauliflower \n";
+        thisPizza += "Crust: Cauliflower <br>";
     }
     else {
-        thisPizza += "Crust: Standard Dough \n";
+        thisPizza += "Crust: Standard Dough <br>";
     }
     thisPizza += "Ingredients: House Blend Cheese, "
     for (let i = 0; i < makePizza.numToppings; i++) {
