@@ -71,7 +71,7 @@ function Meats() {
     useEffect(() => {
         OrderInfo();
     }, [])
-    return (<div><h1>Select Meats:</h1>
+    return (<Fragment><h1>Select Meats:</h1>
         <button onClick={Pepperoni}>Pepperoni</button>
         <button onClick={Ham}>Black Forest Ham</button>
         <button onClick={Sausage}>Italian Sausage</button>
@@ -88,7 +88,7 @@ function Meats() {
             </a>
         </div>
         <p>{response}</p>
-    </div>);
+    </Fragment>);
 }
 
 export default Meats;

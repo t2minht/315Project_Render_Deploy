@@ -10,7 +10,7 @@ function Seasonal() {
     useEffect(() => {
         OrderInfo();
     }, [])
-    return (<div><h1>Select Meats:</h1>
+    return (<Fragment><h1>Select Meats:</h1>
         <div>
             <a href="/topping">
                 <button> Add More Toppings</button>
@@ -20,7 +20,7 @@ function Seasonal() {
             </a>
         </div>
         <p>{response}</p>
-    </div>);
+    </Fragment>);
 }
 
 export default Seasonal;

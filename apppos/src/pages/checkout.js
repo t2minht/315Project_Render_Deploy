@@ -8,17 +8,13 @@ const Finishorder = async (e) => {
         });
     alert("Order Completed");
 }
-const CancelOrder = async (e) => {
-    e.preventDefault();
-    await fetch(`http://localhost:5001/cancelOrder`);
-    alert("Order Canceled");
-}
 
 
 function Checkout() {
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
         const order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
+       
         setResponse(order);
     }
 
@@ -34,7 +30,9 @@ function Checkout() {
             <a href="/pizzatype">
                 <button> Add another Item</button>
             </a >
-            <button onClick={CancelOrder}> Cancel Order</button>
+            <a href="/pizzatypeCanceled">
+            <button > Cancel Order</button>
+            </a>
         </div>
 
         <p>{response}</p>

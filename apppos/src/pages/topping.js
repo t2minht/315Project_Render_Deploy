@@ -11,7 +11,7 @@ function Topping() {
     useEffect(() => {
         OrderInfo();
     }, [])
-    return (<div><h1>Select Toppings:</h1>
+    return (<Fragment><h1>Select Toppings:</h1>
         <a href="/meats">
             <button>Meats</button>
         </a>
@@ -33,7 +33,7 @@ function Topping() {
             </a>
         </div>
         <p>{response}</p>
-    </div>);
+    </Fragment>);
 }
 
 export default Topping;

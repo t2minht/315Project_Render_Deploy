@@ -44,7 +44,7 @@ function Sauce() {
     useEffect(() => {
         OrderInfo();
     }, [])
-    return (<div><h1>Select Sauce and Crust:</h1>
+    return (<Fragment><h1>Select Sauce and Crust:</h1>
         <div>
             <button onClick={Red}>Red Sauce</button>
             <button onClick={Zestyred}>Zesty Red Sauce</button>
@@ -64,7 +64,7 @@ function Sauce() {
             </a>
         </div>
         <p>{response}</p>
-    </div>);
+    </Fragment>);
 }
 
 export default Sauce;

@@ -60,7 +60,7 @@ function Drizzle() {
     useEffect(() => {
         OrderInfo();
     }, [])
-    return (<div>
+    return (<Fragment>
         <h1>Select Drizzle Type:</h1>
         <button onClick={Balsamic}>Balsamic Glaze</button>
         <button onClick={Basilpesto}>Basil Pesto</button>
@@ -77,7 +77,7 @@ function Drizzle() {
             </a>
         </div>
         <p>{response}</p>
-    </div>);
+    </Fragment>);
 }
 
 export default Drizzle;

@@ -117,7 +117,7 @@ function Veggies() {
     useEffect(() => {
         OrderInfo();
     }, [])
-    return (<div><h1>Select Vegetables:</h1>
+    return (<Fragment><h1>Select Vegetables:</h1>
         <button onClick={Bananapep}>Banana Peppers</button>
         <button onClick={Grepep}>Green Peppers</button>
         <button onClick={Redpep}>Red Peppers</button>
@@ -140,7 +140,7 @@ function Veggies() {
             </a>
         </div>
         <p>{response}</p>
-    </div>);
+    </Fragment>);
 }
 
 export default Veggies;
