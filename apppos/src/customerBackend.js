@@ -102,18 +102,11 @@ app.get('/addSauce/:sauceName', function (req, res) {
 
 app.get('/crustType/:crustToggle', function (req, res) {
     //TODO, make sure this is toggleable
-    if (pizza.isCauly == "false" && req.params.crustToggle == "true") {
-        pizza.price += 2.99;
-    } else if (pizza.isCauly == "true" && req.params.crustToggle == "false") {
-        pizza.price -= 2.99;
-    }
     pizza.isCauly = req.params.crustToggle;
-    if (before != pizza.isCauly) {
-        console.log("afwf");
-    }
     console.log(pizza.isCauly);
     res.json(JSON.stringify(true));
 });
+
 app.get('comboMeal', function (req, res) {
     pizza.isCombo = drinkCombo;
     res.json(JSON.stringify(true));
@@ -215,7 +208,11 @@ app.get('/checkoutScreen', function (req, res) {
             completeOrder += " ";
         }
         completeOrder += ("Price: $");
-        completeOrder += tempPizza.price;
+        let price = tempPizza.price
+        if (tempPizza.isCauly == "true") {
+            price += 2.99;
+        }
+        completeOrder += price;
         completeOrder += ("  ");
 
     }
@@ -240,7 +237,11 @@ app.get('/currentPizza', function (req, res) {
         thisPizza = thisPizza + makePizza.toppings[i] + " ";
     }
     thisPizza += ("Price: $");
-    thisPizza += makePizza.price;
+    let price = makePizza.price
+    if (makePizza.isCauly == "true") {
+        price += 2.99;
+    }
+    thisPizza += price;
     thisPizza += ("  ");
     res.json(thisPizza);
 });
