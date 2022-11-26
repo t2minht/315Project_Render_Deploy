@@ -49,13 +49,12 @@ function Sauce() {
         </div>
         <div>
             <button onClick={Regular}>Regular Crust</button>
-            <button onClick={Cauliflour}>Cauliflour Crust</button>
+            <button onClick={Cauliflour}>Cauliflower Crust</button>
         </div>
         <div>
             <a href="/topping">
                 <button> Back</button>
             </a>
-
             <a href="/checkout">
                 <button> Complete Item</button>
             </a>

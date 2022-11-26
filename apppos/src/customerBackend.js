@@ -78,7 +78,10 @@ app.get('/addTopping/:toppingName', function (req, res) {
 });
 
 app.get('/removeLastTopping', function (req, res) {
-    pizza.toppings.pop();
+    if (pizza.currToppings != 0) {
+        pizza.currToppings--;
+        pizza.toppings.pop();
+    }
     res.json(JSON.stringify(true));
 });
 
@@ -99,12 +102,11 @@ app.get('/addSauce/:sauceName', function (req, res) {
 
 app.get('/crustType/:crustToggle', function (req, res) {
     //TODO, make sure this is toggleable
-    if (pizza.isCauly == false && req.params.crustToggle == true) {
-        pizza.price += 2.99;
-    } if (pizza.isCauly == true && req.params.crustToggle == false) {
-        pizza.price -= 2.99;
-    }
+    let before = pizza.isCauly;
     pizza.isCauly = req.params.crustToggle;
+    if (before != pizza.isCauly) {
+        console.log("afwf");
+    }
     console.log(pizza.isCauly);
     res.json(JSON.stringify(true));
 });

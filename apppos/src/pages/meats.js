@@ -72,7 +72,12 @@ const Chicken = async (e) => {
         window.location.reload();
     }
 }
+const Removetopping = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5001/removeLastTopping`)
+    window.location.reload();
 
+}
 
 
 function Meats() {
@@ -98,6 +103,7 @@ function Meats() {
             <a href="/topping">
                 <button> Add More Toppings</button>
             </a>
+            <button onClick={Removetopping}>Remove Last Topping</button>
             <a href="/sauce">
                 <button>Next</button>
             </a>
