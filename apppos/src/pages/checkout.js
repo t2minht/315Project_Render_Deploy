@@ -25,7 +25,7 @@ function Checkout() {
     const [price, setPrice] = useState("");
     const PriceInfo = async () => {
         let order = await fetch("http://localhost:5001/calculatePrice").then((response) => response.text());
-        order = order.replace(/\0/g, "");
+        order = order.replace(/\"/g, "");
 
         setPrice(order);
     }
