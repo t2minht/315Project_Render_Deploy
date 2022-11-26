@@ -39,6 +39,11 @@ app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
     newPizzaName = req.params.pizzaName;
     pizza.pizzaName = newPizzaName;
     pizza.numToppings = req.params.numToppings;
+    if (pizza.numToppings == 1) {
+        pizza.price = 7.79;
+    } else {
+        pizza.price = 8.99;
+    }
     console.log(pizza.pizzaName);
     res.json(JSON.stringify(true));
 });
