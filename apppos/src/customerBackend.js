@@ -39,11 +39,6 @@ app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
     newPizzaName = req.params.pizzaName;
     pizza.pizzaName = newPizzaName;
     pizza.numToppings = req.params.numToppings;
-    if (pizza.numToppings == 1) {
-        pizza.price = 7.79;
-    } else {
-        pizza.price = 8.99;
-    }
     console.log(pizza.pizzaName);
     res.json(JSON.stringify(true));
 });
@@ -128,7 +123,7 @@ app.get('/calculatePrice', function (req, res) {
             }
         }
         else if (currentPizza.numToppings == 1) {
-            if (currentPizza.isCombo) {
+            if (currentPizza.isCombo == "true") {
                 price += 10.24;
             }
             else {
@@ -136,7 +131,7 @@ app.get('/calculatePrice', function (req, res) {
             }
         }
         else {
-            if (currentPizza.isCombo) {
+            if (currentPizza.isCombo == "true") {
                 price += 11.44;
             }
             else {
