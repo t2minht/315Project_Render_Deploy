@@ -28,8 +28,8 @@ let pizza = {
     numToppings: 0,
     currToppings: 0,
     toppings: [],
-    isCauly: false,
-    isCombo: false,
+    isCauly: "false",
+    isCombo: "false",
     price: 0
 }
 
@@ -102,15 +102,15 @@ app.get('/addSauce/:sauceName', function (req, res) {
 
 app.get('/crustType/:crustToggle', function (req, res) {
     //TODO, make sure this is toggleable
-    let before = pizza.isCauly;
-    pizza.isCauly = req.params.crustToggle;
-    if (before != pizza.isCauly) {
-        console.log("afwf");
+    if (pizza.isCauly == "false" && req.params.crustToggle == "true") {
+        pizza.price += 2.99;
+    } else if (pizza.isCauly == "true" && req.params.crustToggle == "false") {
+        pizza.price -= 2.99;
     }
+    pizza.isCauly = req.params.crustToggle;
     console.log(pizza.isCauly);
     res.json(JSON.stringify(true));
 });
-
 app.get('comboMeal', function (req, res) {
     pizza.isCombo = drinkCombo;
     res.json(JSON.stringify(true));
@@ -147,11 +147,12 @@ app.get('/calculatePrice', function (req, res) {
                 price += 8.99;
             }
         }
-        if (currentPizza.isCauly) {
+        if (currentPizza.isCauly == "true") {
             price += 2.99;
         }
     }
-    res.json(price.toFixed(2));
+    //CHECK: might have to stringify this
+    res.json(price);
 });
 
 app.get('/cancelOrder', function (req, res) {
@@ -197,7 +198,7 @@ app.get('/checkoutScreen', function (req, res) {
         for (let j = -1; j < tempPizza.toppings.length; j++) {
             if (j == -1) {
                 completeOrder = completeOrder + "Sauce: " + tempPizza.sauce + " Cheese: House Blend "
-                if (tempPizza.isCauly) {
+                if (tempPizza.isCauly == "true") {
                     completeOrder += "Crust: Cauliflower ";
                 }
                 else {
@@ -215,6 +216,7 @@ app.get('/checkoutScreen', function (req, res) {
         completeOrder += ("  ");
 
     }
+    //MIGHT have to stringify this
     res.json(completeOrder)
 });
 
@@ -225,7 +227,7 @@ app.get('/currentPizza', function (req, res) {
     thisPizza += " ";
     console.log(thisPizza.pizzaName);
     thisPizza = thisPizza + " Sauce: " + makePizza.sauce + " ";
-    if (makePizza.isCauly) {
+    if (makePizza.isCauly == "true") {
         thisPizza += "Crust: Cauliflower ";
     }
     else {
@@ -235,6 +237,9 @@ app.get('/currentPizza', function (req, res) {
     for (let i = 0; i < makePizza.currToppings; i++) {
         thisPizza = thisPizza + makePizza.toppings[i] + " ";
     }
+    thisPizza += ("Price: $");
+    thisPizza += makePizza.price;
+    thisPizza += ("  ");
     res.json(thisPizza);
 });
 
@@ -278,5 +283,60 @@ process.on('SIGINT', function () {
     console.log('Application successfully shutdown');
     process.exit(0);
 });
+
+
+
+// // //Black magic API testing
+// function initMap() {
+//     var directionsService = new google.maps.DirectionsService();
+//     var directionsRenderer = new google.maps.DirectionsRenderer();
+//     const map = new google.maps.Map(document.getElementById("map"), {
+//         zoom: 16,
+//         center: { lat: 30.61234195012257, lng: -96.34153287461642 },
+//     });
+//     directionsRenderer.setMap(map);
+// }
+
+// function calcRoute() {
+//     var start = document.getElementById('start').value;
+//     var request = {
+//         origin: start,
+//         destination: { lat: 30.61234195012257, lng: -96.34153287461642 },
+//         travelMode: 'DRIVING'
+//     };
+//     directionsService.route(request, function (result, status) {
+//         if (status == 'OK') {
+//             directionsRenderer.setDirections(result);
+//         }
+//     });
+// }
+
+// //Black magic API testing
+app.get('/initMap/:address', function (req, res) {
+    var directionsService = new google.maps.DirectionsService();
+    var directionsRenderer = new google.maps.DirectionsRenderer();
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 16,
+        center: { lat: 30.61234195012257, lng: -96.34153287461642 },
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+    });
+    directionsRenderer.setMap(map);
+    var request = {
+        origin: "125 Spence St, College Station, TX 77840",
+        destination: { lat: 30.61234195012257, lng: -96.34153287461642 },
+        travelMode: 'DRIVING'
+    };
+    directionsService.route(request, function (result, status) {
+        if (status == 'OK') {
+            directionsRenderer({
+                suppressMarkers: true,
+                directions: result,
+                map: map,
+            });
+
+        }
+    });
+});
+
 
 module.exports = {};
