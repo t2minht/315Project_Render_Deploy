@@ -4,6 +4,7 @@ import Drizzle from "./pages/drizzle.js";
 import Meats from "./pages/meats.js";
 import Pizzatype from "./pages/pizzatype.js";
 import PizzatypeCancel from "./pages/pizzatypeCanceled";
+import Pizzatypediff from "./pages/pizzatypediff";
 import Sauce from "./pages/sauce.js";
 import Seasonal from "./pages/seasonal.js";
 import ToppingOne from "./pages/topping-one.js";
@@ -25,6 +26,9 @@ function App() {
       break
     case "/pizzatypeCanceled":
       component = <PizzatypeCancel />
+      break
+    case "/pizzatypediff":
+      component = <Pizzatypediff />
       break
     case "/topping-multi":
       component = <ToppingMulti />

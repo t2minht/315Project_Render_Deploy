@@ -65,7 +65,7 @@ const Sriracha = async (e) => {
 function Drizzle() {
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
-        const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        let order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
         order = order.replace(/\"/g, "");
         setResponse(order);
     }

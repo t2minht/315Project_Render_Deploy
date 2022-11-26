@@ -2,31 +2,31 @@ import React, { useEffect, Fragment, useState } from "react";
 const Red = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/addSauce/${"Red"}`);
-    alert("Sauce Changed");
+    window.location.reload();
 }
 
 const Zestyred = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/addSauce/${"Zesty_Red"}`);
-    alert("Sauce Changed");
+    window.location.reload();
 }
 
 const White = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/addSauce/${"White"}`);
-    alert("Sauce Changed");
+    window.location.reload();
 }
 
 const Regular = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/crustType/${false}`);
-    alert("Crust Changed");
+    window.location.reload();
 }
 
 const Cauliflour = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/crustType/${true}`);
-    alert("Crust Changed");
+    window.location.reload();
 }
 
 
@@ -61,6 +61,7 @@ function Sauce() {
             </a>
         </div>
         <p>{response}</p>
+
     </Fragment>);
 }
 
