@@ -110,6 +110,7 @@ app.get('/crustType/:crustToggle', function (req, res) {
     console.log(pizza.isCauly);
     res.json(JSON.stringify(true));
 });
+
 app.get('comboMeal', function (req, res) {
     pizza.isCombo = drinkCombo;
     res.json(JSON.stringify(true));
@@ -150,8 +151,7 @@ app.get('/calculatePrice', function (req, res) {
             price += 2.99;
         }
     }
-    //CHECK: might have to stringify this
-    res.json(price);
+    res.json(price.toFixed(2));
 });
 
 app.get('/cancelOrder', function (req, res) {
@@ -215,7 +215,6 @@ app.get('/checkoutScreen', function (req, res) {
         completeOrder += ("  ");
 
     }
-    //MIGHT have to stringify this
     res.json(completeOrder)
 });
 
@@ -279,60 +278,5 @@ process.on('SIGINT', function () {
     console.log('Application successfully shutdown');
     process.exit(0);
 });
-
-
-
-// // //Black magic API testing
-// function initMap() {
-//     var directionsService = new google.maps.DirectionsService();
-//     var directionsRenderer = new google.maps.DirectionsRenderer();
-//     const map = new google.maps.Map(document.getElementById("map"), {
-//         zoom: 16,
-//         center: { lat: 30.61234195012257, lng: -96.34153287461642 },
-//     });
-//     directionsRenderer.setMap(map);
-// }
-
-// function calcRoute() {
-//     var start = document.getElementById('start').value;
-//     var request = {
-//         origin: start,
-//         destination: { lat: 30.61234195012257, lng: -96.34153287461642 },
-//         travelMode: 'DRIVING'
-//     };
-//     directionsService.route(request, function (result, status) {
-//         if (status == 'OK') {
-//             directionsRenderer.setDirections(result);
-//         }
-//     });
-// }
-
-// //Black magic API testing
-app.get('/initMap/:address', function (req, res) {
-    var directionsService = new google.maps.DirectionsService();
-    var directionsRenderer = new google.maps.DirectionsRenderer();
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 16,
-        center: { lat: 30.61234195012257, lng: -96.34153287461642 },
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-    });
-    directionsRenderer.setMap(map);
-    var request = {
-        origin: "125 Spence St, College Station, TX 77840",
-        destination: { lat: 30.61234195012257, lng: -96.34153287461642 },
-        travelMode: 'DRIVING'
-    };
-    directionsService.route(request, function (result, status) {
-        if (status == 'OK') {
-            directionsRenderer({
-                suppressMarkers: true,
-                directions: result,
-                map: map,
-            });
-
-        }
-    });
-});
-
 
 module.exports = {};
