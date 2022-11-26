@@ -78,7 +78,10 @@ app.get('/addTopping/:toppingName', function (req, res) {
 });
 
 app.get('/removeLastTopping', function (req, res) {
-    pizza.toppings.pop();
+    if (pizza.currToppings != 0) {
+        pizza.currToppings--;
+        pizza.toppings.pop();
+    }
     res.json(JSON.stringify(true));
 });
 
