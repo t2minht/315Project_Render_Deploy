@@ -3,9 +3,12 @@ import Checkout from "./pages/checkout.js";
 import Drizzle from "./pages/drizzle.js";
 import Meats from "./pages/meats.js";
 import Pizzatype from "./pages/pizzatype.js";
+import PizzatypeCancel from "./pages/pizzatypeCanceled";
 import Sauce from "./pages/sauce.js";
 import Seasonal from "./pages/seasonal.js";
+import ToppingOne from "./pages/topping-one.js";
 import Topping from "./pages/topping.js";
+import ToppingMulti from "./pages/topping-multi.js";
 import Veggies from "./pages/veggies.js";
 import Directions from "./pages/directions.js"
 //import "./components/customer.css";
@@ -19,6 +22,15 @@ function App() {
       break
     case "/topping":
       component = <Topping />
+      break
+    case "/pizzatypeCanceled":
+      component = <PizzatypeCancel />
+      break
+    case "/topping-multi":
+      component = <ToppingMulti />
+      break
+    case "/topping-one":
+      component = <ToppingOne />
       break
     case "/veggies":
       component = <Veggies />

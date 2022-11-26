@@ -11,6 +11,10 @@ const Finishorder = async (e) => {
 
 
 function Checkout() {
+    const Addtoorder = async () => {
+        await fetch(`http://localhost:5001/addToOrder`);
+        alert("Pizza added to order");
+    }
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
         const order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
@@ -19,6 +23,7 @@ function Checkout() {
     }
 
     useEffect(() => {
+        Addtoorder();
         OrderInfo();
     }, [])
     return (<Fragment>

@@ -175,7 +175,7 @@ app.get('/checkoutScreen', function (req, res) {
         completeOrder += tempPizza.pizzaName;
 
         completeOrder += "- ";
-        for (let j = 0; i < tempPizza.toppings.length; j++) {
+        for (let j = 0; j < tempPizza.toppings.length; j++) {
             completeOrder = completeOrder + "Sauce: " + tempPizza.sauce + " Cheese: House Blend "
             if (tempPizza.isCauly) {
                 completeOrder += "Crust: Cauliflower ";
@@ -208,7 +208,7 @@ app.get('/currentPizza', function (req, res) {
         thisPizza += "Crust: Standard Dough ";
     }
     thisPizza += "Ingredients: House Blend Cheese, "
-    for (let i = 0; i < makePizza.numToppings; i++) {
+    for (let i = 0; i < makePizza.currToppings; i++) {
         thisPizza = thisPizza + makePizza.toppings[i] + " ";
     }
     res.json(thisPizza);

@@ -2,6 +2,7 @@ import React, { useEffect, Fragment, useState } from "react";
 
 
 function Topping() {
+
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
         const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());

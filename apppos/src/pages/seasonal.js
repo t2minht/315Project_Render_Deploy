@@ -7,10 +7,17 @@ function Seasonal() {
         setResponse(order);
     }
 
+    const [season, setSeason] = useState("");
+    const Seasonalinfo = async () => {
+        const order = await fetch("http://localhost:5001/seasonalMenu").then((response) => response.text());
+        setSeason(order);
+    }
+
     useEffect(() => {
         OrderInfo();
     }, [])
-    return (<Fragment><h1>Select Meats:</h1>
+    return (<Fragment><h1>Select Seasonal Toppings:</h1>
+        <p>{season}</p>
         <div>
             <a href="/topping">
                 <button> Add More Toppings</button>

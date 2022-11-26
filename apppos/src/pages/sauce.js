@@ -58,9 +58,9 @@ function Sauce() {
             <a href="/topping">
                 <button> Back</button>
             </a>
-            <button onClick={Addtoorder}> Complete Item</button>
-            <a href="/pizzatype">
-                <button>Next Item</button>
+           
+            <a href="/checkout">
+            <button> Complete Item</button>
             </a>
         </div>
         <p>{response}</p>
