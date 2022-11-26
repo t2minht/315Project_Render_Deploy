@@ -169,9 +169,8 @@ function refreshPizza() {
 }
 
 app.get('/checkoutScreen', function (req, res) {
-    var os = require('os');
-    res.write("Order Info: " + os.EOL + "<br />" + "<br/>" + "\r\n" + "\n");
-    res.end("Hi");
+    var completeOrder = "";
+    completeOrder += "Order Info: " + "<br />" + "<br/>" + "\r\n" + "\n";
     for (let i = 0; i < pizzaList.length; i++) {
         tempPizza = pizzaList[i]
         completeOrder += tempPizza.pizzaName;
@@ -246,7 +245,8 @@ app.put("/checkoutServ", async (req, res) => {
 })
 
 app.get("/seasonalMenu", async (req, res) => {
-    var seasonalReply = await pool.query('SELECT * FROM INVENTORY WHERE id > 48');
+    console.log('seasonal');
+    var seasonalReply = await pool.query('SELECT name FROM INVENTORY WHERE id > 48');
     return res.json(seasonalReply.rows);
 })
 

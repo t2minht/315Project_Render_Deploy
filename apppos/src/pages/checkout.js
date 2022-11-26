@@ -18,7 +18,7 @@ function Checkout() {
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
         const order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
-       
+        order = order.replace(/\"/g, "");
         setResponse(order);
     }
 
@@ -36,7 +36,7 @@ function Checkout() {
                 <button> Add another Item</button>
             </a >
             <a href="/pizzatypeCanceled">
-            <button > Cancel Order</button>
+                <button > Cancel Order</button>
             </a>
         </div>
 

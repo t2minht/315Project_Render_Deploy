@@ -3,11 +3,13 @@ const HandleClickPep = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/createSetPizza/${1}/${"Pepperoni"}`);
     alert("Pizza added to order");
+    window.location.assign("/pizzatype");
 }
 const CheeseZa = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/createSetPizza/${1}/${"Cheese"}`);
     alert("Pizza added to order");
+    window.location.assign("/pizzatype");
 }
 
 
@@ -18,8 +20,8 @@ const CheeseZa = async (e) => {
 function Pizzatype() {
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
-        const order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
-        alert(order);
+        let order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
+        order = order.replace(/\"/g, "");
         setResponse(order);
     }
 
@@ -34,14 +36,14 @@ function Pizzatype() {
             <button onClick={HandleClickPep}>Pepperoni Pizza</button>
             <button onClick={CheeseZa}>Cheese</button>
             <a href="/topping-one">
-            <button>One Topping</button>
+                <button>One Topping</button>
             </a>
             <a href="/topping-multi">
-            <button >2-4 Topping</button>
+                <button >2-4 Topping</button>
             </a>
             <div>
                 <a href="/pizzatypeCanceled">
-                <button> Cancel Order</button>
+                    <button> Cancel Order</button>
                 </a>
                 <a href="/checkout">
                     <button > Complete Order</button>

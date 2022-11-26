@@ -29,15 +29,12 @@ const Cauliflour = async (e) => {
     alert("Crust Changed");
 }
 
-const Addtoorder = async (e) => {
-    e.preventDefault();
-    await fetch(`http://localhost:5001/addToOrder`);
-    alert("Pizza added to order");
-}
+
 function Sauce() {
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
-        const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        let order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        order = order.replace(/\"/g, "");
         setResponse(order);
     }
 
@@ -58,9 +55,9 @@ function Sauce() {
             <a href="/topping">
                 <button> Back</button>
             </a>
-           
+
             <a href="/checkout">
-            <button> Complete Item</button>
+                <button> Complete Item</button>
             </a>
         </div>
         <p>{response}</p>
