@@ -101,11 +101,10 @@ app.get('/crustType/:crustToggle', function (req, res) {
     //TODO, make sure this is toggleable
     if (pizza.isCauly == false && req.params.crustToggle == true) {
         pizza.price += 2.99;
-    } if (pizza.isCauly == true && req.params.crustToggle == false) {
+    } else if (pizza.isCauly == true && req.params.crustToggle == false) {
         pizza.price -= 2.99;
     }
     pizza.isCauly = req.params.crustToggle;
-    console.log(pizza.isCauly);
     res.json(JSON.stringify(true));
 });
 
@@ -145,11 +144,12 @@ app.get('/calculatePrice', function (req, res) {
                 price += 8.99;
             }
         }
-        if (currentPizza.isCauly) {
+        if (currentPizza.isCauly == "true") {
             price += 2.99;
         }
     }
-    res.json(price.toFixed(2));
+    price = price.toFixed(2);
+    res.json(price);
 });
 
 app.get('/cancelOrder', function (req, res) {
@@ -221,9 +221,8 @@ app.get('/currentPizza', function (req, res) {
     makePizza = pizza;
     thisPizza += makePizza.pizzaName;
     thisPizza += " ";
-    console.log(thisPizza.pizzaName);
     thisPizza = thisPizza + " Sauce: " + makePizza.sauce + " ";
-    if (makePizza.isCauly) {
+    if (makePizza.isCauly == "true") {
         thisPizza += "Crust: Cauliflower ";
     }
     else {
