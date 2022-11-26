@@ -5,6 +5,8 @@ const Bananapep = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Banana Peppers"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -13,6 +15,8 @@ const Grepep = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Green Peppers"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -21,6 +25,8 @@ const Redpep = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Red Peppers"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -29,6 +35,8 @@ const Blackoli = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Black Olives"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -37,6 +45,8 @@ const Kalmataoli = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Kalmata Olives"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -45,6 +55,8 @@ const Cherrytoma = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Cherry Tomatoes"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -53,6 +65,8 @@ const Redonion = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Red Onions"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -61,6 +75,8 @@ const Spinach = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Spinach"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -69,6 +85,8 @@ const Brocolli = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Brocolli"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -77,6 +95,8 @@ const Caraonion = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Caramelized Onions"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -85,6 +105,8 @@ const Garlic = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Garlic"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -93,6 +115,8 @@ const Mushrooms = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Mushrooms"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -101,6 +125,8 @@ const Redtatoes = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Red Potatoes"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -110,7 +136,8 @@ const Redtatoes = async (e) => {
 function Veggies() {
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
-        const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        let order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        order = order.replace(/\"/g, "");
         setResponse(order);
     }
 
