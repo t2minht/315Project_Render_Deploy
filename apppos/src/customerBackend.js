@@ -215,7 +215,7 @@ app.put("/checkoutServ", async (req, res) => {
 })
 
 app.get("/seasonalMenu", async (req, res) => {
-    var seasonalReply = await pool.query('SELECT * FROM INVENTORY WHERE id > 48');
+    var seasonalReply = await pool.query('SELECT name FROM INVENTORY WHERE id > 48');
     return res.json(seasonalReply.rows);
 })
 
