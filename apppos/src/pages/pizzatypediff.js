@@ -14,9 +14,8 @@ const CheeseZa = async (e) => {
 
 
 function PizzatypeCancel() {
-    const CancelOrder = async () => {
-        await fetch(`http://localhost:5001/cancelOrder`);
-        alert("Order Canceled");
+    const Refresh = async () => {
+        await fetch(`http://localhost:5001/deletePizza`);
     }
 
     const [response, setResponse] = useState("");
@@ -29,7 +28,7 @@ function PizzatypeCancel() {
 
 
     useEffect(() => {
-        CancelOrder();
+        Refresh();
         OrderInfo();
     }, [])
 

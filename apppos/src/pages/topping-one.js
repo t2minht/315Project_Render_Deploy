@@ -5,11 +5,11 @@ function ToppingOne() {
 
     const OneTopping = async () => {
         await fetch(`http://localhost:5001/createPizza/${1}/${"One_Topping"}`);
-        alert("Pizza Type Selected");
     }
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
-        const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        let order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        order = order.replace(/\"/g, "");
         setResponse(order);
     }
 
@@ -31,7 +31,7 @@ function ToppingOne() {
             <button>Seasonal Toppings</button>
         </a>
         <div>
-            <a href="/pizzatype">
+            <a href="/pizzatypediff">
                 <button>Select Different Pizza Type</button>
             </a>
             <a href="/sauce">

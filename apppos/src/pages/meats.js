@@ -4,6 +4,8 @@ const Pepperoni = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Pepperoni"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 
 }
@@ -14,6 +16,8 @@ const Ham = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Ham"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -22,6 +26,8 @@ const Sausage = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Sausage"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -30,6 +36,8 @@ const Meatballs = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Meatballs"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -38,6 +46,8 @@ const Salami = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Salami"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -47,6 +57,8 @@ const Bacon = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${'Bacon'}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 
 }
@@ -56,6 +68,8 @@ const Chicken = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Chicken"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -64,7 +78,8 @@ const Chicken = async (e) => {
 function Meats() {
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
-        const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        let order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        order = order.replace(/\"/g, "");
         setResponse(order);
     }
 

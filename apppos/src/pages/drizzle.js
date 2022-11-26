@@ -5,6 +5,8 @@ const Balsamic = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Balsamic Glaze"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -13,6 +15,8 @@ const Basilpesto = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Basil Pesto"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -21,6 +25,8 @@ const Bbqsauce = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"BBQ Sauce"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -29,6 +35,8 @@ const Oliveoil = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Olive Oil"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -37,6 +45,8 @@ const Oregano = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Oregano"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 }
 
@@ -45,6 +55,8 @@ const Sriracha = async (e) => {
     if (await fetch(`http://localhost:5001/addTopping/${"Sriracha"}`)
         .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
+    } else {
+        window.location.reload();
     }
 
 }
@@ -54,6 +66,7 @@ function Drizzle() {
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
         const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        order = order.replace(/\"/g, "");
         setResponse(order);
     }
 

@@ -169,9 +169,8 @@ function refreshPizza() {
 }
 
 app.get('/checkoutScreen', function (req, res) {
-    var os = require('os');
-    res.write("Order Info: " + os.EOL + "<br />" + "<br/>" + "\r\n" + "\n");
-    res.end("Hi");
+    var completeOrder = "";
+    completeOrder += "Order Info: " + "<br />" + "<br/>" + "\r\n" + "\n";
     for (let i = 0; i < pizzaList.length; i++) {
         tempPizza = pizzaList[i]
         completeOrder += tempPizza.pizzaName;

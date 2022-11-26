@@ -4,11 +4,11 @@ import React, { useEffect, Fragment, useState } from "react";
 function ToppingMulti() {
     const MultiTopping = async () => {
         await fetch(`http://localhost:5001/createPizza/${4}/${"Multi_Topping"}`);
-        alert("Pizza Type Selected");
     }
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
-        const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        let order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        order = order.replace(/\"/g, "");
         setResponse(order);
     }
 
@@ -30,7 +30,7 @@ function ToppingMulti() {
             <button>Seasonal Toppings</button>
         </a>
         <div>
-            <a href="/pizzatype">
+            <a href="/pizzatypediff">
                 <button>Select Different Pizza Type</button>
             </a>
             <a href="/sauce">
