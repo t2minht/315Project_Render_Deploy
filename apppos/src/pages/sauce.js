@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useEffect, Fragment, useState } from "react";
 const Red = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/addSauce/${"Red"}`);
@@ -36,7 +35,16 @@ const Addtoorder = async (e) => {
     alert("Pizza added to order");
 }
 function Sauce() {
-    return (<div><h1>Select Sauce and Crust:</h1>
+    const [response, setResponse] = useState("");
+    const OrderInfo = async () => {
+        const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        setResponse(order);
+    }
+
+    useEffect(() => {
+        OrderInfo();
+    }, [])
+    return (<Fragment><h1>Select Sauce and Crust:</h1>
         <div>
             <button onClick={Red}>Red Sauce</button>
             <button onClick={Zestyred}>Zesty Red Sauce</button>
@@ -50,12 +58,13 @@ function Sauce() {
             <a href="/topping">
                 <button> Back</button>
             </a>
-            <button onClick={Addtoorder}> Complete Item</button>
-            <a href="/pizzatype">
-                <button>Next Item</button>
+           
+            <a href="/checkout">
+            <button> Complete Item</button>
             </a>
         </div>
-    </div>);
+        <p>{response}</p>
+    </Fragment>);
 }
 
 export default Sauce;

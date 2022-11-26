@@ -1,8 +1,11 @@
 import React, { useEffect, Fragment, useState } from "react";
 
 
-function Topping() {
-
+function ToppingMulti() {
+    const MultiTopping = async () => {
+        await fetch(`http://localhost:5001/createPizza/${4}/${"Multi_Topping"}`);
+        alert("Pizza Type Selected");
+    }
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
         const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
@@ -10,6 +13,7 @@ function Topping() {
     }
 
     useEffect(() => {
+        MultiTopping();
         OrderInfo();
     }, [])
     return (<Fragment><h1>Select Toppings:</h1>
@@ -37,4 +41,4 @@ function Topping() {
     </Fragment>);
 }
 
-export default Topping;
+export default ToppingMulti;

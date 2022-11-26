@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, Fragment, useState } from "react";
 
 const Bananapep = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Banana Peppers"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -11,7 +11,7 @@ const Bananapep = async (e) => {
 const Grepep = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Green Peppers"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -19,7 +19,7 @@ const Grepep = async (e) => {
 const Redpep = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Red Peppers"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -27,7 +27,7 @@ const Redpep = async (e) => {
 const Blackoli = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Black Olives"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -35,7 +35,7 @@ const Blackoli = async (e) => {
 const Kalmataoli = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Kalmata Olives"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -43,7 +43,7 @@ const Kalmataoli = async (e) => {
 const Cherrytoma = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Cherry Tomatoes"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -51,7 +51,7 @@ const Cherrytoma = async (e) => {
 const Redonion = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Red Onions"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -59,7 +59,7 @@ const Redonion = async (e) => {
 const Spinach = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Spinach"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -67,7 +67,7 @@ const Spinach = async (e) => {
 const Brocolli = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Brocolli"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -75,7 +75,7 @@ const Brocolli = async (e) => {
 const Caraonion = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Caramelized Onions"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -83,7 +83,7 @@ const Caraonion = async (e) => {
 const Garlic = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Garlic"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -91,7 +91,7 @@ const Garlic = async (e) => {
 const Mushrooms = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Mushrooms"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -99,7 +99,7 @@ const Mushrooms = async (e) => {
 const Redtatoes = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Red Potatoes"}`)
-        .then((response) => response.text()) == "\"false\"") {
+        .then((response) => response.text()) === "\"false\"") {
         alert("Too many toppings");
     }
 }
@@ -108,7 +108,16 @@ const Redtatoes = async (e) => {
 
 
 function Veggies() {
-    return (<div><h1>Select Vegetables:</h1>
+    const [response, setResponse] = useState("");
+    const OrderInfo = async () => {
+        const order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
+        setResponse(order);
+    }
+
+    useEffect(() => {
+        OrderInfo();
+    }, [])
+    return (<Fragment><h1>Select Vegetables:</h1>
         <button onClick={Bananapep}>Banana Peppers</button>
         <button onClick={Grepep}>Green Peppers</button>
         <button onClick={Redpep}>Red Peppers</button>
@@ -130,7 +139,8 @@ function Veggies() {
                 <button>Next</button>
             </a>
         </div>
-    </div>);
+        <p>{response}</p>
+    </Fragment>);
 }
 
 export default Veggies;

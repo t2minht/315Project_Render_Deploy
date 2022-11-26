@@ -169,21 +169,52 @@ function refreshPizza() {
 }
 
 app.get('/checkoutScreen', function (req, res) {
-    let completeOrder = 'Order Info: \n';
-    for (let i = 0; i < pizzaList.length(); i++) {
-        completeOrder += pizza.name;
+    var os = require('os');
+    res.write("Order Info: " + os.EOL + "<br />" + "<br/>" + "\r\n" + "\n");
+    res.end("Hi");
+    for (let i = 0; i < pizzaList.length; i++) {
+        tempPizza = pizzaList[i]
+        completeOrder += tempPizza.pizzaName;
+
         completeOrder += "- ";
-        for (let j = 0; i < pizza.toppings.length(); j++) {
-            completeOrder += pizza.toppings[j];
+        for (let j = 0; j < tempPizza.toppings.length; j++) {
+            completeOrder = completeOrder + "Sauce: " + tempPizza.sauce + " Cheese: House Blend "
+            if (tempPizza.isCauly) {
+                completeOrder += "Crust: Cauliflower ";
+            }
+            else {
+                completeOrder += "Crust: Standard Dough ";
+            }
+            completeOrder += " Toppings: "
+            completeOrder += tempPizza.toppings[j];
+            console.log(completeOrder);
             completeOrder += " ";
         }
-        completeOrder += ("\n");
+        completeOrder += ("");
     }
     //MIGHT have to stringify this
     res.json(completeOrder)
 });
 
-
+app.get('/currentPizza', function (req, res) {
+    let thisPizza = 'Pizza Info: ';
+    makePizza = pizza;
+    thisPizza += makePizza.pizzaName;
+    thisPizza += " ";
+    console.log(thisPizza.pizzaName);
+    thisPizza = thisPizza + " Sauce: " + makePizza.sauce + " ";
+    if (makePizza.isCauly) {
+        thisPizza += "Crust: Cauliflower ";
+    }
+    else {
+        thisPizza += "Crust: Standard Dough ";
+    }
+    thisPizza += "Toppings: House Blend Cheese, "
+    for (let i = 0; i < makePizza.currToppings; i++) {
+        thisPizza = thisPizza + makePizza.toppings[i] + " ";
+    }
+    res.json(thisPizza);
+});
 
 //Make the pool for later use
 const pool = new Pool({
