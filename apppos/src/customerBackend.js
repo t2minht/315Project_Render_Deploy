@@ -169,7 +169,9 @@ function refreshPizza() {
 }
 
 app.get('/checkoutScreen', function (req, res) {
-    let completeOrder = "Order Info: ";
+    var os = require('os');
+    res.write("Order Info: " + os.EOL + "<br />" + "<br/>" + "\r\n" + "\n");
+    res.end("Hi");
     for (let i = 0; i < pizzaList.length; i++) {
         tempPizza = pizzaList[i]
         completeOrder += tempPizza.pizzaName;
@@ -198,7 +200,7 @@ app.get('/currentPizza', function (req, res) {
     let thisPizza = 'Pizza Info: ';
     makePizza = pizza;
     thisPizza += makePizza.pizzaName;
-    thisPizza += "";
+    thisPizza += " ";
     console.log(thisPizza.pizzaName);
     thisPizza = thisPizza + " Sauce: " + makePizza.sauce + " ";
     if (makePizza.isCauly) {
@@ -207,7 +209,7 @@ app.get('/currentPizza', function (req, res) {
     else {
         thisPizza += "Crust: Standard Dough ";
     }
-    thisPizza += "Ingredients: House Blend Cheese, "
+    thisPizza += "Toppings: House Blend Cheese, "
     for (let i = 0; i < makePizza.currToppings; i++) {
         thisPizza = thisPizza + makePizza.toppings[i] + " ";
     }
