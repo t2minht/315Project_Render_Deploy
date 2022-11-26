@@ -11,20 +11,30 @@ const Finishorder = async (e) => {
 
 
 function Checkout() {
-    const Addtoorder = async () => {
-        await fetch(`http://localhost:5001/addToOrder`);
-        alert("Pizza added to order");
-    }
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
-        const order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
+        let order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
         order = order.replace(/\"/g, "");
+        order = order.replace(/\\/g, "");
         setResponse(order);
     }
+    const Addtoorder = async () => {
+        await fetch(`http://localhost:5001/addToOrder`);
+        await fetch(`http://localhost:5001/deletePizza`);
+    }
+    const [price, setPrice] = useState("");
+    const PriceInfo = async () => {
+        let order = await fetch("http://localhost:5001/calculatePrice").then((response) => response.text());
+        order = order.replace(/\0/g, "");
+
+        setPrice(order);
+    }
+
 
     useEffect(() => {
         Addtoorder();
         OrderInfo();
+        PriceInfo();
     }, [])
     return (<Fragment>
         <h1>Select Payment Type:</h1>
@@ -41,6 +51,7 @@ function Checkout() {
         </div>
 
         <p>{response}</p>
+        <p>Total Cost: ${price}</p>
     </Fragment>);
 }
 

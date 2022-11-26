@@ -29,7 +29,8 @@ let pizza = {
     currToppings: 0,
     toppings: [],
     isCauly: false,
-    isCombo: false
+    isCombo: false,
+    price: 0
 }
 
 var pizzaList = [];
@@ -38,6 +39,11 @@ app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
     newPizzaName = req.params.pizzaName;
     pizza.pizzaName = newPizzaName;
     pizza.numToppings = req.params.numToppings;
+    if (pizza.numToppings == 1) {
+        pizza.price = 7.79;
+    } else {
+        pizza.price = 8.99;
+    }
     console.log(pizza.pizzaName);
     res.json(JSON.stringify(true));
 });
@@ -47,6 +53,7 @@ app.get('/createSetPizza/:numToppings/:pizzaName', function (req, res) {
     newPizzaName = JSON.stringify(req.params.pizzaName);
     pizza.pizzaName = newPizzaName;
     pizza.numToppings = req.params.numToppings;
+    pizza.price = 6.79;
     if (req.params.numToppings == "1") {
         pizza.toppings.push("Pepperoni");
     }
@@ -77,8 +84,10 @@ app.get('/removeLastTopping', function (req, res) {
 
 app.get('/addToOrder', function (req, res) {
     const pushPizza = structuredClone(pizza);
-    pizzaList.push(pushPizza);
-    refreshPizza();
+    if (pizza.pizzaName != "") {
+        pizzaList.push(pushPizza);
+        refreshPizza();
+    }
     res.json(JSON.stringify(true));
 });
 
@@ -90,6 +99,11 @@ app.get('/addSauce/:sauceName', function (req, res) {
 
 app.get('/crustType/:crustToggle', function (req, res) {
     //TODO, make sure this is toggleable
+    if (pizza.isCauly == false && req.params.crustToggle == true) {
+        pizza.price += 2.99;
+    } if (pizza.isCauly == true && req.params.crustToggle == false) {
+        pizza.price -= 2.99;
+    }
     pizza.isCauly = req.params.crustToggle;
     console.log(pizza.isCauly);
     res.json(JSON.stringify(true));
@@ -135,7 +149,7 @@ app.get('/calculatePrice', function (req, res) {
         }
     }
     //CHECK: might have to stringify this
-    res.json(JSON.stringify(price));
+    res.json(price);
 });
 
 app.get('/cancelOrder', function (req, res) {
@@ -155,6 +169,7 @@ app.get('/deletePizza', function (req, res) {
     pizza.toppings = [];
     pizza.isCauly = false;
     pizza.isCombo = false;
+    pizza.price = 0;
 });
 
 function refreshPizza() {
@@ -166,30 +181,37 @@ function refreshPizza() {
     pizza.toppings = [];
     pizza.isCauly = false;
     pizza.isCombo = false;
+    pizza.price = 0;
 }
 
 app.get('/checkoutScreen', function (req, res) {
     var completeOrder = "";
-    completeOrder += "Order Info: " + "<br />" + "<br/>" + "\r\n" + "\n";
+    completeOrder += "Order Info: "; //+ "<br />" + "<br/>" + "\r\n" + "\n";
     for (let i = 0; i < pizzaList.length; i++) {
         tempPizza = pizzaList[i]
         completeOrder += tempPizza.pizzaName;
 
         completeOrder += "- ";
-        for (let j = 0; j < tempPizza.toppings.length; j++) {
-            completeOrder = completeOrder + "Sauce: " + tempPizza.sauce + " Cheese: House Blend "
-            if (tempPizza.isCauly) {
-                completeOrder += "Crust: Cauliflower ";
+        for (let j = -1; j < tempPizza.toppings.length; j++) {
+            if (j == -1) {
+                completeOrder = completeOrder + "Sauce: " + tempPizza.sauce + " Cheese: House Blend "
+                if (tempPizza.isCauly) {
+                    completeOrder += "Crust: Cauliflower ";
+                }
+                else {
+                    completeOrder += "Crust: Standard Dough ";
+                }
+                completeOrder += " Toppings: "
+            } else {
+                completeOrder += tempPizza.toppings[j];
             }
-            else {
-                completeOrder += "Crust: Standard Dough ";
-            }
-            completeOrder += " Toppings: "
-            completeOrder += tempPizza.toppings[j];
             console.log(completeOrder);
             completeOrder += " ";
         }
-        completeOrder += ("");
+        completeOrder += ("Price: $");
+        completeOrder += tempPizza.price;
+        completeOrder += ("  ");
+
     }
     //MIGHT have to stringify this
     res.json(completeOrder)

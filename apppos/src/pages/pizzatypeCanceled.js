@@ -2,13 +2,11 @@ import React, { useEffect, Fragment, useState } from "react";
 const HandleClickPep = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/createSetPizza/${1}/${"Pepperoni"}`);
-    alert("Pizza added to order");
     window.location.assign("/pizzatype");
 }
 const CheeseZa = async (e) => {
     e.preventDefault();
-    await fetch(`http://localhost:5001/createSetPizza/${1}/${"Cheese"}`);
-    alert("Pizza added to order");
+    await fetch(`http://localhost:5001/createSetPizza/${0}/${"Cheese"}`);
     window.location.assign("/pizzatype");
 }
 
@@ -16,21 +14,29 @@ const CheeseZa = async (e) => {
 function PizzatypeCancel() {
     const CancelOrder = async () => {
         await fetch(`http://localhost:5001/cancelOrder`);
-        alert("Order Canceled");
     }
 
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
         let order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
         order = order.replace(/\"/g, "");
+        order = order.replace(/\//g, "");
+        order = order.replace(/\\/g, "");
         setResponse(order);
     }
 
+    const [price, setPrice] = useState("");
+    const PriceInfo = async () => {
+        let order = await fetch("http://localhost:5001/calculatePrice").then((response) => response.text());
+        order = order.replace(/\0/g, "");
 
+        setPrice(order);
+    }
 
     useEffect(() => {
         CancelOrder();
         OrderInfo();
+        PriceInfo();
     }, [])
 
 
@@ -58,6 +64,7 @@ function PizzatypeCancel() {
                 </a>
             </div>
             <p>{response}</p>
+            <p>Total Cost: ${price}</p>
         </Fragment >
     );
 }
