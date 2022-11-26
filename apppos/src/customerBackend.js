@@ -97,12 +97,8 @@ app.get('/addSauce/:sauceName', function (req, res) {
 
 app.get('/crustType/:crustToggle', function (req, res) {
     //TODO, make sure this is toggleable
-    if (pizza.isCauly == false && req.params.crustToggle == true) {
-        pizza.price += 2.99;
-    } else if (pizza.isCauly == true && req.params.crustToggle == false) {
-        pizza.price -= 2.99;
-    }
     pizza.isCauly = req.params.crustToggle;
+    console.log(pizza.isCauly);
     res.json(JSON.stringify(true));
 });
 
@@ -193,7 +189,7 @@ app.get('/checkoutScreen', function (req, res) {
         for (let j = -1; j < tempPizza.toppings.length; j++) {
             if (j == -1) {
                 completeOrder = completeOrder + "Sauce: " + tempPizza.sauce + " Cheese: House Blend "
-                if (tempPizza.isCauly) {
+                if (tempPizza.isCauly == "true") {
                     completeOrder += "Crust: Cauliflower ";
                 }
                 else {
@@ -207,10 +203,15 @@ app.get('/checkoutScreen', function (req, res) {
             completeOrder += " ";
         }
         completeOrder += ("Price: $");
-        completeOrder += tempPizza.price;
+        let price = tempPizza.price
+        if (tempPizza.isCauly == "true") {
+            price += 2.99;
+        }
+        completeOrder += price;
         completeOrder += ("  ");
 
     }
+    //MIGHT have to stringify this
     res.json(completeOrder)
 });
 
@@ -230,6 +231,13 @@ app.get('/currentPizza', function (req, res) {
     for (let i = 0; i < makePizza.currToppings; i++) {
         thisPizza = thisPizza + makePizza.toppings[i] + " ";
     }
+    thisPizza += ("Price: $");
+    let price = makePizza.price
+    if (makePizza.isCauly == "true") {
+        price += 2.99;
+    }
+    thisPizza += price;
+    thisPizza += ("  ");
     res.json(thisPizza);
 });
 
@@ -273,5 +281,60 @@ process.on('SIGINT', function () {
     console.log('Application successfully shutdown');
     process.exit(0);
 });
+
+
+
+// // //Black magic API testing
+// function initMap() {
+//     var directionsService = new google.maps.DirectionsService();
+//     var directionsRenderer = new google.maps.DirectionsRenderer();
+//     const map = new google.maps.Map(document.getElementById("map"), {
+//         zoom: 16,
+//         center: { lat: 30.61234195012257, lng: -96.34153287461642 },
+//     });
+//     directionsRenderer.setMap(map);
+// }
+
+// function calcRoute() {
+//     var start = document.getElementById('start').value;
+//     var request = {
+//         origin: start,
+//         destination: { lat: 30.61234195012257, lng: -96.34153287461642 },
+//         travelMode: 'DRIVING'
+//     };
+//     directionsService.route(request, function (result, status) {
+//         if (status == 'OK') {
+//             directionsRenderer.setDirections(result);
+//         }
+//     });
+// }
+
+// //Black magic API testing
+app.get('/initMap/:address', function (req, res) {
+    var directionsService = new google.maps.DirectionsService();
+    var directionsRenderer = new google.maps.DirectionsRenderer();
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 16,
+        center: { lat: 30.61234195012257, lng: -96.34153287461642 },
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+    });
+    directionsRenderer.setMap(map);
+    var request = {
+        origin: "125 Spence St, College Station, TX 77840",
+        destination: { lat: 30.61234195012257, lng: -96.34153287461642 },
+        travelMode: 'DRIVING'
+    };
+    directionsService.route(request, function (result, status) {
+        if (status == 'OK') {
+            directionsRenderer({
+                suppressMarkers: true,
+                directions: result,
+                map: map,
+            });
+
+        }
+    });
+});
+
 
 module.exports = {};
