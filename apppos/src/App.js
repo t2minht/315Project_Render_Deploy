@@ -11,7 +11,7 @@ import ToppingOne from "./pages/topping-one.js";
 import Topping from "./pages/topping.js";
 import ToppingMulti from "./pages/topping-multi.js";
 import Veggies from "./pages/veggies.js";
-import Directions from "./pages/directions.js"
+import LocationGuide from "./pages/locationguide"
 //import "./components/customer.css";
 
 function App() {
@@ -54,8 +54,8 @@ function App() {
     case "/checkout":
       component = <Checkout />
       break
-    case "/directions":
-      component = <Directions />
+    case "/locationguide":
+      component = <LocationGuide />
       break
     default:
       component = <Pizzatype />

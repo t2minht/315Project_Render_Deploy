@@ -7,6 +7,7 @@ const Finishorder = async (e) => {
             method: "PUT",
         });
     alert("Order Completed");
+    window.location.assign("/locationguide");
 }
 
 

@@ -58,10 +58,7 @@ function PizzatypeCancel() {
                 <a href="/checkout">
                     <button > Complete Order</button>
                 </a>
-                {/* remove me after testing */}
-                <a href="/directions">
-                    <button>Directions</button>
-                </a>
+
             </div>
             <p>{response}</p>
             <p>Total Cost: ${price}</p>
