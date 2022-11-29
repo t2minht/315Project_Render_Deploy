@@ -65,12 +65,12 @@ function Restock(props) {
                 <label for="newAmount">Order Amount:</label>
                 <input type="text" className="form-control1" id='newAmount'value={newAmount} onChange={e => setNewAmount(e.target.value)}/>
                 <br></br><br></br><br></br>
-                <button onClick={onSubmitForm}>Submit</button>
+                <button onClick={onSubmitForm} class='button'>Submit</button>
                 <hr></hr>
             </form>
             <h1>Restock All</h1>
             <p1>Restock all ingredients in the inventory by the recommended amount</p1><br></br><br></br>
-            <button onClick={restockSuggested}>Restock Suggested Amount</button>
+            <button onClick={restockSuggested}class='button'>Restock Suggested Amount</button>
             <br></br><br></br>
             
         </Fragment>

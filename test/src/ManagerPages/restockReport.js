@@ -24,6 +24,11 @@ function RestockReport(props) {
     return ( 
         <React.Fragment>
             <Navbar/>
+            <div class='heading'>
+                <h1>Restock Report</h1>
+                <p1>View past restocks</p1>
+                <hr></hr>
+            </div>
             <Table data={restockTable} column={props.column}></Table> 
         </React.Fragment>
         

@@ -77,13 +77,14 @@ function Menu(props) {
                     <label for="ingrCost">Ingredient Cost:</label>
                     <input type="text" className='form-control1' id='ingrCost' value={newCost} onChange={e => setNewCost(e.target.value)}/>
                     <br></br><br></br><br></br>
-                    <button onClick={addNewIngredient}>Submit</button>
+                    <button onClick={addNewIngredient} class="button">Submit</button>
                 </form>
             </div>
             <hr></hr>
             <div class='new-item'>
                 <h1>Add a New Item</h1>
                 <p1>Add a new item to the menu by entering the item's ID, name, and price</p1>
+                <br></br><br></br>
                 <form>
                     <label for="itemId">Item ID:</label>
                     <input type="text" className='form-control1' id='itemId' value={id} onChange={e => setId(e.target.value)}/>
@@ -92,20 +93,21 @@ function Menu(props) {
                     <label for="itemPrice">Item Price:</label>
                     <input type="text" className='form-control1' id='itemPrice' value={price} onChange={e => setPrice(e.target.value)}/>
                     <br></br><br></br><br></br>
-                    <button onClick={addNewItem}>Submit</button>
+                    <button onClick={addNewItem} class="button">Submit</button>
                 </form>   
             </div>
             <hr></hr>
             <div class='price-change'>
                 <h1>Change a price</h1>
                 <p1>Change the price of an item currently on the menu from the table above</p1>
+                <br></br><br></br>
                 <form>
                     <label for="changeID">Item ID:</label>
                     <input type="text" className='form-control1' id='changeID' value={id} onChange={e => setId(e.target.value)}/>
                     <label for="newPrice">new Price:</label>
                     <input type="text" className='form-control1' id='newPrice' value={price} onChange={e => setPrice(e.target.value)}/>
                     <br></br><br></br><br></br>
-                    <button onClick={changePrice}>Submit</button>
+                    <button onClick={changePrice} class="button">Submit</button>
                     <br></br><br></br>
                 </form>   
             </div>

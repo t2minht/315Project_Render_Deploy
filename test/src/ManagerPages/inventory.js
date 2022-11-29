@@ -25,6 +25,7 @@ function Inventory(props) {
         </div> 
 
          <Table data={inventory} column={props.column}/> 
+         <br></br><br></br><br></br>
 
         </React.Fragment>
          
