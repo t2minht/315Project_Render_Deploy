@@ -65,6 +65,7 @@ function Seasonal() {
             </a>
         </div>
         <p>{response}</p>
+        <p>*Note Seasonal Toppings Will Not Appear on Pizza*</p>
     </Fragment>);
 }
 
