@@ -315,31 +315,31 @@ process.on('SIGINT', function () {
 // }
 
 // //Black magic API testing
-app.get('/initMap/:address', function (req, res) {
-    var directionsService = new google.maps.DirectionsService();
-    var directionsRenderer = new google.maps.DirectionsRenderer();
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 16,
-        center: { lat: 30.61234195012257, lng: -96.34153287461642 },
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-    });
-    directionsRenderer.setMap(map);
-    var request = {
-        origin: "125 Spence St, College Station, TX 77840",
-        destination: { lat: 30.61234195012257, lng: -96.34153287461642 },
-        travelMode: 'DRIVING'
-    };
-    directionsService.route(request, function (result, status) {
-        if (status == 'OK') {
-            directionsRenderer({
-                suppressMarkers: true,
-                directions: result,
-                map: map,
-            });
+// app.get('/initMap/:address', function (req, res) {
+//     var directionsService = new google.maps.DirectionsService();
+//     var directionsRenderer = new google.maps.DirectionsRenderer();
+//     const map = new google.maps.Map(document.getElementById("map"), {
+//         zoom: 16,
+//         center: { lat: 30.61234195012257, lng: -96.34153287461642 },
+//         mapTypeId: google.maps.MapTypeId.ROADMAP,
+//     });
+//     directionsRenderer.setMap(map);
+//     var request = {
+//         origin: "125 Spence St, College Station, TX 77840",
+//         destination: { lat: 30.61234195012257, lng: -96.34153287461642 },
+//         travelMode: 'DRIVING'
+//     };
+//     directionsService.route(request, function (result, status) {
+//         if (status == 'OK') {
+//             directionsRenderer({
+//                 suppressMarkers: true,
+//                 directions: result,
+//                 map: map,
+//             });
 
-        }
-    });
-});
+//         }
+//     });
+// });
 
 
 module.exports = {};
