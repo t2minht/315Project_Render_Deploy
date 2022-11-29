@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment, useState } from "react";
-
+import Pizzabuilder from "./pizzabuilder";
 
 function Topping() {
 
@@ -13,7 +13,7 @@ function Topping() {
     useEffect(() => {
         OrderInfo();
     }, [])
-
+    let pizza = <Pizzabuilder />
     return (<Fragment><h1>Select Toppings:</h1>
         <a href="/meats">
             <button>Meats</button>
@@ -36,6 +36,7 @@ function Topping() {
             </a>
         </div>
         <p>{response}</p>
+        <p>{pizza}</p>
     </Fragment>);
 }
 

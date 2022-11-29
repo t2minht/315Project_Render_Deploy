@@ -1,0 +1,23 @@
+.toggle-wrapper {
+    border: 1px solid #000;
+}
+
+.base {
+    border: 1px solid #f00;
+    position: relative;
+    z-index: 1;
+}
+
+.top1 {
+    border: 1px solid #f00;
+    position: relative;
+    z-index: 2;
+    top: -515px;
+}
+
+.top2 {
+    border: 1px solid #f00;
+    position: relative;
+    z-index: 2;
+    top: -515px;
+}

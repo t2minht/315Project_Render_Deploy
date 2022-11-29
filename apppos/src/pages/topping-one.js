@@ -1,4 +1,5 @@
 import React, { useEffect, Fragment, useState } from "react";
+import Pizzabuilder from "./pizzabuilder";
 
 
 function ToppingOne() {
@@ -17,6 +18,7 @@ function ToppingOne() {
         OneTopping();
         OrderInfo();
     }, [])
+    let pizza = <Pizzabuilder />
     return (<Fragment><h1>Select Toppings:</h1>
         <a href="/meats">
             <button>Meats</button>
@@ -39,6 +41,7 @@ function ToppingOne() {
             </a>
         </div>
         <p>{response}</p>
+        <p>{pizza}</p>
     </Fragment>);
 }
 
