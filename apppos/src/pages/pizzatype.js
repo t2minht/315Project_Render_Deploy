@@ -15,8 +15,11 @@ function NewlineText(props) {
     const newText = text.split('~').map(str => <p>{str}</p>);
     return newText;
 }
-
-
+const Removelast = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5001/clearSelection`);
+    window.location.assign("/pizzatype");
+}
 
 
 function Pizzatype() {
@@ -53,6 +56,7 @@ function Pizzatype() {
                 <button >2-4 Topping</button>
             </a>
             <div>
+                <button onClick={Removelast}>Remove Last Item</button>
                 <a href="/pizzatypeCanceled">
                     <button> Cancel Order</button>
                 </a>

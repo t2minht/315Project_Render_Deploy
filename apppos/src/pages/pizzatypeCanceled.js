@@ -9,7 +9,11 @@ const CheeseZa = async (e) => {
     await fetch(`http://localhost:5001/createSetPizza/${0}/${"Cheese"}`);
     window.location.assign("/pizzatype");
 }
-
+const Removelast = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5001/clearSelection`);
+    window.location.assign("/pizzatype");
+}
 
 function PizzatypeCancel() {
     const CancelOrder = async () => {
@@ -52,6 +56,7 @@ function PizzatypeCancel() {
                 <button >2-4 Topping</button>
             </a>
             <div>
+                <button onClick={Removelast}>Remove Last Item</button>
                 <a href="/pizzatypeCanceled">
                     <button> Cancel Order</button>
                 </a>

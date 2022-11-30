@@ -27,7 +27,7 @@ import "../components/pizzabuilder.css"
 function Pizzabuilder() {
     return (
         <>
-            <h1>Toggle images</h1>
+            <h1>Your Current Pizza:</h1>
             <div className="toggle-wrapper">
                 <img className="base" src={Base} />
                 <img className="top1" src={Top1} />

@@ -154,9 +154,11 @@ app.get('/calculatePrice', function (req, res) {
 app.get('/cancelOrder', function (req, res) {
     refreshPizza();
     pizzaList = [];
+    res.json(true);
 });
 app.get('/clearSelection', function (req, res) {
     pizzaList.pop();
+    res.json(true);
 });
 
 app.get('/deletePizza', function (req, res) {

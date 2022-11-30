@@ -1,5 +1,6 @@
 import React, { useEffect, Fragment, useState } from "react";
 import Pizzabuilder from "./pizzabuilder";
+import "../components/customer.css"
 
 function Topping() {
 
