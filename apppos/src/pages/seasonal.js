@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment, useState } from "react";
-
+import Pizzabuilder from "./pizzabuilder";
 const Removetopping = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/removeLastTopping`)
@@ -52,6 +52,7 @@ function Seasonal() {
         Seasonalinfo();
         OrderInfo();
     }, [])
+    let pizza = <Pizzabuilder />
     return (<Fragment><h1>Select Seasonal Toppings:</h1>
         <p>{season}</p>
         <div id="seasonalButtons"></div>
@@ -65,7 +66,8 @@ function Seasonal() {
             </a>
         </div>
         <p>{response}</p>
-        <p>*Note Seasonal Toppings Will Not Appear on Pizza*</p>
+        <p>*Note: Seasonal Toppings Will Not Appear On Pizza*</p>
+        <p>{pizza}</p>
     </Fragment>);
 }
 

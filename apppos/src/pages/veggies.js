@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment, useState } from "react";
-
+import Pizzabuilder from "./pizzabuilder";
 const Bananapep = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Banana Peppers"}`)
@@ -149,6 +149,7 @@ function Veggies() {
     useEffect(() => {
         OrderInfo();
     }, [])
+    let pizza = <Pizzabuilder />
     return (<Fragment><h1>Select Vegetables:</h1>
         <button onClick={Bananapep}>Banana Peppers</button>
         <button onClick={Grepep}>Green Peppers</button>
@@ -173,6 +174,7 @@ function Veggies() {
             </a>
         </div>
         <p>{response}</p>
+        <p>{pizza}</p>
     </Fragment>);
 }
 
