@@ -34,6 +34,7 @@ let pizza = {
 }
 
 var pizzaList = [];
+var numDrinks = 0;
 
 app.get('/currentToppings', function (req, res) {
     var allToppings = "";
@@ -114,9 +115,14 @@ app.get('/crustType/:crustToggle', function (req, res) {
     res.json(JSON.stringify(true));
 });
 
-app.get('comboMeal', function (req, res) {
-    pizza.isCombo = drinkCombo;
-    res.json(JSON.stringify(true));
+app.get('/comboMeal/:thisCombo', function (req, res) {
+    pizza.isCombo = this.Combo;
+    res.json("true");
+});
+
+app.get("/soloDrink", function (req, res) {
+    numDrinks++;
+    res.json("true");
 });
 
 app.get('/calculatePrice', function (req, res) {
@@ -161,6 +167,7 @@ app.get('/calculatePrice', function (req, res) {
 app.get('/cancelOrder', function (req, res) {
     refreshPizza();
     pizzaList = [];
+    numDrinks = 0;
     res.json(true);
 });
 app.get('/clearSelection', function (req, res) {
@@ -194,34 +201,34 @@ function refreshPizza() {
 
 app.get('/checkoutScreen', function (req, res) {
     var completeOrder = "";
-    completeOrder += "Order Info:  ~";
+    completeOrder += "Order Info: ";
     for (let i = 0; i < pizzaList.length; i++) {
         tempPizza = pizzaList[i]
-        completeOrder += tempPizza.pizzaName;
+        completeOrder += "~Pizza Type: " + tempPizza.pizzaName;
 
-        completeOrder += "- ";
         for (let j = -1; j < tempPizza.toppings.length; j++) {
             if (j == -1) {
-                completeOrder = completeOrder + "Sauce: " + tempPizza.sauce + " Cheese: House Blend "
+                completeOrder = completeOrder + "~Sauce: " + tempPizza.sauce + "~Cheese: House Blend "
                 if (tempPizza.isCauly == "true") {
-                    completeOrder += "Crust: Cauliflower ";
+                    completeOrder += "~Crust: Cauliflower ";
                 }
                 else {
-                    completeOrder += "Crust: Standard Dough ";
+                    completeOrder += "~Crust: Standard Dough ";
                 }
-                completeOrder += " Toppings: "
+                completeOrder += "~Toppings: "
             } else {
                 completeOrder += tempPizza.toppings[j];
             }
             completeOrder += " ";
         }
-        completeOrder += ("Price: $");
+        completeOrder += ("~Price: $");
         let price = tempPizza.price
         if (tempPizza.isCauly == "true") {
             price += 2.99;
         }
+        price = price.toFixed(2);
         completeOrder += price;
-        completeOrder += ("  ");
+
 
     }
     //MIGHT have to stringify this
@@ -245,12 +252,13 @@ app.get('/currentPizza', function (req, res) {
         thisPizza = thisPizza + makePizza.toppings[i] + " ";
     }
     thisPizza += ("Price: $");
-    let price = makePizza.price
+    var price = makePizza.price
     if (makePizza.isCauly == "true") {
         price += 2.99;
+
     }
+    price = price.toFixed(2);
     thisPizza += price;
-    thisPizza += ("  ");
     res.json(thisPizza);
 });
 
