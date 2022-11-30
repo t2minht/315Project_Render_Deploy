@@ -6,7 +6,7 @@ const Finishorder = async (e) => {
         await fetch(`http://localhost:5001/checkoutServ`, {
             method: "PUT",
         });
-    alert("Order Completed");
+    await fetch(`http://localhost:5001/cancelOrder`);
     window.location.assign("/locationguide");
 }
 
