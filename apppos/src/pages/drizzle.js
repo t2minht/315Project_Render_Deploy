@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment, useState } from "react";
-
+import Pizzabuilder from "./pizzabuilder";
 const Balsamic = async (e) => {
     e.preventDefault();
     if (await fetch(`http://localhost:5001/addTopping/${"Balsamic Glaze"}`)
@@ -78,6 +78,7 @@ function Drizzle() {
     useEffect(() => {
         OrderInfo();
     }, [])
+    let pizza = <Pizzabuilder />
     return (<Fragment>
         <h1>Select Drizzle Type:</h1>
         <button onClick={Balsamic}>Balsamic Glaze</button>
@@ -96,6 +97,8 @@ function Drizzle() {
             </a>
         </div>
         <p>{response}</p>
+        <p>*Note: Drizzles Will Not Appear On Pizza*</p>
+        <p>{pizza}</p>
     </Fragment>);
 }
 
