@@ -35,6 +35,15 @@ let pizza = {
 
 var pizzaList = [];
 
+app.get('/currentToppings', function (req, res) {
+    var allToppings = "";
+    for (let i = 0; i < pizza.currToppings; i++) {
+        allToppings += pizza.toppings[i];
+        allToppings += ",";
+    }
+    res.json(allToppings);
+});
+
 app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
     newPizzaName = req.params.pizzaName;
     pizza.pizzaName = newPizzaName;
@@ -49,7 +58,7 @@ app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
 });
 
 app.get('/createSetPizza/:numToppings/:pizzaName', function (req, res) {
-    console.log("CreatingPiza")
+    console.log("CreatingPizza")
     newPizzaName = JSON.stringify(req.params.pizzaName);
     pizza.pizzaName = newPizzaName;
     pizza.numToppings = req.params.numToppings;
@@ -101,9 +110,7 @@ app.get('/addSauce/:sauceName', function (req, res) {
 });
 
 app.get('/crustType/:crustToggle', function (req, res) {
-    //TODO, make sure this is toggleable
-    pizza.isCauly = req.params.crustToggle;
-    console.log(pizza.isCauly);
+    pizza.isCauly = req.params.crustToggle;;
     res.json(JSON.stringify(true));
 });
 
@@ -206,7 +213,6 @@ app.get('/checkoutScreen', function (req, res) {
             } else {
                 completeOrder += tempPizza.toppings[j];
             }
-            console.log(completeOrder);
             completeOrder += " ";
         }
         completeOrder += ("Price: $");
