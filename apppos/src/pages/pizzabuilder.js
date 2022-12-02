@@ -70,9 +70,7 @@ function Pizzabuilder() {
                 document.getElementById("Top20").style.opacity = "1";
             } else if (orderarry[i] === "Green Peppers") {
                 document.getElementById("Top9").style.opacity = "1";
-                alert("green found");
             } else if (orderarry[i] === "Red Peppers") {
-                alert("red found");
                 document.getElementById("Top18").style.opacity = "1";
             } else if (orderarry[i] === "Black Olives") {
                 document.getElementById("Top4").style.opacity = "1";

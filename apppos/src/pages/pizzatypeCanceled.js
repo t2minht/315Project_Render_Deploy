@@ -9,6 +9,11 @@ const CheeseZa = async (e) => {
     await fetch(`http://localhost:5001/createSetPizza/${0}/${"Cheese"}`);
     window.location.assign("/pizzatype");
 }
+const Drinks = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5001/soloDrink`);
+    window.location.assign("/pizzatype");
+}
 const Removelast = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/clearSelection`);
@@ -49,6 +54,7 @@ function PizzatypeCancel() {
             <h1>Select Pizza Type:</h1>
             <button onClick={HandleClickPep}>Pepperoni Pizza</button>
             <button onClick={CheeseZa}>Cheese</button>
+            <button onClick={Drinks}>Add A Fountain Drink</button>
             <a href="/topping-one">
                 <button>One Topping</button>
             </a>

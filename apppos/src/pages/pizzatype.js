@@ -9,6 +9,11 @@ const CheeseZa = async (e) => {
     await fetch(`http://localhost:5001/createSetPizza/${0}/${"Cheese"}`);
     window.location.assign("/pizzatype");
 }
+const Drinks = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5001/soloDrink`);
+    window.location.assign("/pizzatype");
+}
 
 function NewlineText(props) {
     const text = props.text;
@@ -55,6 +60,7 @@ function Pizzatype() {
             <a href="/topping-multi">
                 <button >2-4 Topping</button>
             </a>
+            <button onClick={Drinks}>Add A Fountain Drink</button>
             <div>
                 <button onClick={Removelast}>Remove Last Item</button>
                 <a href="/pizzatypeCanceled">
