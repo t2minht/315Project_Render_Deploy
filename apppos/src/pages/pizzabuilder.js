@@ -54,7 +54,6 @@ function Pizzabuilder() {
         let orderarry = order.split(",");
         orderarry = orderarry.slice(0, -1);
         for (let i = 0; i < orderarry.length; i++) {
-            alert(orderarry[i])
             if (orderarry[i] === "Bacon") {
                 document.getElementById("Top1").style.opacity = "1";
             } else if (orderarry[i] === "Banana Peppers") {
