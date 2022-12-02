@@ -261,9 +261,6 @@ app.get('/currentPizza', function (req, res) {
     thisPizza += makePizza.pizzaName;
     thisPizza += " ";
     thisPizza = thisPizza + " Sauce: " + makePizza.sauce + " ";
-    if (makePizza.isCombo == "true") {
-        thisPizza += "With added fountain drink "
-    }
     if (makePizza.isCauly == "true") {
         thisPizza += "Crust: Cauliflower ";
     }
@@ -278,7 +275,15 @@ app.get('/currentPizza', function (req, res) {
     var price = makePizza.price
     if (makePizza.isCauly == "true") {
         price += 2.99;
-
+    }
+    if (makePizza.isCombo == "true") {
+        thisPizza += "With added fountain drink "
+        if (makepizza.numToppings == 0 || (makePizza.numToppings == 1 && makePizza.toppings[0] == "Pepperoni")) {
+            price += 1.20;
+        }
+        else {
+            price += 2.45;
+        }
     }
     price = price.toFixed(2);
     thisPizza += price;
