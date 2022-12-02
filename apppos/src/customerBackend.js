@@ -215,7 +215,7 @@ app.get('/checkoutScreen', function (req, res) {
         tempPizza = pizzaList[i]
         completeOrder += "~Pizza Type: " + tempPizza.pizzaName;
         if (tempPizza.isCombo) {
-            completeOrder += "~COMBO MEAL"
+            completeOrder += "~with added fountain drink"
         }
         for (let j = -1; j < tempPizza.toppings.length; j++) {
             if (j == -1) {
@@ -260,6 +260,9 @@ app.get('/currentPizza', function (req, res) {
     thisPizza += makePizza.pizzaName;
     thisPizza += " ";
     thisPizza = thisPizza + " Sauce: " + makePizza.sauce + " ";
+    if (makePizza.isCombo == "true") {
+        thisPizza += "With added fountain drink "
+    }
     if (makePizza.isCauly == "true") {
         thisPizza += "Crust: Cauliflower ";
     }
