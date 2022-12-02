@@ -10,7 +10,7 @@
 .base {
     position: absolute;
     top: 250px;
-    z-index: 1;
+    z-index: 0;
 
 }
 
@@ -115,6 +115,8 @@
 .top15 {
     position: absolute;
     top: 250px;
+    opacity: 0;
+    z-index: 1;
 }
 
 .top16 {

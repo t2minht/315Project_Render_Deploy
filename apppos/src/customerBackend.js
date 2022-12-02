@@ -119,12 +119,12 @@ app.get('/addSauce/:sauceName', function (req, res) {
 });
 
 app.get('/crustType/:crustToggle', function (req, res) {
-    pizza.isCauly = req.params.crustToggle;;
+    pizza.isCauly = req.params.crustToggle;
     res.json(JSON.stringify(true));
 });
 
 app.get('/comboMeal/:thisCombo', function (req, res) {
-    pizza.isCombo = this.Combo;
+    pizza.isCombo = req.params.thisCombo;
     res.json("true");
 });
 

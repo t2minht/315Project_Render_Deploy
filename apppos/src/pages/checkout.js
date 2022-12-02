@@ -9,7 +9,11 @@ const Finishorder = async (e) => {
     await fetch(`http://localhost:5001/cancelOrder`);
     window.location.assign("/locationguide");
 }
-
+function NewlineText(props) {
+    const text = props.text;
+    const newText = text.split('~').map(str => <p>{str}</p>);
+    return newText;
+}
 
 function Checkout() {
     const [response, setResponse] = useState("");
@@ -51,7 +55,7 @@ function Checkout() {
             </a>
         </div>
 
-        <p>{response}</p>
+        <NewlineText text={response} />
         <p>Total Cost: ${price}</p>
     </Fragment>);
 }
