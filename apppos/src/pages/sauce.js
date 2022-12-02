@@ -30,7 +30,16 @@ const Cauliflour = async (e) => {
     window.location.reload();
 }
 
-
+const MakeCombo = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5001/comboMeal/${true}`);
+    window.location.reload();
+}
+const UndoCombo = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5001/comboMeal/${false}`);
+    window.location.reload();
+}
 function Sauce() {
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
@@ -52,6 +61,10 @@ function Sauce() {
         <div>
             <button onClick={Regular}>Regular Crust</button>
             <button onClick={Cauliflour}>Cauliflower Crust</button>
+        </div>
+        <div>
+            <button onClick={MakeCombo}>Add a Drink to Your Pizza?</button>
+            <button onClick={UndoCombo}>Remove Added Drink</button>
         </div>
         <div>
             <a href="/topping">
