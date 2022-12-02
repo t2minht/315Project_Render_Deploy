@@ -49,8 +49,16 @@ app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
     newPizzaName = req.params.pizzaName;
     pizza.pizzaName = newPizzaName;
     pizza.numToppings = req.params.numToppings;
-    if (pizza.numToppings == 1) {
-        pizza.price = 7.79;
+    if (pizza.numToppings == 0) {
+        price += 6.49;
+    }
+    else if (pizza.numToppings == 1) {
+        if (pizza.toppings[0] == "Pepperoni") {
+            price += 6.49;
+        }
+        else {
+            pizza.price = 7.79;
+        }
     } else {
         pizza.price = 8.99;
     }
@@ -160,6 +168,7 @@ app.get('/calculatePrice', function (req, res) {
             price += 2.99;
         }
     }
+    price += (numDrinks * 2.45);
     price = price.toFixed(2);
     res.json(price);
 });
@@ -205,7 +214,9 @@ app.get('/checkoutScreen', function (req, res) {
     for (let i = 0; i < pizzaList.length; i++) {
         tempPizza = pizzaList[i]
         completeOrder += "~Pizza Type: " + tempPizza.pizzaName;
-
+        if (tempPizza.isCombo) {
+            completeOrder += "~COMBO MEAL"
+        }
         for (let j = -1; j < tempPizza.toppings.length; j++) {
             if (j == -1) {
                 completeOrder = completeOrder + "~Sauce: " + tempPizza.sauce + "~Cheese: House Blend "
@@ -226,9 +237,12 @@ app.get('/checkoutScreen', function (req, res) {
         if (tempPizza.isCauly == "true") {
             price += 2.99;
         }
+        if (numDrinks > 0) {
+            completeOrder += "~Number of additional drinks: " + String(numDrinks);
+            price += numDrinks * 2.45;
+        }
         price = price.toFixed(2);
         completeOrder += price;
-
 
     }
     //MIGHT have to stringify this
