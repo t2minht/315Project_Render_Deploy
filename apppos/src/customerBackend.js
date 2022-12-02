@@ -232,7 +232,7 @@ app.get('/checkoutScreen', function (req, res) {
             }
             completeOrder += " ";
         }
-        completeOrder += ("~Price: $");
+
         let price = tempPizza.price
         if (tempPizza.isCauly == "true") {
             price += 2.99;
@@ -241,6 +241,7 @@ app.get('/checkoutScreen', function (req, res) {
             completeOrder += "~Number of additional drinks: " + String(numDrinks);
             price += numDrinks * 2.45;
         }
+        completeOrder += ("~Price: $");
         price = price.toFixed(2);
         completeOrder += price;
 
@@ -271,20 +272,21 @@ app.get('/currentPizza', function (req, res) {
     for (let i = 0; i < makePizza.currToppings; i++) {
         thisPizza = thisPizza + makePizza.toppings[i] + " ";
     }
-    thisPizza += ("Price: $");
+    thisPizza += " | "
     var price = makePizza.price
     if (makePizza.isCauly == "true") {
         price += 2.99;
     }
     if (makePizza.isCombo == "true") {
         thisPizza += "With added fountain drink "
-        if (makepizza.numToppings == 0 || (makePizza.numToppings == 1 && makePizza.toppings[0] == "Pepperoni")) {
+        if (makePizza.numToppings == 0 || (makePizza.numToppings == 1 && makePizza.toppings[0] == "Pepperoni")) {
             price += 1.20;
         }
         else {
             price += 2.45;
         }
     }
+    thisPizza += ("Price: $");
     price = price.toFixed(2);
     thisPizza += price;
     res.json(thisPizza);
