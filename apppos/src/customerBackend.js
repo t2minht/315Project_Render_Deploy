@@ -246,7 +246,7 @@ app.get('/checkoutScreen', function (req, res) {
 
     }
     if (pizzaList.length == 0 && numDrinks > 0) {
-        completeOrder += numDrinks + " Added Fountain Drinks: "
+        completeOrder += numDrinks + "~Added Fountain Drinks: "
         let price = (numDrinks * 2.45);
         price = price.toFixed(2);
         completeOrder += String(price);
