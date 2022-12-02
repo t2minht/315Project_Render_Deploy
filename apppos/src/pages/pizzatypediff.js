@@ -14,6 +14,11 @@ const Removelast = async (e) => {
     await fetch(`http://localhost:5001/clearSelection`);
     window.location.assign("/pizzatype");
 }
+function NewlineText(props) {
+    const text = props.text;
+    const newText = text.split('~').map(str => <p>{str}</p>);
+    return newText;
+}
 
 function Pizzatypediff() {
     const Refresh = async () => {
@@ -65,7 +70,7 @@ function Pizzatypediff() {
                 </a>
                 {/* remove me after testing */}
             </div>
-            <p>{response}</p>
+            <NewlineText text={response} />
             <p>Total Cost: ${price}</p>
         </Fragment >
     );
