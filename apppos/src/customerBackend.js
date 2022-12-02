@@ -50,11 +50,11 @@ app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
     pizza.pizzaName = newPizzaName;
     pizza.numToppings = req.params.numToppings;
     if (pizza.numToppings == 0) {
-        price += 6.49;
+        price += 6.79;
     }
     else if (pizza.numToppings == 1) {
         if (pizza.toppings[0] == "Pepperoni") {
-            price += 6.49;
+            price += 6.79;
         }
         else {
             pizza.price = 7.79;
@@ -246,6 +246,7 @@ app.get('/checkoutScreen', function (req, res) {
 
     }
     if (pizzaList.length == 0 && numDrinks > 0) {
+        completeOrder += numDrinks + " Added Fountain Drinks: "
         let price = (numDrinks * 2.45);
         price = price.toFixed(2);
         completeOrder += String(price);
