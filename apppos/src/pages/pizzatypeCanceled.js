@@ -54,13 +54,13 @@ function PizzatypeCancel() {
             <h1>Select Pizza Type:</h1>
             <button onClick={HandleClickPep}>Pepperoni Pizza</button>
             <button onClick={CheeseZa}>Cheese</button>
-            <button onClick={Drinks}>Add A Fountain Drink</button>
             <a href="/topping-one">
                 <button>One Topping</button>
             </a>
             <a href="/topping-multi">
                 <button >2-4 Topping</button>
             </a>
+            <button onClick={Drinks}>Add A Fountain Drink</button>
             <div>
                 <button onClick={Removelast}>Remove Last Item</button>
                 <a href="/pizzatypeCanceled">
