@@ -245,6 +245,11 @@ app.get('/checkoutScreen', function (req, res) {
         completeOrder += price;
 
     }
+    if (pizzaList.length == 0 && numDrinks > 0) {
+        let price = (numDrinks * 2.45);
+        price = price.toFixed(2);
+        completeOrder += String(price);
+    }
     //MIGHT have to stringify this
     res.json(completeOrder)
 });
