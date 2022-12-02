@@ -272,7 +272,7 @@ app.get('/currentPizza', function (req, res) {
     for (let i = 0; i < makePizza.currToppings; i++) {
         thisPizza = thisPizza + makePizza.toppings[i] + " ";
     }
-
+    thisPizza += " | "
     var price = makePizza.price
     if (makePizza.isCauly == "true") {
         price += 2.99;
