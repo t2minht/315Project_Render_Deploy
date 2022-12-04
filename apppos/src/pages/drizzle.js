@@ -91,8 +91,11 @@ function Drizzle() {
             <button className="grid-item-toppingitems" onClick={Removetopping}>Remove Last Topping</button>
         </div>
         <div>
+            <a href="/pizzatypediff">
+                <button className="backButton">Back To Menu</button>
+            </a>
             <a href="/topping">
-                <button className="backButton"> Add More Toppings</button>
+                <button className="backButton2"> Add More Toppings</button>
             </a>
 
             <a href="/sauce">

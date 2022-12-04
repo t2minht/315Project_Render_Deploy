@@ -215,7 +215,7 @@ app.get('/checkoutScreen', function (req, res) {
         tempPizza = pizzaList[i]
         completeOrder += "~Pizza Type: " + tempPizza.pizzaName;
         if (tempPizza.isCombo) {
-            completeOrder += "~with added fountain drink"
+            completeOrder += "~+ Fountain Drink"
         }
         for (let j = -1; j < tempPizza.toppings.length; j++) {
             if (j == -1) {
