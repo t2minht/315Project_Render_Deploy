@@ -19,13 +19,15 @@ import Seasonal from "./CustomerPages/seasonal.js";
 import Topping from "./CustomerPages/topping.js";
 import Veggies from "./CustomerPages/veggies.js";
 import Directions from "./CustomerPages/directions.js"
+import jwt_decode from "jwt-decode"
+import NavbarAuth from "./auth/navbarAuth.js";
+//import { response } from "express";
 
 //const database = require("./database");
 
 function App() {
-
+    const [ user, setUser ] = useState({});
     const [inventoryTable, setInventoryTable] = useState([1,1,1,1,1,1,1,1,1]);
-
     const [restockTable, setRestockTable] = useState([]);
     const [excessTable, setExcessTable] = useState([]);
     const [menuTable, setMenuTable] = useState([1,1,1,1,1,1,1]);
@@ -33,12 +35,31 @@ function App() {
     const [salesTrendsTable, setSalesTrendsTable] = useState([]);
     const [employeeTable, setEmployeeTable] = useState([]);
 
+    function handleCallbackResponse(response){
+        console.log("Encoded JWT Id token " + response.credential);
+        var userObject = jwt_decode(response.credential);
+        setUser(userObject);
+        document.getElementById("signInDiv").hidden = true; 
+    }
     
-    // useEffect[(() => {
-    //     database.getInventory.then(res => setInventoryTable(res));
-    //     database.getMenu.then(res => setMenuTable(res));
-    //     database.restockReport(res => setRestockTable(res));
-    // }, [])]
+    useEffect(() => {
+        /* global google */
+        google.accounts.id.initialize({
+            client_id: "1014333270008-g8ajq98lbek1dip8pmv3q1er4k91apjk.apps.googleusercontent.com",
+            callback: handleCallbackResponse,
+        });
+
+        google.accounts.id.renderButton(document.getElementById("signInDiv"),
+            {theme: "outline", size: "large"}
+        );
+
+        google.accounts.id.prompt();
+    }, [])
+
+    function handleSignOut(e) {
+        setUser({});
+        document.getElementById("signInDiv").hidden = false;
+    }
 
     const invColumn = [
         {heading: 'ID', key: 1, value: "id"},
@@ -92,7 +113,7 @@ function App() {
     let component
     switch(window.location.pathname) {
         case "/":
-            component = <Navbar/>
+            component = (Object.keys(user).length==0 ? <Navbar/> : <NavbarAuth/>)
             break
         case "/manager":
             component = <ManagerHome/>
@@ -157,6 +178,9 @@ function App() {
     }
     return (
         <React.Fragment>
+            <div id="signInDiv"></div>
+            {Object.keys(user).length != 0 &&  <button onClick={(e) => handleSignOut(e)}>Sign Out</button>}
+            {user && <h3>{user.name}</h3>}
             {component}
         </React.Fragment>
         

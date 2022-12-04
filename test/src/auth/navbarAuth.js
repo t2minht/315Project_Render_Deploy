@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-function Navbar() {
+function NavbarAuth() {
     
     return ( <nav className='nav'>
         <ul>
             <li>
-              <CustomLink href='/customer'>Customer</CustomLink>
+              <CustomLink href="/manager">Manager</CustomLink> 
+            </li>
+            <li>
+              <CustomLink href='/server'>Server</CustomLink>
             </li>
         </ul>
     </nav> );
@@ -19,4 +22,4 @@ function CustomLink({ href, children, ...props }) {
     )
 }
 
-export default Navbar;
+export default NavbarAuth;
