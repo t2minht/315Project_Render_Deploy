@@ -150,31 +150,35 @@ function Veggies() {
         OrderInfo();
     }, [])
     let pizza = <Pizzabuilder />
-    return (<Fragment><h1>Select Vegetables:</h1>
-        <button onClick={Bananapep}>Banana Peppers</button>
-        <button onClick={Grepep}>Green Peppers</button>
-        <button onClick={Redpep}>Red Peppers</button>
-        <button onClick={Blackoli}>Black Olives</button>
-        <button onClick={Kalmataoli}>Kalmata Olives</button>
-        <button onClick={Cherrytoma}>Cherry Tomatoes</button>
-        <button onClick={Redonion}>Red Onions</button>
-        <button onClick={Spinach}>Spinach</button>
-        <button onClick={Brocolli}>Brocolli</button>
-        <button onClick={Caraonion}>Caramelized Onions</button>
-        <button onClick={Garlic}>Garlic</button>
-        <button onClick={Mushrooms}>Mushrooms</button>
-        <button onClick={Redtatoes}>Red Potatoes</button>
+    return (<Fragment><h1 className="pageTitle-topping">Select Vegetables:</h1>
+        <div className="grid-container-topping3">
+            <button className="grid-item-topping3" onClick={Bananapep}>Banana Peppers</button>
+            <button className="grid-item-topping3" onClick={Grepep}>Green Peppers</button>
+            <button className="grid-item-topping3" onClick={Redpep}>Red Peppers</button>
+            <button className="grid-item-topping3" onClick={Blackoli}>Black Olives</button>
+            <button className="grid-item-topping3" onClick={Kalmataoli}>Kalmata Olives</button>
+            <button className="grid-item-topping3" onClick={Cherrytoma}>Cherry Tomatoes</button>
+            <button className="grid-item-topping3" onClick={Redonion}>Red Onions</button>
+            <button className="grid-item-topping3" onClick={Spinach}>Spinach</button>
+            <button className="grid-item-topping3" onClick={Brocolli}>Brocolli</button>
+            <button className="grid-item-topping3" onClick={Caraonion}>Caramelized Onions</button>
+            <button className="grid-item-topping3" onClick={Garlic}>Garlic</button>
+            <button className="grid-item-topping3" onClick={Mushrooms}>Mushrooms</button>
+            <button className="grid-item-topping3" onClick={Redtatoes}>Red Potatoes</button>
+            <button className="grid-item-topping3" onClick={Removetopping}>Remove Last Topping</button>
+        </div>
         <div>
             <a href="/topping">
-                <button> Add More Toppings</button>
+                <button className="backButton"> Add More Toppings</button>
             </a>
-            <button onClick={Removetopping}>Remove Last Topping</button>
+
             <a href="/sauce">
-                <button>Next</button>
+                <button className="nextButton">Next</button>
             </a>
         </div>
-        <p>{response}</p>
-        <p>{pizza}</p>
+        <h1 className="pizzaInfoTitle">Your Current Pizza:</h1>
+        <p className="pizzaInfo">{response}</p>
+        <p className="pizzaBuilder">{pizza}</p>
     </Fragment>);
 }
 

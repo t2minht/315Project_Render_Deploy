@@ -93,25 +93,29 @@ function Meats() {
         OrderInfo();
     }, [])
     let pizza = <Pizzabuilder />
-    return (<Fragment><h1>Select Meats:</h1>
-        <button onClick={Pepperoni}>Pepperoni</button>
-        <button onClick={Ham}>Black Forest Ham</button>
-        <button onClick={Sausage}>Italian Sausage</button>
-        <button onClick={Meatballs}>Meatballs</button>
-        <button onClick={Salami}>Salami</button>
-        <button onClick={Bacon}>Bacon</button>
-        <button onClick={Chicken}>Smoked Chicken</button>
+    return (<Fragment><h1 className="pageTitle-topping">Select Meats:</h1>
+        <div className="grid-container-toppingitems">
+            <button className="grid-item-toppingitems" onClick={Pepperoni}>Pepperoni</button>
+            <button className="grid-item-toppingitems" onClick={Ham}>Black Forest Ham</button>
+            <button className="grid-item-toppingitems" onClick={Sausage}>Italian Sausage</button>
+            <button className="grid-item-toppingitems" onClick={Meatballs}>Meatballs</button>
+            <button className="grid-item-toppingitems" onClick={Salami}>Salami</button>
+            <button className="grid-item-toppingitems" onClick={Bacon}>Bacon</button>
+            <button className="grid-item-toppingitems" onClick={Chicken}>Smoked Chicken</button>
+            <button className="grid-item-toppingitems" onClick={Removetopping}>Remove Last Topping</button>
+        </div>
         <div>
             <a href="/topping">
-                <button> Add More Toppings</button>
+                <button className="backButton"> Add More Toppings</button>
             </a>
-            <button onClick={Removetopping}>Remove Last Topping</button>
+
             <a href="/sauce">
-                <button>Next</button>
+                <button className="nextButton">Next</button>
             </a>
         </div>
-        <p>{response}</p>
-        <p>{pizza}</p>
+        <h1 className="pizzaInfoTitle">Your Current Pizza:</h1>
+        <p className="pizzaInfo">{response}</p>
+        <p className="pizzaBuilder">{pizza}</p>
     </Fragment>);
 }
 

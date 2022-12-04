@@ -11,7 +11,7 @@ const Finishorder = async (e) => {
 }
 function NewlineText(props) {
     const text = props.text;
-    const newText = text.split('~').map(str => <p>{str}</p>);
+    const newText = text.split('~').map(str => <p className="orderDisplay">{str}</p >);
     return newText;
 }
 
@@ -42,21 +42,26 @@ function Checkout() {
         PriceInfo();
     }, [])
     return (<Fragment>
-        <h1>Select Payment Type:</h1>
-        <button onClick={Finishorder}>Cash</button>
-        <button onClick={Finishorder}>Card</button>
-        <button onClick={Finishorder}>Dining Dollars</button>
-        <div>
+        <h1 className="pageTitle-checkout">Select Payment Type:</h1>
+        <div className="grid-container-topping3">
+            <button className="grid-item-topping3" onClick={Finishorder}>Cash</button>
+            <button className="grid-item-topping3" onClick={Finishorder}>Card</button>
+            <button className="grid-item-topping3" onClick={Finishorder}>Dining Dollars</button>
+        </div>
+        <h1 className="or">Or: </h1>
+        <div className="grid-container-checkout">
             <a href="/pizzatype">
-                <button> Add another Item</button>
+                <button className="grid-item-topping3"> Add another Item</button>
             </a >
             <a href="/pizzatypeCanceled">
-                <button > Cancel Order</button>
+                <button className="grid-item-topping3" > Cancel Order</button>
             </a>
         </div>
 
-        <NewlineText text={response} />
-        <p>Total Cost: ${price}</p>
+        <div className="order-container">
+            <NewlineText text={response} />
+        </div>
+        <p className="priceDisplay">Total Cost: ${price}</p>
     </Fragment>);
 }
 
