@@ -29,6 +29,7 @@ function Seasonal() {
         for (let i = 0; i < myArray.length; i++) {
             let myDiv = document.getElementById("seasonalButtons");
             let button = document.createElement('BUTTON');
+            button.className = "grid-item-topping3";
             let text = document.createTextNode(myArray[i]);
             button.appendChild(text);
             button.id = myArray[i];
@@ -53,21 +54,21 @@ function Seasonal() {
         OrderInfo();
     }, [])
     let pizza = <Pizzabuilder />
-    return (<Fragment><h1>Select Seasonal Toppings:</h1>
-        <p>{season}</p>
-        <div id="seasonalButtons"></div>
+    return (<Fragment><h1 className="pageTitle-topping">Select Seasonal Toppings:</h1>
+
+        <div className="grid-container-topping3" id="seasonalButtons"><button className="grid-item-topping3" onClick={Removetopping}>Remove Last Topping</button></div>
         <div>
             <a href="/topping">
-                <button> Add More Toppings</button>
+                <button className="backButton"> Add More Toppings</button>
             </a>
-            <button onClick={Removetopping}>Remove Last Topping</button>
+
             <a href="/sauce">
-                <button>Next</button>
+                <button className="nextButton">Next</button>
             </a>
         </div>
-        <p>{response}</p>
-        <p>*Note: Seasonal Toppings Will Not Appear On Pizza*</p>
-        <p>{pizza}</p>
+        <p className="pizzaInfo">{response}</p>
+        <p className="disclaimer">*Note: Seasonal Toppings Will Not Appear On Pizza*</p>
+        <p className="pizzaBuilder">{pizza}</p>
     </Fragment>);
 }
 

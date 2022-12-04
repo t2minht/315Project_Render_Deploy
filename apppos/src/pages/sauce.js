@@ -52,30 +52,34 @@ function Sauce() {
         OrderInfo();
     }, [])
     let pizza = <Pizzabuilder />
-    return (<Fragment><h1>Select Sauce and Crust:</h1>
-        <div>
-            <button onClick={Red}>Red Sauce</button>
-            <button onClick={Zestyred}>Zesty Red Sauce</button>
-            <button onClick={White}>White Sauce</button>
-        </div>
-        <div>
-            <button onClick={Regular}>Regular Crust</button>
-            <button onClick={Cauliflour}>Cauliflower Crust</button>
-        </div>
-        <div>
-            <button onClick={MakeCombo}>Add a Drink to Your Pizza?</button>
-            <button onClick={UndoCombo}>Remove Added Drink</button>
+    return (<Fragment><h1 className="pageTitle-topping">Select Sauce and Crust:</h1>
+        <div className="grid-container-sauces">
+            <div>
+                <button className="grid-item-sauce" onClick={Red}>Red Sauce</button>
+                <button className="grid-item-sauce" onClick={Zestyred}>Zesty Red Sauce</button>
+                <button className="grid-item-sauce" onClick={White}>White Sauce</button>
+            </div>
+            <div>
+                <button className="grid-item-sauce" onClick={Regular}>Regular Crust</button>
+                <button className="grid-item-sauce" onClick={Cauliflour}>Cauliflower Crust</button>
+            </div>
+            <div>
+                <button className="grid-item-sauce" onClick={MakeCombo}>Add a Drink to Your Pizza?</button>
+                <button className="grid-item-sauce" onClick={UndoCombo}>Remove Added Drink</button>
+            </div>
         </div>
         <div>
             <a href="/topping">
-                <button> Back</button>
+                <button className="backButton"> Back</button>
             </a>
+
             <a href="/checkout">
-                <button> Complete Item</button>
+                <button className="nextButton">Next</button>
             </a>
         </div>
-        <p>{response}</p>
-        <p>{pizza}</p>
+        <h1 className="pizzaInfoTitle">Your Current Pizza:</h1>
+        <p className="pizzaInfo">{response}</p>
+        <p className="pizzaBuilder">{pizza}</p>
 
     </Fragment>);
 }

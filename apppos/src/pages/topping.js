@@ -15,29 +15,32 @@ function Topping() {
         OrderInfo();
     }, [])
     let pizza = <Pizzabuilder />
-    return (<Fragment><h1>Select Toppings:</h1>
-        <a href="/meats">
-            <button>Meats</button>
-        </a>
-        <a href="/veggies">
-            <button>Vegetables</button>
-        </a>
-        <a href="/drizzle">
-            <button>Drizzles</button>
-        </a>
-        <a href="/seasonal">
-            <button>Seasonal Toppings</button>
-        </a>
-        <div>
-            <a href="/pizzatypediff">
-                <button>Select Different Pizza Type</button>
+    return (<Fragment><h1 className="pageTitle-topping">Select Toppings:</h1>
+        <div className="grid-container-topping">
+            <a href="/meats">
+                <button className="grid-item-topping">Meats</button>
             </a>
-            <a href="/sauce">
-                <button>Next</button>
+            <a href="/veggies">
+                <button className="grid-item-topping">Vegetables</button>
+            </a>
+            <a href="/drizzle">
+                <button className="grid-item-topping">Drizzles</button>
+            </a>
+            <a href="/seasonal">
+                <button className="grid-item-topping">Seasonal Toppings</button>
             </a>
         </div>
-        <p>{response}</p>
-        <p>{pizza}</p>
+        <div>
+            <a href="/pizzatypediff">
+                <button className="backButton">Select Different Pizza Type</button>
+            </a>
+            <a href="/sauce">
+                <button className="nextButton">Next</button>
+            </a>
+        </div>
+        <h1 className="pizzaInfoTitle">Your Current Pizza:</h1>
+        <p className="pizzaInfo">{response}</p>
+        <p className="pizzaBuilder">{pizza}</p>
     </Fragment>);
 }
 

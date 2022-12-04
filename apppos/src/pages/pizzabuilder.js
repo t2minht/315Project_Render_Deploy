@@ -105,7 +105,6 @@ function Pizzabuilder() {
     }, [])
     return (
         <>
-            <h1>Your Current Pizza:</h1>
             <div className="toggle-wrapper">
                 <img alt="topping" className="base" src={Base} />
                 <img alt="topping" id="Top1" className="top1" src={Top1} />

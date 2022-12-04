@@ -4,10 +4,10 @@ import MapsAPI from "./directions.js";
 function LocationGuide() {
     let component = <MapsAPI />
     return (<Fragment>
-        <h1>Here's our nearest Location!</h1>
-        {component}
+        <h1 className="mapTitle">Here's our nearest Location: </h1>
+        <div className="mapdisplay">{component}</div>
         <a href="/pizzatype">
-            <button >Back to Home Screen</button>
+            <button className="backButton" >Back to Home Screen</button>
         </a>
     </Fragment>);
 }

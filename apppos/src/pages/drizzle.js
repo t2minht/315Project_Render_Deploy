@@ -80,25 +80,30 @@ function Drizzle() {
     }, [])
     let pizza = <Pizzabuilder />
     return (<Fragment>
-        <h1>Select Drizzle Type:</h1>
-        <button onClick={Balsamic}>Balsamic Glaze</button>
-        <button onClick={Basilpesto}>Basil Pesto</button>
-        <button onClick={Bbqsauce}>BBQ Sauce</button>
-        <button onClick={Oliveoil}>Olive Oil</button>
-        <button onClick={Oregano}>Oregano</button>
-        <button onClick={Sriracha}>Sriracha</button>
+        <h1 className="pageTitle-topping">Select Drizzle Type:</h1>
+        <div className="grid-container-toppingitems">
+            <button className="grid-item-toppingitems" onClick={Balsamic}>Balsamic Glaze</button>
+            <button className="grid-item-toppingitems" onClick={Basilpesto}>Basil Pesto</button>
+            <button className="grid-item-toppingitems" onClick={Bbqsauce}>BBQ Sauce</button>
+            <button className="grid-item-toppingitems" onClick={Oliveoil}>Olive Oil</button>
+            <button className="grid-item-toppingitems" onClick={Oregano}>Oregano</button>
+            <button className="grid-item-toppingitems" onClick={Sriracha}>Sriracha</button>
+            <button className="grid-item-toppingitems" onClick={Removetopping}>Remove Last Topping</button>
+        </div>
         <div>
             <a href="/topping">
-                <button> Add More Toppings</button>
+                <button className="backButton"> Add More Toppings</button>
             </a>
-            <button onClick={Removetopping}>Remove Last Topping</button>
+
             <a href="/sauce">
-                <button>Next</button>
+                <button className="nextButton">Next</button>
             </a>
         </div>
-        <p>{response}</p>
-        <p>*Note: Drizzles Will Not Appear On Pizza*</p>
-        <p>{pizza}</p>
+        <h1 className="pizzaInfoTitle">Your Current Pizza:</h1>
+        <p className="pizzaInfo">{response}</p>
+        <p className="disclaimer">*Note: Drizzles Will Not Appear On Pizza*</p>
+        <p className="pizzaBuilder">{pizza}</p>
+
     </Fragment>);
 }
 
