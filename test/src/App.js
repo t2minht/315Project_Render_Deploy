@@ -1,3 +1,4 @@
+/* global google */
 import React, { useEffect, useState } from "react";
 import Table from './components/table.jsx'
 import Navbar from "./navbar.js";
@@ -25,6 +26,7 @@ import NavbarAuth from "./auth/navbarAuth.js";
 
 //const database = require("./database");
 
+
 function App() {
     const [ user, setUser ] = useState({});
     const [inventoryTable, setInventoryTable] = useState([1,1,1,1,1,1,1,1,1]);
@@ -43,17 +45,33 @@ function App() {
     }
     
     useEffect(() => {
-        /* global google */
-        google.accounts.id.initialize({
-            client_id: "1014333270008-g8ajq98lbek1dip8pmv3q1er4k91apjk.apps.googleusercontent.com",
-            callback: handleCallbackResponse,
-        });
-
-        google.accounts.id.renderButton(document.getElementById("signInDiv"),
-            {theme: "outline", size: "large"}
-        );
-
-        google.accounts.id.prompt();
+        const googleScript = document.getElementById("googleA");
+        const interval = setInterval(() => {
+            setUser({});
+            if (window.google){
+                clearInterval(interval);
+                google.accounts.id.initialize({
+                    client_id: "1014333270008-g8ajq98lbek1dip8pmv3q1er4k91apjk.apps.googleusercontent.com",
+                    callback: handleCallbackResponse,
+                });
+        
+                google.accounts.id.renderButton(document.getElementById("signInDiv"),
+                    {theme: "outline", size: "large"}
+                );
+        
+                //google.accounts.id.prompt();
+            }
+    
+            googleScript.addEventListener('load', () => {
+                // Patiently waiting to do the thing 
+            });
+        }, 500);
+        // while (!window.google) {
+        //     interval = ;
+        // }
+        
+        
+        return () => clearInterval(interval);
     }, [])
 
     function handleSignOut(e) {
