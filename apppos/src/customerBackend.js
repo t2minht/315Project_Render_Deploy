@@ -108,7 +108,7 @@ app.get('/removeLastTopping', function (req, res) {
     if (pizza.currToppings != 0) {
         pizza.currToppings--;
         pizza.toppings.pop();
-        if (pizza.currToppings == 1) {
+        if (pizza.numToppings == 1 || pizza.numToppings == 0) {
             pizza.price = 6.79;
         }
 
@@ -153,7 +153,8 @@ app.get('/calculatePrice', function (req, res) {
         if (currentPizza.numToppings == -1) {
             price += 2.45;
         }
-        else if (currentPizza.numToppings == 0 || (currentPizza.numToppings == 1 && currentPizza.toppings[0] == 'Pepperoni')) {
+        else if (currentPizza.numToppings == 0 || (currentPizza.numToppings == 1 && currentPizza.toppings[0] == 'Pepperoni')
+            || (currentPizza.numToppings == 1 && currentPizza.toppings.length == 0)) {
             if (currentPizza.isCombo) {
                 price += 7.99;
             }
@@ -230,7 +231,7 @@ app.get('/checkoutScreen', function (req, res) {
         let price = tempPizza.price
         if (tempPizza.isCombo) {
             completeOrder += "~With added fountain drink"
-            if (tempPizza.numToppings == 1 && tempPizza.toppings[0] == "Pepperoni") {
+            if (tempPizza.numToppings == 1 && tempPizza.toppings[0] == "Pepperoni" || tempPizza.numToppings == 1 && tempPizza.toppings.length == 0) {
                 price += 1.20
             }
             else {
@@ -299,7 +300,9 @@ app.get('/currentPizza', function (req, res) {
     }
     if (makePizza.isCombo == "true") {
         thisPizza += "With added fountain drink "
-        if (makePizza.numToppings == 0 || (makePizza.numToppings == 1 && makePizza.toppings[0] == "Pepperoni")) {
+        if (makePizza.numToppings == 0 || (makePizza.numToppings == 1 && makePizza.toppings[0] == "Pepperoni") ||
+            (makePizza.toppings.length == 0 && makePizza.numToppings == 1)) {
+            console.log("im good")
             price += 1.20;
         }
         else {
