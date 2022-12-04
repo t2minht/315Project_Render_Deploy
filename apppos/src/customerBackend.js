@@ -49,18 +49,12 @@ app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
     newPizzaName = req.params.pizzaName;
     pizza.pizzaName = newPizzaName;
     pizza.numToppings = req.params.numToppings;
-    if (pizza.numToppings == 0) {
-        price += 6.79;
-    }
-    else if (pizza.numToppings == 1) {
-        if (pizza.toppings[0] == "Pepperoni") {
-            price += 6.79;
+    if (pizza.price == 0) {
+        if (pizza.numToppings == 0 || pizza.numToppings == 1) {
+            pizza.price += 6.79;
+        } else {
+            pizza.price += 8.99;
         }
-        else {
-            pizza.price = 7.79;
-        }
-    } else {
-        pizza.price = 8.99;
     }
     console.log(pizza.pizzaName);
     res.json(JSON.stringify(true));
@@ -87,8 +81,23 @@ app.get('/addTopping/:toppingName', function (req, res) {
     if (pizza.currToppings == pizza.numToppings) {
         console.log("false");
         res.json("false");
-    } else {
-        console.log("true");
+    } else if (pizza.numToppings == 1 && req.params.toppingName == 'Pepperoni') {
+        pizza.toppings.push(req.params.toppingName);
+        pizza.currToppings++;
+        pizza.price = 6.79
+        res.json("true");
+    }
+    else if (pizza.numToppings == 1) {
+        if (req.params.toppingName.length == 0) {
+            pizza.price = 6.79;
+            res.json("true");
+        }
+        pizza.price = 7.79;
+        pizza.toppings.push(req.params.toppingName);
+        pizza.currToppings++;
+        res.json("true");
+    }
+    else {
         pizza.toppings.push(req.params.toppingName);
         pizza.currToppings++;
         res.json("true");
@@ -99,6 +108,10 @@ app.get('/removeLastTopping', function (req, res) {
     if (pizza.currToppings != 0) {
         pizza.currToppings--;
         pizza.toppings.pop();
+        if (pizza.currToppings == 1) {
+            pizza.price = 6.79;
+        }
+
     }
     res.json(JSON.stringify(true));
 });
@@ -214,8 +227,15 @@ app.get('/checkoutScreen', function (req, res) {
     for (let i = 0; i < pizzaList.length; i++) {
         tempPizza = pizzaList[i]
         completeOrder += "~Pizza Type: " + tempPizza.pizzaName;
+        let price = tempPizza.price
         if (tempPizza.isCombo) {
-            completeOrder += "~with added fountain drink"
+            completeOrder += "~With added fountain drink"
+            if (tempPizza.numToppings == 1 && tempPizza.toppings[0] == "Pepperoni") {
+                price += 1.20
+            }
+            else {
+                price += 2.45
+            }
         }
         for (let j = -1; j < tempPizza.toppings.length; j++) {
             if (j == -1) {
@@ -233,13 +253,13 @@ app.get('/checkoutScreen', function (req, res) {
             completeOrder += " ";
         }
 
-        let price = tempPizza.price
+
         if (tempPizza.isCauly == "true") {
             price += 2.99;
         }
         if (numDrinks > 0) {
             completeOrder += "~Number of additional drinks: " + String(numDrinks);
-            price += numDrinks * 2.45;
+            price += (numDrinks * 2.45);
         }
         completeOrder += ("~Price: $");
         price = price.toFixed(2);
@@ -273,7 +293,7 @@ app.get('/currentPizza', function (req, res) {
         thisPizza = thisPizza + makePizza.toppings[i] + " ";
     }
     thisPizza += " | "
-    var price = makePizza.price
+    var price = makePizza.price;
     if (makePizza.isCauly == "true") {
         price += 2.99;
     }
@@ -332,60 +352,5 @@ process.on('SIGINT', function () {
     console.log('Application successfully shutdown');
     process.exit(0);
 });
-
-
-
-// // //Black magic API testing
-// function initMap() {
-//     var directionsService = new google.maps.DirectionsService();
-//     var directionsRenderer = new google.maps.DirectionsRenderer();
-//     const map = new google.maps.Map(document.getElementById("map"), {
-//         zoom: 16,
-//         center: { lat: 30.61234195012257, lng: -96.34153287461642 },
-//     });
-//     directionsRenderer.setMap(map);
-// }
-
-// function calcRoute() {
-//     var start = document.getElementById('start').value;
-//     var request = {
-//         origin: start,
-//         destination: { lat: 30.61234195012257, lng: -96.34153287461642 },
-//         travelMode: 'DRIVING'
-//     };
-//     directionsService.route(request, function (result, status) {
-//         if (status == 'OK') {
-//             directionsRenderer.setDirections(result);
-//         }
-//     });
-// }
-
-// //Black magic API testing
-// app.get('/initMap/:address', function (req, res) {
-//     var directionsService = new google.maps.DirectionsService();
-//     var directionsRenderer = new google.maps.DirectionsRenderer();
-//     const map = new google.maps.Map(document.getElementById("map"), {
-//         zoom: 16,
-//         center: { lat: 30.61234195012257, lng: -96.34153287461642 },
-//         mapTypeId: google.maps.MapTypeId.ROADMAP,
-//     });
-//     directionsRenderer.setMap(map);
-//     var request = {
-//         origin: "125 Spence St, College Station, TX 77840",
-//         destination: { lat: 30.61234195012257, lng: -96.34153287461642 },
-//         travelMode: 'DRIVING'
-//     };
-//     directionsService.route(request, function (result, status) {
-//         if (status == 'OK') {
-//             directionsRenderer({
-//                 suppressMarkers: true,
-//                 directions: result,
-//                 map: map,
-//             });
-
-//         }
-//     });
-// });
-
 
 module.exports = {};
