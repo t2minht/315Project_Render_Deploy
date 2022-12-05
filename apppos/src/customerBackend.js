@@ -155,7 +155,7 @@ app.get('/calculatePrice', function (req, res) {
         }
         else if (currentPizza.numToppings == 0 || (currentPizza.numToppings == 1 && currentPizza.toppings[0] == 'Pepperoni')
             || (currentPizza.numToppings == 1 && currentPizza.toppings.length == 0)) {
-            if (currentPizza.isCombo) {
+            if (currentPizza.isCombo == "true") {
                 price += 7.99;
             }
             else {
@@ -229,8 +229,8 @@ app.get('/checkoutScreen', function (req, res) {
         tempPizza = pizzaList[i]
         completeOrder += "~Pizza Type: " + tempPizza.pizzaName;
         let price = tempPizza.price
-        if (tempPizza.isCombo) {
-            completeOrder += "~+ Fountain Drink"
+        if (tempPizza.isCombo == "true") {
+            completeOrder += "~With added fountain drink"
             if (tempPizza.numToppings == 1 && tempPizza.toppings[0] == "Pepperoni" || tempPizza.numToppings == 1 && tempPizza.toppings.length == 0) {
                 price += 1.20
             }
