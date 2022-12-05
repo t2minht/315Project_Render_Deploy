@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment, useState } from "react";
 //import "../components/pizzabuilder.css"
-
+import OrderInformation from "./orderinfo";
 const HandleClickPep = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/createSetPizza/${1}/${"Pepperoni"}`);
@@ -30,18 +30,6 @@ const Removelast = async (e) => {
 
 
 function Pizzatype() {
-    const [response, setResponse] = useState("");
-    const OrderInfo = async () => {
-        let order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
-        order = order.replace(/\"/g, "");
-        order = order.replace(/\//g, "");
-        order = order.replace(/\\/g, "");
-        setResponse(order);
-        if (!window.location.hash) {
-            window.location = window.location + '#loaded';
-            window.location.reload();
-        }
-    }
     const [price, setPrice] = useState("");
     const PriceInfo = async () => {
         let order = await fetch("http://localhost:5001/calculatePrice").then((response) => response.text());
@@ -50,10 +38,8 @@ function Pizzatype() {
         setPrice(order);
     }
     useEffect(() => {
-        OrderInfo();
         PriceInfo();
-    }, [])
-
+    }, [price])
 
     return (
         <Fragment>
@@ -82,7 +68,7 @@ function Pizzatype() {
 
             </div>
             <div className="order-container">
-                <NewlineText text={response} />
+                <OrderInformation />
             </div>
             <p className="priceDisplay">Total Cost: ${price}</p>
         </Fragment >

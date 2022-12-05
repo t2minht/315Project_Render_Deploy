@@ -4,20 +4,19 @@ import "../components/customer.css"
 
 
 function Topping() {
+    const [isLoading, setLoading] = useState(true);
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
         let order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
         order = order.replace(/\"/g, "");
         setResponse(order);
-        if (!window.location.hash) {
-            window.location = window.location + '#loaded';
-            window.location.reload();
-        }
     }
 
     useEffect(() => {
         OrderInfo();
-    }, [])
+        setLoading(false);
+    }, [response])
+    setTimeout(() => { console.log("Waiting"); }, 3000);
     let pizza = <Pizzabuilder />
     return (<Fragment><h1 className="pageTitle-topping">Select Toppings:</h1>
         <div className="grid-container-topping">

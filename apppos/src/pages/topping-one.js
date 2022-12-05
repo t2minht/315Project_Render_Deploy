@@ -2,8 +2,9 @@ import React, { useEffect, Fragment, useState } from "react";
 import Pizzabuilder from "./pizzabuilder";
 
 
-function ToppingOne() {
 
+function ToppingOne() {
+    const [isLoading, setLoading] = useState(true);
     const OneTopping = async () => {
         await fetch(`http://localhost:5001/createPizza/${1}/${"One_Topping"}`);
     }
@@ -16,12 +17,14 @@ function ToppingOne() {
 
     useEffect(() => {
         OneTopping();
-        OrderInfo();
-        if (!window.location.hash) {
-            window.location = window.location + '#loaded';
-            window.location.reload();
-        }
+
     }, [])
+    useEffect(() => {
+
+        OrderInfo();
+
+    }, [response])
+    setTimeout(() => { console.log("Waiting"); }, 3000);
     let pizza = <Pizzabuilder />
     return (<Fragment><h1 className="pageTitle-topping">Select Toppings:</h1>
         <div className="grid-container-topping">

@@ -41,20 +41,18 @@ const UndoCombo = async (e) => {
     window.location.reload();
 }
 function Sauce() {
+    const [isLoading, setLoading] = useState(true);
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
         let order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
         order = order.replace(/\"/g, "");
         setResponse(order);
-        if (!window.location.hash) {
-            window.location = window.location + '#loaded';
-            window.location.reload();
-        }
     }
 
     useEffect(() => {
         OrderInfo();
-    }, [])
+        setLoading(false);
+    }, [response])
     let pizza = <Pizzabuilder />
     return (<Fragment><h1 className="pageTitle-topping">Select Sauce and Crust:</h1>
         <div className="grid-container-sauces">

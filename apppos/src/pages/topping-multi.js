@@ -3,6 +3,7 @@ import Pizzabuilder from "./pizzabuilder";
 
 
 function ToppingMulti() {
+    const [isLoading, setLoading] = useState(true);
     const MultiTopping = async () => {
         await fetch(`http://localhost:5001/createPizza/${4}/${"Multi_Topping"}`);
     }
@@ -11,16 +12,15 @@ function ToppingMulti() {
         let order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
         order = order.replace(/\"/g, "");
         setResponse(order);
-        if (!window.location.hash) {
-            window.location = window.location + '#loaded';
-            window.location.reload();
-        }
     }
 
     useEffect(() => {
         MultiTopping();
-        OrderInfo();
+
     }, [])
+    useEffect(() => {
+        OrderInfo();
+    }, [response])
     let pizza = <Pizzabuilder />
     return (<Fragment><h1 className="pageTitle-topping">Select Toppings:</h1>
         <div className="grid-container-topping">

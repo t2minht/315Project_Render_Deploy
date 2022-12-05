@@ -1,4 +1,5 @@
 import React, { useEffect, Fragment, useState } from "react";
+import OrderInformation from "./orderinfo";
 
 const Finishorder = async (e) => {
     e.preventDefault();
@@ -9,24 +10,8 @@ const Finishorder = async (e) => {
     await fetch(`http://localhost:5001/cancelOrder`);
     window.location.assign("/locationguide");
 }
-function NewlineText(props) {
-    const text = props.text;
-    const newText = text.split('~').map(str => <p className="orderDisplay">{str}</p >);
-    return newText;
-}
 
 function Checkout() {
-    const [response, setResponse] = useState("");
-    const OrderInfo = async () => {
-        let order = await fetch("http://localhost:5001/checkoutScreen").then((response) => response.text());
-        order = order.replace(/\"/g, "");
-        order = order.replace(/\\/g, "");
-        setResponse(order);
-        if (!window.location.hash) {
-            window.location = window.location + '#loaded';
-            window.location.reload();
-        }
-    }
     const Addtoorder = async () => {
         await fetch(`http://localhost:5001/addToOrder`);
         await fetch(`http://localhost:5001/deletePizza`);
@@ -42,9 +27,12 @@ function Checkout() {
 
     useEffect(() => {
         Addtoorder();
-        OrderInfo();
-        PriceInfo();
     }, [])
+    useEffect(() => {
+        PriceInfo();
+    }, [price])
+
+    setTimeout(() => { console.log("Waiting"); }, 3000);
     return (<Fragment>
         <h1 className="pageTitle-checkout">Select Payment Type:</h1>
         <div className="grid-container-topping3">
@@ -63,7 +51,7 @@ function Checkout() {
         </div>
 
         <div className="order-container">
-            <NewlineText text={response} />
+            <OrderInformation />
         </div>
         <p className="priceDisplay">Total Cost: ${price}</p>
     </Fragment>);

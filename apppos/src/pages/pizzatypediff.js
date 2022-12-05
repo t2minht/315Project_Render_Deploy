@@ -1,4 +1,5 @@
 import React, { useEffect, Fragment, useState } from "react";
+import OrderInformation from "./orderinfo";
 const HandleClickPep = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/createSetPizza/${1}/${"Pepperoni"}`);
@@ -26,6 +27,7 @@ function NewlineText(props) {
 }
 
 function Pizzatypediff() {
+    const [isLoading, setLoading] = useState(true);
     const Refresh = async () => {
         await fetch(`http://localhost:5001/deletePizza`);
     }
@@ -37,10 +39,6 @@ function Pizzatypediff() {
         order = order.replace(/\//g, "");
         order = order.replace(/\\/g, "");
         setResponse(order);
-        if (!window.location.hash) {
-            window.location = window.location + '#loaded';
-            window.location.reload();
-        }
     }
     const [price, setPrice] = useState("");
     const PriceInfo = async () => {
@@ -53,11 +51,13 @@ function Pizzatypediff() {
 
     useEffect(() => {
         Refresh();
-        OrderInfo();
-        PriceInfo();
     }, [])
+    useEffect(() => {
+        PriceInfo();
 
+    }, [price])
 
+    setTimeout(() => { console.log("Waiting"); }, 3000);
     return (
         <Fragment>
             <h1 className="pageTitle">Select Pizza Type:</h1>
@@ -85,7 +85,7 @@ function Pizzatypediff() {
 
             </div>
             <div className="order-container">
-                <NewlineText text={response} />
+                <OrderInformation />
             </div>
             <p className="priceDisplay">Total Cost: ${price}</p>
         </Fragment >
