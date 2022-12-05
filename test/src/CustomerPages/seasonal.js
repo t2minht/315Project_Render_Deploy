@@ -57,7 +57,7 @@ function Seasonal() {
     useEffect(() => {
         OrderInfo();
 
-    }, [])
+    }, [response])
     setTimeout(() => { console.log("Waiting"); }, 3000);
     let pizza = <Pizzabuilder />
     return (<Fragment><h1 className="pageTitle-topping">Select Seasonal Toppings:</h1>
