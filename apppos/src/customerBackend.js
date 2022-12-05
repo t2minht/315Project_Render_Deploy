@@ -258,20 +258,18 @@ app.get('/checkoutScreen', function (req, res) {
         if (tempPizza.isCauly == "true") {
             price += 2.99;
         }
-        if (numDrinks > 0) {
-            completeOrder += "~Number of additional drinks: " + String(numDrinks);
-            price += (numDrinks * 2.45);
-        }
+
         completeOrder += ("~Price: $");
         price = price.toFixed(2);
         completeOrder += price;
 
     }
-    if (pizzaList.length == 0 && numDrinks > 0) {
-        completeOrder += numDrinks + "~Added Fountain Drinks: "
+
+    if (numDrinks > 0) {
+        completeOrder += "~" + numDrinks + " Added Fountain Drinks: "
         let price = (numDrinks * 2.45);
         price = price.toFixed(2);
-        completeOrder += String(price);
+        completeOrder += String(price) + " total";
     }
     //MIGHT have to stringify this
     res.json(completeOrder)
@@ -299,7 +297,7 @@ app.get('/currentPizza', function (req, res) {
         price += 2.99;
     }
     if (makePizza.isCombo == "true") {
-        thisPizza += "Drink Combo"
+        thisPizza += " With Added Fountain Drink. | "
         if (makePizza.numToppings == 0 || (makePizza.numToppings == 1 && makePizza.toppings[0] == "Pepperoni") ||
             (makePizza.toppings.length == 0 && makePizza.numToppings == 1)) {
             price += 1.20;
@@ -308,9 +306,7 @@ app.get('/currentPizza', function (req, res) {
             price += 2.45;
         }
     }
-    if (numDrinks > pizzaList.length) {
-        thisPizza += numDrinks - pizzaList.length + " Additional Drinks."
-    }
+
     thisPizza += ("Price: $");
     price = price.toFixed(2);
     thisPizza += price;
