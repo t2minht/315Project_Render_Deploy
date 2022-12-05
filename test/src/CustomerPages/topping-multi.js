@@ -1,10 +1,12 @@
 import React, { useEffect, Fragment, useState } from "react";
 import Pizzabuilder from "./pizzabuilder";
-import "../components/customer.css"
 
 
-function Topping() {
+function ToppingMulti() {
     const [isLoading, setLoading] = useState(true);
+    const MultiTopping = async () => {
+        await fetch(`http://localhost:5001/createPizza/${4}/${"Multi_Topping"}`);
+    }
     const [response, setResponse] = useState("");
     const OrderInfo = async () => {
         let order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
@@ -13,10 +15,12 @@ function Topping() {
     }
 
     useEffect(() => {
+        MultiTopping();
+
+    }, [])
+    useEffect(() => {
         OrderInfo();
-        setLoading(false);
     }, [response])
-    setTimeout(() => { console.log("Waiting"); }, 3000);
     let pizza = <Pizzabuilder />
     return (<Fragment><h1 className="pageTitle-topping">Select Toppings:</h1>
         <div className="grid-container-topping">
@@ -47,4 +51,4 @@ function Topping() {
     </Fragment>);
 }
 
-export default Topping;
+export default ToppingMulti;

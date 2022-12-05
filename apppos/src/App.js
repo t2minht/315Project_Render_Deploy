@@ -12,6 +12,7 @@ import Topping from "./pages/topping.js";
 import ToppingMulti from "./pages/topping-multi.js";
 import Veggies from "./pages/veggies.js";
 import LocationGuide from "./pages/locationguide"
+//import "./components/customer.css";
 
 function App() {
 
