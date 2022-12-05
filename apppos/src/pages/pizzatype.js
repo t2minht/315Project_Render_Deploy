@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment, useState } from "react";
-import "../components/pizzabuilder.css"
+//import "../components/pizzabuilder.css"
 
 const HandleClickPep = async (e) => {
     e.preventDefault();
@@ -37,6 +37,10 @@ function Pizzatype() {
         order = order.replace(/\//g, "");
         order = order.replace(/\\/g, "");
         setResponse(order);
+        if (!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
     }
     const [price, setPrice] = useState("");
     const PriceInfo = async () => {
