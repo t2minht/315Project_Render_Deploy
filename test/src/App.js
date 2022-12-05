@@ -19,6 +19,7 @@ import Seasonal from "./CustomerPages/seasonal.js";
 import Topping from "./CustomerPages/topping.js";
 import Veggies from "./CustomerPages/veggies.js";
 import Directions from "./CustomerPages/directions.js"
+import ServerHome from "./ServerPages/ServerHome.js"
 
 //const database = require("./database");
 
@@ -99,6 +100,9 @@ function App() {
             break
         case "/customer":
             component = <Pizzatype/>
+            break
+        case "/server":
+            component = <ServerHome/>
             break
         case "/server":
             component = <ManagerHome/>
