@@ -299,15 +299,17 @@ app.get('/currentPizza', function (req, res) {
         price += 2.99;
     }
     if (makePizza.isCombo == "true") {
-        thisPizza += "With added fountain drink "
+        thisPizza += "Drink Combo"
         if (makePizza.numToppings == 0 || (makePizza.numToppings == 1 && makePizza.toppings[0] == "Pepperoni") ||
             (makePizza.toppings.length == 0 && makePizza.numToppings == 1)) {
-            console.log("im good")
             price += 1.20;
         }
         else {
             price += 2.45;
         }
+    }
+    if (numDrinks > pizzaList.length) {
+        thisPizza += numDrinks - pizzaList.length + " Additional Drinks."
     }
     thisPizza += ("Price: $");
     price = price.toFixed(2);
