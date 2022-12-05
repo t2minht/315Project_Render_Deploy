@@ -304,6 +304,10 @@ app.get("/seasonalMenu", async (req, res) => {
     return res.json(seasonalReply.rows);
 })
 
+app.put("/serverCheckout", async (req, res) => {
+    
+})
+
 //exit gracefully
 process.on('SIGINT', function () {
     pool.end();

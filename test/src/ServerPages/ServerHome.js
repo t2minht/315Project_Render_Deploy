@@ -6,6 +6,8 @@ import "../components/style.css";
 
 function App() {
   const [order, sendOrder] = useState('');
+  // const translate = require('google-translate-api');
+  
   
   const [newOrderItem, addOrder] = useState('');
   const receiveOrder = (orderAddOn) => {
@@ -22,9 +24,19 @@ function App() {
 
   const checkout = async (order) => {
     // alert("order: " + order);
-    const response = await fetch("http://localhost:5001/serverCheckout");
-    const jsonData = response.json().jsonData;
-    alert(jsonData);
+    const response = await fetch("http://localhost:5001/serverCheckout", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        order: order
+      })
+    }).then(res => {
+
+    }).then(data => {
+      console.log(data)
+    })
   }
 
   return (
