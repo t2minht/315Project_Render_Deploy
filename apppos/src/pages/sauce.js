@@ -46,6 +46,10 @@ function Sauce() {
         let order = await fetch("http://localhost:5001/currentPizza").then((response) => response.text());
         order = order.replace(/\"/g, "");
         setResponse(order);
+        if (!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
     }
 
     useEffect(() => {

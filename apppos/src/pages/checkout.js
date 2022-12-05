@@ -22,6 +22,10 @@ function Checkout() {
         order = order.replace(/\"/g, "");
         order = order.replace(/\\/g, "");
         setResponse(order);
+        if (!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
     }
     const Addtoorder = async () => {
         await fetch(`http://localhost:5001/addToOrder`);

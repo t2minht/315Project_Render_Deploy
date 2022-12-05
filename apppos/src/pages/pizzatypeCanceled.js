@@ -36,6 +36,10 @@ function PizzatypeCancel() {
         order = order.replace(/\//g, "");
         order = order.replace(/\\/g, "");
         setResponse(order);
+        if (!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
     }
 
     const [price, setPrice] = useState("");

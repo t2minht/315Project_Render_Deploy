@@ -17,6 +17,10 @@ function ToppingOne() {
     useEffect(() => {
         OneTopping();
         OrderInfo();
+        if (!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
     }, [])
     let pizza = <Pizzabuilder />
     return (<Fragment><h1 className="pageTitle-topping">Select Toppings:</h1>
