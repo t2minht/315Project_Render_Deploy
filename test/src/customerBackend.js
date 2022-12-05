@@ -154,8 +154,9 @@ app.get('/calculatePrice', function (req, res) {
             price += 2.45;
         }
         else if (currentPizza.numToppings == 0 || (currentPizza.numToppings == 1 && currentPizza.toppings[0] == 'Pepperoni')
+            || (currentPizza.numToppings == 1 && currentPizza.toppings.length == 0)
             || (currentPizza.numToppings == 1 && currentPizza.toppings.length == 0)) {
-            if (currentPizza.isCombo == "true") {
+            if (currentPizza.isCombo == "true" == "true") {
                 price += 7.99;
             }
             else {
