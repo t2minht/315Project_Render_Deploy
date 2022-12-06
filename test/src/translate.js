@@ -9,8 +9,9 @@ const translate = new Translate({
     projectId: CREDENTIALS.project_id,
 })
 
-async function translateText(text, targetLanguage){
+export default async function translateText(text, targetLanguage){
     try {
+        console.log(`text ${text} target lang ${targetLanguage}`);
         let [response] = await translate.translate(text, targetLanguage);
         return response;
     }catch (error) {
@@ -21,8 +22,8 @@ async function translateText(text, targetLanguage){
 
 const languageCodes = {'English':'en', 'Spanish':'es', 'Italian':'it', 'Chinese':'zh-CN', 'German':'de'};
 
-translateText("Hello", "es").then(res => console.log(res));
+//translateText("Hello", "es").then(res => console.log(res));
 
 //export default {languageCodes, translateText}
 //module.exports.languageCodes = languageCodes;
-module.exports = {translateText, languageCodes}
+//module.exports = {translateText, languageCodes}

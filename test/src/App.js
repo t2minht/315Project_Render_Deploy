@@ -22,12 +22,45 @@ import Veggies from "./CustomerPages/veggies.js";
 import Directions from "./CustomerPages/directions.js"
 import jwt_decode from "jwt-decode"
 import NavbarAuth from "./auth/navbarAuth.js";
+//import LangSelect from "./components/langSelect.js";
 //import { response } from "express";
-
+import translateText from "./translate.js";
 //const database = require("./database");
+
+// function LangSelect(props) {
+    
+
+//     const showDropdown = () =>{
+//         setShow(true);
+//     }
+
+//     const hideDropdown = () => {
+//         setShow(false);
+//     }
+
+//     const handleClick = (e) => {
+//         e.preventDefault();
+//         setLang(e.target.value);
+//         console.log("here");
+//         console.log(e.target.value);
+//     }
+
+//     let langs = {'English':'en', 'Spanish':'es', 'Italian':'it', 'Chinese':'zh-CN', 'German':'de'};
+//     return ( 
+//         <div className='dropdown'>
+//             Choose Language
+
+//             {show && <select onMouseEnter={showDropdown} onChange={(e) => handleClick(e)}>
+//                 {Object.keys(langs).map((lang, val) => <option>{lang}</option>)}
+//             </select>}
+//         </div> 
+//     );
+// }
 
 
 function App() {
+    const [show, setShow] = useState(true);
+    const [language, setLanguage] = useState('en');
     const [ user, setUser ] = useState({});
     const [inventoryTable, setInventoryTable] = useState([1,1,1,1,1,1,1,1,1]);
     const [restockTable, setRestockTable] = useState([]);
@@ -36,6 +69,9 @@ function App() {
     const [togetherTable, setTogetherTable] = useState([]);
     const [salesTrendsTable, setSalesTrendsTable] = useState([]);
     const [employeeTable, setEmployeeTable] = useState([]);
+    
+
+    const langs = {'English':'en', 'Spanish':'es', 'Italian':'it', 'Chinese':'zh-CN', 'German':'de'};
 
     function handleCallbackResponse(response){
         console.log("Encoded JWT Id token " + response.credential);
@@ -76,7 +112,17 @@ function App() {
 
     function handleSignOut(e) {
         setUser({});
+        console.log("signed out");
         document.getElementById("signInDiv").hidden = false;
+    }
+
+
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        setLanguage(langs[e.target.value]);
+        console.log("here");
+        console.log(e.target.value);
     }
 
     const invColumn = [
@@ -143,7 +189,7 @@ function App() {
             component = <ManagerHome/>
             break
         case "/menu":
-            component = <Menu data={menuTable} column={menuColumn}/>
+            component = <Menu data={menuTable} column={menuColumn} lang={language}/>
             break
         case "/restock":
             component = <Restock data={inventoryTable} column={invColumn}/>
@@ -197,6 +243,13 @@ function App() {
     return (
         <React.Fragment>
             <div id="signInDiv"></div>
+            <div className='dropdown'>
+                Choose Language
+
+                {show && <select onChange={(e) => handleClick(e)}>
+                    {Object.keys(langs).map((lang, val) => <option>{lang}</option>)}
+                </select>}
+            </div> 
             {Object.keys(user).length != 0 &&  <button onClick={(e) => handleSignOut(e)}>Sign Out</button>}
             {user && <h3>{user.name}</h3>}
             {component}
