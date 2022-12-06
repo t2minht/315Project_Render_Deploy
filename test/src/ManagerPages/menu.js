@@ -62,13 +62,13 @@ function Menu(props) {
             <Navbar/>
             <div class='heading'>
                 <h1>Menu</h1>
-                <p1>Add new seasonal ingredients, add a new item to the menu, or change the price of a current menu item</p1>
+                <p>Add new seasonal ingredients, add a new item to the menu, or change the price of a current menu item</p>
                 <hr></hr>
             </div>
             <Table data={menu} column={props.column}/><br></br><br></br>
             <div class='new-ingr'>
                 <h1>Add a New Ingredient</h1>
-                <p1>Add a new ingredient to the inventory by entering the name, amount to add to the inventory, and the cost of the new ingredient</p1><br></br><br></br>
+                <p>Add a new ingredient to the inventory by entering the name, amount to add to the inventory, and the cost of the new ingredient</p><br></br><br></br>
                 <form onSubmit={getMenu}>
                     <label for="ingrName">Ingredient Name:</label>
                     <input type="text" className='form-control1' id='ingrName' value={ingName} onChange={e => setIngName(e.target.value)}/>
@@ -83,7 +83,7 @@ function Menu(props) {
             <hr></hr>
             <div class='new-item'>
                 <h1>Add a New Item</h1>
-                <p1>Add a new item to the menu by entering the item's ID, name, and price</p1>
+                <p>Add a new item to the menu by entering the item's ID, name, and price</p>
                 <br></br><br></br>
                 <form>
                     <label for="itemId">Item ID:</label>
@@ -99,7 +99,7 @@ function Menu(props) {
             <hr></hr>
             <div class='price-change'>
                 <h1>Change a price</h1>
-                <p1>Change the price of an item currently on the menu from the table above</p1>
+                <p>Change the price of an item currently on the menu from the table above</p>
                 <br></br><br></br>
                 <form>
                     <label for="changeID">Item ID:</label>

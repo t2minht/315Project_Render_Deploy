@@ -43,7 +43,7 @@ function Employee(props) {
         <Table data={employee} column={props.column}/> 
         <br></br><br></br>
         <h1>Add a New Employee</h1>
-        <p1>Add a new employee to the staff by entering the id and the name of the new employee</p1><br></br><br></br>
+        <p>Add a new employee to the staff by entering the id and the name of the new employee</p><br></br><br></br>
         <form onSubmit={getEmployee}>
                 <label for="id">Employee ID:</label>
                 <input type="text" className='form-control1' id='id' value={id} onChange={e => setId(e.target.value)}/>

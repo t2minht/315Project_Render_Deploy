@@ -26,7 +26,7 @@ function RestockReport(props) {
             <Navbar/>
             <div class='heading'>
                 <h1>Restock Report</h1>
-                <p1>View past restocks</p1>
+                <p>View past restocks</p>
                 <hr></hr>
             </div>
             <Table data={restockTable} column={props.column}></Table> 
