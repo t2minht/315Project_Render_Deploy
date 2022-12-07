@@ -12,7 +12,30 @@ function Navbar() {
             <li>
               <CustomLink href='/server'>Server</CustomLink>
             </li>
+          
         </ul>
+        
+        <div class='home-body'>
+          
+          <br></br>
+
+        </div>
+        <div class = "home-image">
+            <img src={require('./images/spinLogo.png')} class ="home-logo"/>
+            <div class='home-text'>
+              <h1 style={{ color: 'rgb(253,219,58)', fontSize: '100px'}}>Pizza<br></br>Your<br></br>Way</h1>
+            </div>
+        </div>
+        <div class ='home-body'>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          
+        </div>
+
     </nav> );
 }
 

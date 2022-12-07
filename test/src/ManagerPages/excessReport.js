@@ -5,8 +5,8 @@ const {Url} = require('url');
 
 function ExcessReport(props) {
     const [excessTable, setExcessTable] = useState([1,1,1]);
-    const [beginDate, setBeginDate] = useState('Start');
-    const [endDate, setEndDate] = useState('End');
+    const [beginDate, setBeginDate] = useState('YYYY-MM-DD');
+    const [endDate, setEndDate] = useState('YYYY-MM-DD');
     
 
     const getExcessData = async (e) => {
@@ -43,13 +43,25 @@ function ExcessReport(props) {
     return ( 
         <React.Fragment>
             <Navbar/>
-            <h1>Enter start and end date (YYYY-MM-DD)</h1>
-            <form>
-                <input type="text" className='form-control1' value={beginDate} onChange={e => setBeginDate(e.target.value)}/>
-                <input type="text" className='form-control1' value={endDate} onChange={e => setEndDate(e.target.value)}/>
-                <button onClick={getExcessData}>Generate Report</button>
-            </form>
+            <div class='heading'>
+                <h1>Excess Report</h1>
+                <p>Veiw the items in the inventory that were excess over a time period</p>
+                <hr></hr>
+                <br></br><br></br>
+            </div>
             <Table data={excessTable} column={props.column}></Table> 
+            <br></br><br></br>
+            <h1>Generate Report</h1>
+            <p>Enter start and end date for desired time period.</p>
+            <br></br>
+            <form>
+                <label for="start">Start Date:</label>
+                <input type="text" className='form-control1' id='start' value={beginDate} onChange={e => setBeginDate(e.target.value)}/>
+                <label for="end">End Date:</label>
+                <input type="text" className='form-control1' id='end' value={endDate} onChange={e => setEndDate(e.target.value)}/>
+                <br></br><br></br><br></br>
+                <button onClick={getExcessData} class='button'>Generate Report</button>
+            </form>
         </React.Fragment>
         
     );

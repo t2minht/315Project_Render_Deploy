@@ -6,8 +6,8 @@ import Navbar from './navbar';
 function Trends(props) {
     console.log(window.location.pathname);
     const [trendsTable, setTrendsTable] = useState([1,1,1]);
-    const [beginDate, setBeginDate] = useState('Start');
-    const [endDate, setEndDate] = useState('End');
+    const [beginDate, setBeginDate] = useState('MM-DD-YYYY');
+    const [endDate, setEndDate] = useState('MM-DD-YYYY');
 
     const getTrendsData = async (e) => {
         e.preventDefault();
@@ -99,21 +99,22 @@ function Trends(props) {
             <Navbar/>
             <div class="heading">
                 <h1>Sales Trends</h1>
-                <h2>Generate itemized sales report over period of time</h2>
+                <p>Generate itemized sales report over period of time</p>
+                <hr></hr>
             </div>
-            <div class="page-body">
-                <h1 class='enter-date'>Enter start and end date (MM-DD-YYYY)</h1>
-                <form>
-                <label for="beginDate">Start Date:</label><br></br>
-                <input type="text" className='form-control1' id='beginDate'  value={beginDate} onChange={e => setBeginDate(e.target.value)}/><br></br>
-                <label for="endDate">End Date:</label><br></br>
+            <Table data={trendsTable} column={props.column}></Table>
+            <br></br><br></br>
+            <h1>Generate Report Over Specific Time Period</h1>
+            <p>Enter a start and end date for the period to be searched</p><br></br>
+            <form>
+                <label for="beginDate">Start Date:</label>
+                <input type="text" className='form-control1' id='beginDate'  value={beginDate} onChange={e => setBeginDate(e.target.value)}/>
+                <label for="endDate">End Date:</label>
                 <input type="text" className='form-control1' id='endDate' value={endDate} onChange={e => setEndDate(e.target.value)}/>
-                <div class='submit-container'>
-                    <button onClick={getTrendsData} className='submit'>Generate Report</button>
-                    <Table data={trendsTable} column={props.column}></Table> 
-                </div>
-                </form> 
-            </div>
+                <br></br><br></br><br></br>
+                <button onClick={getTrendsData} class='button'>Generate Report</button>
+                <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+            </form> 
         
         </React.Fragment>
     );
