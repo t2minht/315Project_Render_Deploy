@@ -21,6 +21,7 @@ import Top18 from "../PizzaToppings/Red_Peppers.png";
 import Top19 from "../PizzaToppings/salami.png";
 import Top20 from "../PizzaToppings/Smoked_Chicken.png";
 import Top21 from "../PizzaToppings/spinach.png";
+import LOGO from "../PizzaToppings/logo.png";
 import "../components/pizzabuilder.css"
 
 
@@ -129,6 +130,7 @@ function Pizzabuilder() {
                 <img alt="topping" id="Top20" className="top20" src={Top20} />
                 <img alt="topping" id="Top21" className="top21" src={Top21} />
             </div>
+            <img alt="Spin N Stone Logo" className="logo" src={LOGO} />
         </>
     );
 }

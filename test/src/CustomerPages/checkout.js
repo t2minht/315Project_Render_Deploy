@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment, useState } from "react";
 import OrderInformation from "./orderinfo";
-
+import LOGO from "../PizzaToppings/logo.png";
 const Finishorder = async (e) => {
     e.preventDefault();
     const response =
@@ -34,6 +34,7 @@ function Checkout() {
 
     setTimeout(() => { console.log("Waiting"); }, 3000);
     return (<Fragment>
+        <img alt="Spin N Stone Logo" className="logo1" src={LOGO} />
         <h1 className="pageTitle-checkout">Select Payment Type:</h1>
         <div className="grid-container-topping3">
             <button className="grid-item-topping3" onClick={Finishorder}>Cash</button>

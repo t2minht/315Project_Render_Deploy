@@ -14,6 +14,7 @@ app.listen(5001, () => {
 })
 
 // Create pool
+/** Const to creat our pool for communicating with the database */
 const pool = new Pool({
     user: process.env.PSQL_USER,
     host: process.env.PSQL_HOST,
@@ -29,18 +30,23 @@ const menu = []
 const transactionHistory = []
 const salesTogether1 = []
 const drinks = []
-
+/** The get inventory function will get the inventory from the SQL database */
 app.get("/inventory", async (req, res) => {
     let inv = await pool.query('SELECT * FROM inventory');
     //inventory = inv.rows;
     res.json(inv.rows);
 });
 
+/** The get employee report function will get the table of employees from the SQL database and sort them by total sales.*/
 app.get("/employeeReport", async (req, res) => {
     let inv = await pool.query('SELECT * FROM employee ORDER BY totalsales DESC');
     //inventory = inv.rows;
     res.json(inv.rows);
 });
+
+/** This function will select any item from the ivnentory that matches the passed in id 
+ * @param {string} x - Passed in ID.
+*/
 
 app.get("/id/:x", async (req, res) => {
     let inv = await pool.query('SELECT * FROM inventory WHERE id = ' + req.params.x);
@@ -48,12 +54,18 @@ app.get("/id/:x", async (req, res) => {
     res.json(inv.rows);
 });
 
+/** This function will select all drinks that match the given drink name. 
+ * @param {string} itemName - Passed in drink name.
+*/
 app.get("/drinks/:itemName", async (req, res) => {
     let inv = await pool.query("SELECT id FROM drinks WHERE drinkname = '" + req.params.itemName + "'");
     //inventory = inv.rows;
     res.json(inv.rows);
 });
 
+/** This function will return the id of the pizza you input
+ * @param {string} itemName - Passed in Pizza Name.
+*/
 app.get("/pizza/:itemName", async (req, res) => {
 
     let inv = await pool.query("SELECT id FROM pizza WHERE pizzaname = '" + req.params.itemName.replace("_", " ") + "'");
@@ -61,18 +73,23 @@ app.get("/pizza/:itemName", async (req, res) => {
     res.json(inv.rows);
 });
 
+/** This function will return the entire menu. */
 app.get("/menu", async (req, res) => {
     let inv = await pool.query('SELECT * FROM menu');
     res.json(inv.rows);
 
 });
-
+/** This function will return a list of all the items that need restocking */
 app.get("/restockReport", async (req, res) => {
     let inv = await pool.query('SELECT * FROM inventory WHERE count < 100');
     res.json(inv.rows);
 
 });
 
+/** This function will generate the excess report between two given dates 
+ * @param {date} beginDate - Passed in first day.
+ * @param {date} endDate - Passed in final day
+*/
 app.get("/excessReport/:beginDate/:endDate", async (req, res) => {
     //console.log(req.params);
     let inv = await pool.query("SELECT id FROM customerinfo WHERE orderdate BETWEEN '" + req.params.beginDate + "' and '" + req.params.endDate + "'");
@@ -80,7 +97,7 @@ app.get("/excessReport/:beginDate/:endDate", async (req, res) => {
 
 });
 
-
+/** This function will add a new ingredient to our inventory database.*/
 app.post("/addIngredient", async (req, res) => {
     console.log(inventory.length);
     let inv = await pool.query("INSERT INTO inventory VALUES (" + req.body.num + ", '" + req.body.name + "', " + "'Seasonal', " + req.body.count + ", " + req.body.cost + ", 0)");
@@ -89,7 +106,7 @@ app.post("/addIngredient", async (req, res) => {
 });
 //TODO: GATHER TEXT INPUTS FOR ADDING MENU ITEMS TO THE MENU, ITEMS TO INVENTORY, AND SEASONAL ITEMS, AND TO CHANGE PRICE
 
-
+/** This function will add a new item to our menu*/
 app.post("/addItem", async (req, res) => {
     let inv = await pool.query("INSERT INTO menu VALUES(" + req.body.id + ",'" + req.body.name + "'," + req.body.price + ")");
     res.json(inv.rows[0]);
@@ -97,18 +114,19 @@ app.post("/addItem", async (req, res) => {
 });
 
 app.post("/addEmployee", async (req, res) => {
-    let inv = await pool.query("INSERT INTO employee VALUES(" + req.body.id+ ", '" + req.body.employeename + "', " + "0, " + "0)");
+    let inv = await pool.query("INSERT INTO employee VALUES(" + req.body.id + ", '" + req.body.employeename + "', " + "0, " + "0)");
     res.json(inv.rows[0]);
-    
+
 });
 
-
+/** This function will update the price of a specific item */
 app.put("/updatePrice", async (req, res) => {
     let inv = await pool.query("UPDATE menu SET price = " + req.body.newPrice + " WHERE id =" + req.body.id);
     res.json(inv.rows[0]);
 
 });
 
+/** This function will update the inventory of a specific item */
 app.put("/updateAmount", async (req, res) => {
     var id1 = req.body.id;
     var newAmount = req.body.newAmount;
@@ -118,6 +136,10 @@ app.put("/updateAmount", async (req, res) => {
 
 });
 
+/** This function will generate the the best combination sales report between two given dates 
+ * @param {date} beginDate - Passed in first day.
+ * @param {date} endDate - Passed in final day.
+*/
 app.get("/salesTogether/:beginDate/:endDate", async (req, res) => {
     let inv = await pool.query("SELECT customerinfo.id,customerinfo.orderdate,pizza.pizzaname,drinks.drinkname FROM customerinfo INNER JOIN drinks ON customerinfo.id=drinks.id INNER JOIN pizza ON customerinfo.id=pizza.id WHERE orderdate BETWEEN '" + req.params.beginDate + "' and '" + req.params.endDate + "'");
     res.json(inv.rows);
@@ -139,6 +161,7 @@ let pizza = {
 var pizzaList = [];
 var numDrinks = 0;
 
+/** This function will return the toppings on your pizza */
 app.get('/currentToppings', function (req, res) {
     var allToppings = "";
     for (let i = 0; i < pizza.currToppings; i++) {
@@ -148,6 +171,10 @@ app.get('/currentToppings', function (req, res) {
     res.json(allToppings);
 });
 
+/** This function will create a pizza based on the passed in parameter, 
+ * @param {string} numToppings - The number of toppings based on pizza type
+ * @param {string} pizzaName - Passed in pizza type
+*/
 app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
     newPizzaName = req.params.pizzaName;
     pizza.pizzaName = newPizzaName;
@@ -163,6 +190,10 @@ app.get('/createPizza/:numToppings/:pizzaName', function (req, res) {
     res.json(JSON.stringify(true));
 });
 
+/** This function will create one of the two set pizzas (pepperoni or cheese) quickly
+ * @param {string} numToppings - The number of toppings based on pizza type
+ * @param {string} pizzaName - Passed in pizza type
+*/
 app.get('/createSetPizza/:numToppings/:pizzaName', function (req, res) {
     console.log("CreatingPizza")
     newPizzaName = JSON.stringify(req.params.pizzaName);
@@ -179,6 +210,9 @@ app.get('/createSetPizza/:numToppings/:pizzaName', function (req, res) {
     res.json(JSON.stringify(true));
 });
 
+/** This function will add a specific topping on your pizza 
+ * @param {string} toppingName - the passed in topping
+*/
 app.get('/addTopping/:toppingName', function (req, res) {
 
     if (pizza.currToppings == pizza.numToppings) {
@@ -207,6 +241,7 @@ app.get('/addTopping/:toppingName', function (req, res) {
     }
 });
 
+/** This function will remove whatever the last topping added to your pizza was*/
 app.get('/removeLastTopping', function (req, res) {
     if (pizza.currToppings != 0) {
         pizza.currToppings--;
@@ -219,6 +254,7 @@ app.get('/removeLastTopping', function (req, res) {
     res.json(JSON.stringify(true));
 });
 
+/** This function will add the pizza to your order, essentially adding an item to your cart */
 app.get('/addToOrder', function (req, res) {
     const pushPizza = structuredClone(pizza);
     if (pizza.pizzaName != "") {
@@ -228,27 +264,34 @@ app.get('/addToOrder', function (req, res) {
     res.json(JSON.stringify(true));
 });
 
+/** This function will change the sauce on your pizza if you wish to do so
+ * @param {string} sauceName - Passed in desired sauce
+*/
 app.get('/addSauce/:sauceName', function (req, res) {
     pizza.sauce = req.params.sauceName;
     console.log(pizza.sauce);
     res.json(JSON.stringify(true));
 });
 
+/** This function will change the pizza crust from standard dough to cauliflower (or back)*/
 app.get('/crustType/:crustToggle', function (req, res) {
     pizza.isCauly = req.params.crustToggle;
     res.json(JSON.stringify(true));
 });
 
+/** This function will set your meal to a combo (includes drink)*/
 app.get('/comboMeal/:thisCombo', function (req, res) {
     pizza.isCombo = req.params.thisCombo;
     res.json("true");
 });
 
+/** This function will allow you to add a drink seperately from a pizza (extra drink, drink but no pizza)*/
 app.get("/soloDrink", function (req, res) {
     numDrinks++;
     res.json("true");
 });
 
+/** This function will calculate the price of the entire order*/
 app.get('/calculatePrice', function (req, res) {
     var price = 0;
     for (let i = 0; i < pizzaList.length; i++) {
@@ -290,17 +333,21 @@ app.get('/calculatePrice', function (req, res) {
     res.json(price);
 });
 
+/** This function will cancel your order*/
 app.get('/cancelOrder', function (req, res) {
     refreshPizza();
     pizzaList = [];
     numDrinks = 0;
     res.json(true);
 });
+
+/** This function will remove the last added pizza*/
 app.get('/clearSelection', function (req, res) {
     pizzaList.pop();
     res.json(true);
 });
 
+/** This function will delete all saved variables for the current pizza (used for frontend)*/
 app.get('/deletePizza', function (req, res) {
     pizza.pizzaName = "";
     pizza.sauce = 'Red';
@@ -313,6 +360,7 @@ app.get('/deletePizza', function (req, res) {
     pizza.price = 0;
 });
 
+/** This function will delete all saved variables for the current pizza (used for backend) */
 function refreshPizza() {
     pizza.pizzaName = "";
     pizza.sauce = 'Red';
@@ -325,6 +373,7 @@ function refreshPizza() {
     pizza.price = 0;
 }
 
+/** This function will generate all your order details in the checkout screen.*/
 app.get('/checkoutScreen', function (req, res) {
     var completeOrder = "";
     completeOrder += "Order Info: ";
@@ -378,6 +427,7 @@ app.get('/checkoutScreen', function (req, res) {
     res.json(completeOrder)
 });
 
+/** This function return the current pizza info*/
 app.get('/currentPizza', function (req, res) {
     let thisPizza = 'Pizza Info: ';
     makePizza = pizza;
@@ -416,6 +466,7 @@ app.get('/currentPizza', function (req, res) {
     res.json(thisPizza);
 });
 
+/** This function will communicate and update inventory on the database*/
 app.put("/checkoutServ", async (req, res) => {
 
     var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'House_Blend\'');
@@ -435,72 +486,13 @@ app.put("/checkoutServ", async (req, res) => {
     res.json(serverReply.rows);
 })
 
-app.put("/serverCheckout", async (req, res) => {
-    var orders = req.body.order.split("|");
-    for (let i = 0; i < orders.length; i++) {
-        orders[i] = orders[i].split("*");
-    }
-    for (let i = 0; i < orders.length; i++) {
-        let s = orders[i]
-        let type = s[0];
-        serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'House_Blend\'');
-        if (type === "Cheese" || type === "Pepperoni") {
-            if (s[1] == "Red Sauce")
-                var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'\'');
-            else if (s[1] == "White Sauce")
-                var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'White\'');
-            else if (s[1] == "Zesty Red Sauce")
-                var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Zesty_Red\'');
-            if (s[3] === "no_drink") {
-                s.pop();
-            } else {
-                var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'' + s[3] + '_Cups\'');
-            }
-            if (s[2] === "Regular Crust") {
-                serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Dough\'')
-            } else {
-                serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Cauliflour\'')
-            }
-            if (type === "Cheese") {
-            } else {
-                serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Pepperoni\'')
-            }
-        } else if (type === "Drink") {
-            var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'' + s[3] + '_Cups\'');
-        } else if (type !== "") {
-            if (s[1] == "Red Sauce")
-                var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'\'');
-            else if (s[1] == "White Sauce")
-                var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'White\'');
-            else if (s[1] == "Zesty Red Sauce")
-                var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Zesty_Red\'');
-            if (s[3] !== "undefined") {
-                s[3] = s[3].split(",");
-                // s[3].splice(0,0,<p>&emsp;&emsp;Toppings:</p>);
-                for (let j = 1; j < s[3].length; j++) {
-                    // s[3][j] = <p>&emsp;&emsp;&emsp; {s[3][j]}</p>;
-                    s[3] = s[3][j].replace(" ", "_")
-                    var serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'' + s[3][j] + '\'');
-                }
-            } else {
-                delete s[3];
-            }
-            if (s[2] === "Regular Crust") {
-                serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Dough\'')
-            } else {
-                serverReply = await pool.query('UPDATE inventory SET count = count-1 WHERE name = \'Cauliflour\'')
-            }
-        }
-
-    }
-})
-
-
+/** This function will Display the seasonal menu */
 app.get("/seasonalMenu", async (req, res) => {
     var seasonalReply = await pool.query('SELECT name FROM INVENTORY WHERE id > 48');
     return res.json(seasonalReply.rows);
 })
 
+/** Exit gracefully */
 //exit gracefully
 process.on('SIGINT', function () {
     pool.end();
