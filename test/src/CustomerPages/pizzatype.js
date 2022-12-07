@@ -1,5 +1,7 @@
 import React, { useEffect, Fragment, useState } from "react";
 //import "../components/pizzabuilder.css"
+import LOGO from "../PizzaToppings/logo.png";
+
 import OrderInformation from "./orderinfo";
 const HandleClickPep = async (e) => {
     e.preventDefault();
@@ -43,6 +45,7 @@ function Pizzatype() {
 
     return (
         <Fragment>
+            <img alt="Spin N Stone Logo" className="logo1" src={LOGO} />
             <h1 className="pageTitle">Select Pizza Type:</h1>
             <div className="grid-container">
                 <button className="grid-item" onClick={HandleClickPep}>Pepperoni Pizza</button>
@@ -71,6 +74,7 @@ function Pizzatype() {
                 <OrderInformation />
             </div>
             <p className="priceDisplay">Total Cost: ${price}</p>
+
         </Fragment >
     );
 }

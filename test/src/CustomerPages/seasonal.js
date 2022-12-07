@@ -32,7 +32,10 @@ function Seasonal() {
             let myDiv = document.getElementById("seasonalButtons");
             let button = document.createElement('BUTTON');
             button.className = "grid-item-topping3";
-            let text = document.createTextNode(myArray[i]);
+            let text1 = myArray[i]
+            text1 = text1.replace(/\_/g, " ");
+            let text = document.createTextNode(text1);
+
             button.appendChild(text);
             button.id = myArray[i];
             button.onclick = async function (e) {
