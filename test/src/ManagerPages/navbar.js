@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 function Navbar() {
     
     return ( <nav className='nav'>
-        <a href="/" className='site-title'>Log Out</a>
         <ul>
+            <li>
+              <CustomLink href="/" className='site-title'>Log Out</CustomLink> 
+            </li>
             <li>
               <CustomLink href="/manager">Manager Home</CustomLink> 
             </li>
@@ -29,7 +31,7 @@ function Navbar() {
               <CustomLink href='/salesTogether'>Sales Together</CustomLink>
             </li>
             <li>
-              <CustomLink href='/employeeReport'>Employee Report</CustomLink>
+              <CustomLink href='/employeeReport'>Manage Staff</CustomLink>
             </li>
         </ul>
     </nav> );
