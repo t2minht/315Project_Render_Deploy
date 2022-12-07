@@ -20,11 +20,12 @@ function Inventory(props) {
         <Navbar/>    
         <div class='heading'>
             <h1>Inventory</h1>
-            <p1>View the current inventory</p1>
+            <p>View the current inventory</p>
             <hr></hr>
         </div> 
 
          <Table data={inventory} column={props.column}/> 
+         <br></br><br></br><br></br>
 
         </React.Fragment>
          

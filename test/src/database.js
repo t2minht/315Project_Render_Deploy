@@ -96,6 +96,13 @@ app.post("/addItem", async (req, res) => {
 
 });
 
+app.post("/addEmployee", async (req, res) => {
+    let inv = await pool.query("INSERT INTO employee VALUES(" + req.body.id+ ", '" + req.body.employeename + "', " + "0, " + "0)");
+    res.json(inv.rows[0]);
+    
+});
+
+
 app.put("/updatePrice", async (req, res) => {
     let inv = await pool.query("UPDATE menu SET price = " + req.body.newPrice + " WHERE id =" + req.body.id);
     res.json(inv.rows[0]);
