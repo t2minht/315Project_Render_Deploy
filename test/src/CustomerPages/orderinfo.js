@@ -24,6 +24,7 @@ function OrderInformation() {
         <Fragment>
             <div id="orderplz"> <NewlineText text={response} /></div>
 
+
         </Fragment >
     );
 }

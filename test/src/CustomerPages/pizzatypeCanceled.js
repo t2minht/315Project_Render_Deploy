@@ -1,5 +1,7 @@
 import React, { useEffect, Fragment, useState } from "react";
 import OrderInformation from "./orderinfo";
+import LOGO from "../PizzaToppings/logo.png";
+
 const HandleClickPep = async (e) => {
     e.preventDefault();
     await fetch(`http://localhost:5001/createSetPizza/${1}/${"Pepperoni"}`);
@@ -60,6 +62,7 @@ function PizzatypeCancel() {
 
     return (
         <Fragment>
+            <img alt="Spin N Stone Logo" className="logo1" src={LOGO} />
             <h1 className="pageTitle">Select Pizza Type:</h1>
             <div className="grid-container">
                 <button className="grid-item" onClick={HandleClickPep}>Pepperoni Pizza</button>

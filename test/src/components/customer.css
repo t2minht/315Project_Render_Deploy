@@ -6,6 +6,9 @@
     column-gap: 50px;
     row-gap: 100px;
     grid-template-columns: auto auto;
+    background-color: #52575D;
+    border: 10px solid #52575D;
+    border-radius: 10px;
 }
 
 .grid-item {
@@ -14,8 +17,15 @@
     padding: 20px;
     font-size: 30px;
     border: 0px;
+    background-color: #41444B;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #F0EAD6;
+    text-align: center;
 
 }
+
+
 
 .grid-container-topping {
     position: absolute;
@@ -25,7 +35,12 @@
     column-gap: 50px;
     row-gap: 100px;
     grid-template-columns: auto auto;
+    background-color: #52575D;
+    border: 10px solid #52575D;
+    border-radius: 10px;
 }
+
+
 
 .grid-item-topping {
     width: 400px;
@@ -33,6 +48,13 @@
     padding: 20px;
     font-size: 30px;
     border: 0px;
+    background-color: #41444B;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #F0EAD6;
+    text-align: center;
+
+
 }
 
 .grid-container-toppingitems {
@@ -43,14 +65,24 @@
     column-gap: 50px;
     row-gap: 100px;
     grid-template-columns: auto auto auto;
+    background-color: #52575D;
+    border: 10px solid #52575D;
+    border-radius: 10px;
+
 }
 
 .grid-item-toppingitems {
     width: 300px;
     height: 100px;
     padding: 20px;
-    font-size: 25px;
+    font-size: 27px;
     border: 0px;
+    border: 0px;
+    background-color: #41444B;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #F0EAD6;
+    text-align: center;
 }
 
 .grid-container-topping3 {
@@ -61,6 +93,10 @@
     column-gap: 50px;
     row-gap: 50px;
     grid-template-columns: auto auto auto;
+    background-color: #52575D;
+    border: 10px solid #52575D;
+    border-radius: 10px;
+
 }
 
 .grid-item-topping3 {
@@ -69,6 +105,11 @@
     padding: 15px;
     font-size: 25px;
     border: 0px;
+    background-color: #41444B;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #F0EAD6;
+    text-align: center;
 }
 
 .grid-container-checkout {
@@ -79,16 +120,22 @@
     column-gap: 50px;
     row-gap: 50px;
     grid-template-columns: auto auto auto;
+    background-color: #52575D;
+    border: 10px solid #52575D;
+    border-radius: 10px;
 }
 
 .grid-container-sauces {
     position: absolute;
     top: 26%;
-    right: 15%;
+    right: 4%;
     display: grid;
-    column-gap: 150px;
+    column-gap: 50px;
     row-gap: 50px;
-    grid-template-columns: 200px 200px 200px;
+    grid-template-columns: auto auto auto;
+    background-color: #52575D;
+    border: 10px solid #52575D;
+    border-radius: 10px;
 }
 
 .grid-item-sauce {
@@ -98,12 +145,18 @@
     margin-bottom: 25px;
     font-size: 25px;
     border: 0px;
+    background-color: #41444B;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #F0EAD6;
+    text-align: center;
+
 }
 
 .order-container {
     position: absolute;
     top: 10%;
-    left: 8%;
+    left: 10%;
     display: grid;
     row-gap: 10px;
     grid-template-columns: auto;
@@ -111,7 +164,10 @@
     overflow-x: hidden;
     max-height: 70%;
     height: 70%;
-    width: 35%;
+    width: 30%;
+    border: 5px solid #52575D;
+    border-radius: 10px;
+    background-color: #52575D;
 }
 
 .backButton {
@@ -120,7 +176,13 @@
     font-size: 35px;
     padding: 15px;
     width: fit-content;
+    border: 0px;
     min-width: 300px;
+    background-color: #41444B;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #F0EAD6;
+    text-align: center;
 }
 
 .backButton2 {
@@ -130,7 +192,13 @@
     font-size: 35px;
     padding: 15px;
     width: fit-content;
+    border: 0px;
     min-width: 300px;
+    background-color: #41444B;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #F0EAD6;
+    text-align: center;
 }
 
 .nextButton {
@@ -140,6 +208,12 @@
     padding: 15px;
     width: 300px;
     right: 0%;
+    border: 0px;
+    background-color: #41444B;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #F0EAD6;
+    text-align: center;
 }
 
 .pageTitle {
@@ -147,6 +221,11 @@
     font-size: 60px;
     top: 5%;
     right: 20%;
+    color: #F0EAD6;
+    background-color: #41444B;
+    border-radius: 10px;
+
+
 }
 
 .pageTitle-topping {
@@ -154,6 +233,10 @@
     font-size: 60px;
     top: 13%;
     left: 40%;
+    color: #F0EAD6;
+    background-color: #41444B;
+    border-radius: 10px;
+
 }
 
 .pageTitle-checkout {
@@ -161,12 +244,20 @@
     font-size: 60px;
     top: 13%;
     right: 20%;
+    color: #F0EAD6;
+    background-color: #41444B;
+    border-radius: 10px;
+
 }
 
 .orderDisplay {
     position: relative;
-    left: 100px;
+    left: 2%;
     font-size: 20px;
+    color: #F0EAD6;
+    background-color: #52575D;
+    border-radius: 10px;
+
 }
 
 .priceDisplay {
@@ -174,12 +265,18 @@
     font-size: 30px;
     bottom: 8%;
     left: 20%;
+    color: #F0EAD6;
+    background-color: #41444B;
+    border-radius: 10px;
 }
 
 .pizzaInfoTitle {
     position: absolute;
     top: 19%;
     left: 10%;
+    color: #F0EAD6;
+    background-color: #41444B;
+    border-radius: 10px;
 }
 
 .pizzaInfo {
@@ -189,13 +286,18 @@
     max-height: 10%;
     left: 5%;
     top: 3%;
+    color: #F0EAD6;
+    background-color: #41444B;
+    border-radius: 10px;
 }
 
 .pizzaBuilder {
     position: absolute;
     top: 0%;
     left: 5%;
-
+    color: #F0EAD6;
+    border-radius: 10px;
+    z-index: -1;
 }
 
 .disclaimer {
@@ -203,6 +305,9 @@
     bottom: 10%;
     font-size: 28px;
     left: 8%;
+    color: #F0EAD6;
+    background-color: #41444B;
+    border-radius: 10px;
 }
 
 .or {
@@ -210,6 +315,9 @@
     top: 40%;
 
     right: 40%;
+    color: #F0EAD6;
+    background-color: #41444B;
+    border-radius: 10px;
 }
 
 .mapTitle {
@@ -217,11 +325,23 @@
     font-size: 50px;
     top: 8%;
     left: 10%;
+    color: #F0EAD6;
+    background-color: #41444B;
+    border-radius: 10px;
 }
 
 .mapdisplay {
-    max-width: 50%;
+    width: 50%;
     position: relative;
     left: 45%;
     margin-top: 5%;
+}
+
+.logo1 {
+    z-index: 0;
+    opacity: 20%;
+    position: absolute;
+    left: 13%;
+    top: 0%;
+
 }
