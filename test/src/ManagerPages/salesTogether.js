@@ -191,12 +191,22 @@ function SalesTogether(props) {
     return ( 
         <React.Fragment>
             <Navbar/>
+            <div class='heading'>
+                <h1>Sales Together Report</h1>
+                <p>See the top selling item pairs over a specific time period</p><hr></hr>
+            </div>
+            <br></br>
             <Table data={togetherTable} column={props.column}/>
-            <h1>Enter a start and end date (YYYY-MM-DD) </h1>
+            <br></br><br></br>
+            <h1>Generate Report</h1>
+            <p>Enter a start and end date to generate a report for that period</p>
             <form onSubmit={console.log('submit')}>
-                <input type="text" className='form-control1' value={beginDate} onChange={e => setBeginDate(e.target.value)}/>
-                <input type="text" className='form-control1' value={endDate} onChange={e => setEndDate(e.target.value)}/>
-                <button onClick={salesTogether}>Submit</button>
+                <label for="beginDate">Start Date:</label>
+                <input type="text" className='form-control1' id='beginDate' value={beginDate} onChange={e => setBeginDate(e.target.value)}/>
+                <label for="endDate">End Date:</label>
+                <input type="text" className='form-control1' id='endDate' value={endDate} onChange={e => setEndDate(e.target.value)}/>
+                <br></br><br></br>
+                <button onClick={salesTogether} class='button'>Submit</button>
             </form>
         </React.Fragment>
 

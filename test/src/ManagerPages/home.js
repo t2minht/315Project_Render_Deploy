@@ -21,6 +21,14 @@ function ManagerHome() {
     return (
         <React.Fragment>
             {component}
+            <div class ="heading">
+                <h1>Welcome</h1>
+                <hr></hr>
+            </div>
+            <div class = "pizza-image">
+                <img src={require('../images/spinLogo.png')} class ="pizza-logo"/>
+            </div>
+            
         </React.Fragment>
         
     );
